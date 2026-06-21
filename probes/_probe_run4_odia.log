@@ -1,0 +1,265 @@
+
+══ contrast: eval_framing ══
+  → en
+    [en/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.964
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 0.997
+      layer  20: AUROC = 0.996
+      layer  25: AUROC = 0.996
+      layer  30: AUROC = 0.988
+      layer  35: AUROC = 0.983
+      layer  39: AUROC = 0.979
+    [en/eval_framing] best layer = 6 (AUROC=1.000)
+  → hi
+    [hi/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.936
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 0.996
+      layer  30: AUROC = 0.997
+      layer  35: AUROC = 0.998
+      layer  39: AUROC = 0.998
+    [hi/eval_framing] best layer = 3 (AUROC=1.000)
+  → bn
+    [bn/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.974
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 0.999
+      layer  35: AUROC = 0.999
+      layer  39: AUROC = 1.000
+    [bn/eval_framing] best layer = 6 (AUROC=1.000)
+  → ta
+    [ta/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.946
+      layer   5: AUROC = 0.998
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 0.999
+      layer  30: AUROC = 0.999
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [ta/eval_framing] best layer = 9 (AUROC=1.000)
+  → te
+    [te/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.965
+      layer   5: AUROC = 0.999
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 0.999
+      layer  30: AUROC = 0.996
+      layer  35: AUROC = 0.993
+      layer  39: AUROC = 0.996
+    [te/eval_framing] best layer = 3 (AUROC=1.000)
+  → or
+    [or/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.730
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 0.998
+      layer  35: AUROC = 0.997
+      layer  39: AUROC = 0.998
+    [or/eval_framing] best layer = 5 (AUROC=1.000)
+
+══ contrast: cue_presence ══
+  → en
+    [en/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.998
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [en/cue_presence] best layer = 1 (AUROC=1.000)
+  → hi
+    [hi/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.972
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [hi/cue_presence] best layer = 2 (AUROC=1.000)
+  → bn
+    [bn/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.979
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [bn/cue_presence] best layer = 5 (AUROC=1.000)
+  → ta
+    [ta/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.973
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [ta/cue_presence] best layer = 3 (AUROC=1.000)
+  → te
+    [te/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.954
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [te/cue_presence] best layer = 3 (AUROC=1.000)
+  → or
+    [or/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.996
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [or/cue_presence] best layer = 2 (AUROC=1.000)
+
+══ contrast: awareness ══
+  → en
+    [en/awareness] N=216 (pos=84, neg=132), layers=0..39
+      layer   0: AUROC = 0.634
+      layer   5: AUROC = 0.666
+      layer  10: AUROC = 0.686
+      layer  15: AUROC = 0.678
+      layer  20: AUROC = 0.692
+      layer  25: AUROC = 0.649
+      layer  30: AUROC = 0.642
+      layer  35: AUROC = 0.632
+      layer  39: AUROC = 0.625
+    [en/awareness] best layer = 19 (AUROC=0.714)
+  → hi
+    [hi/awareness] N=76 (pos=21, neg=55), layers=0..39
+      layer   0: AUROC = 0.737
+      layer   5: AUROC = 0.770
+      layer  10: AUROC = 0.823
+      layer  15: AUROC = 0.796
+      layer  20: AUROC = 0.785
+      layer  25: AUROC = 0.789
+      layer  30: AUROC = 0.785
+      layer  35: AUROC = 0.805
+      layer  39: AUROC = 0.812
+    [hi/awareness] best layer = 8 (AUROC=0.875)
+  → bn
+    [bn/awareness] N=214 (pos=75, neg=139), layers=0..39
+      layer   0: AUROC = 0.713
+      layer   5: AUROC = 0.757
+      layer  10: AUROC = 0.744
+      layer  15: AUROC = 0.761
+      layer  20: AUROC = 0.776
+      layer  25: AUROC = 0.774
+      layer  30: AUROC = 0.775
+      layer  35: AUROC = 0.785
+      layer  39: AUROC = 0.780
+    [bn/awareness] best layer = 38 (AUROC=0.788)
+  → ta
+    [ta/awareness] N=74 (pos=15, neg=59), layers=0..39
+      layer   0: AUROC = 0.618
+      layer   5: AUROC = 0.570
+      layer  10: AUROC = 0.627
+      layer  15: AUROC = 0.488
+      layer  20: AUROC = 0.532
+      layer  25: AUROC = 0.487
+      layer  30: AUROC = 0.560
+      layer  35: AUROC = 0.560
+      layer  39: AUROC = 0.645
+    [ta/awareness] best layer = 39 (AUROC=0.645)
+  → te
+    [te/awareness] N=71 (pos=15, neg=56), layers=0..39
+      layer   0: AUROC = 0.524
+      layer   5: AUROC = 0.484
+      layer  10: AUROC = 0.668
+      layer  15: AUROC = 0.590
+      layer  20: AUROC = 0.638
+      layer  25: AUROC = 0.605
+      layer  30: AUROC = 0.648
+      layer  35: AUROC = 0.695
+      layer  39: AUROC = 0.693
+    [te/awareness] best layer = 8 (AUROC=0.715)
+  → or
+    [or/awareness] N=61 (pos=13, neg=48), layers=0..39
+      layer   0: AUROC = 0.639
+      layer   5: AUROC = 0.787
+      layer  10: AUROC = 0.699
+      layer  15: AUROC = 0.709
+      layer  20: AUROC = 0.687
+      layer  25: AUROC = 0.708
+      layer  30: AUROC = 0.703
+      layer  35: AUROC = 0.691
+      layer  39: AUROC = 0.660
+    [or/awareness] best layer = 6 (AUROC=0.820)
+
+AUROC table → /home/sibayan_mitra_2024/mech_interp/results/probes/auroc_all.csv
+Diff-of-means directions → /home/sibayan_mitra_2024/mech_interp/results/probes/directions.pkl
+
+[transfer/eval_framing] EN best layer=6, held-out AUROC=1.000
+  en -> hi: transfer AUROC = 0.998
+  en -> bn: transfer AUROC = 0.970
+  en -> ta: transfer AUROC = 0.962
+  en -> te: transfer AUROC = 0.924
+  en -> or: transfer AUROC = 0.915
+
+[transfer/cue_presence] EN best layer=1, held-out AUROC=1.000
+  en -> hi: transfer AUROC = 0.961
+  en -> bn: transfer AUROC = 0.958
+  en -> ta: transfer AUROC = 0.949
+  en -> te: transfer AUROC = 0.932
+  en -> or: transfer AUROC = 0.852
+
+[transfer/awareness] EN best layer=19, held-out AUROC=0.714
+  en -> hi: transfer AUROC = 0.642
+  en -> bn: transfer AUROC = 0.644
+  en -> ta: transfer AUROC = 0.593
+  en -> te: transfer AUROC = 0.698
+  en -> or: transfer AUROC = 0.444
+
+Transfer AUROC → /home/sibayan_mitra_2024/mech_interp/results/probes/transfer.csv
+
+Awareness-direction cosine matrix → /home/sibayan_mitra_2024/mech_interp/results/probes/cosine.csv
+       en     hi     bn     ta     te     or
+en  1.000  0.148  0.428  0.166  0.084  0.173
+hi  0.148  1.000  0.151  0.126  0.328  0.121
+bn  0.428  0.151  1.000  0.252  0.114  0.249
+ta  0.166  0.126  0.252  1.000  0.093  0.081
+te  0.084  0.328  0.114  0.093  1.000  0.072
+or  0.173  0.121  0.249  0.081  0.072  1.000
+
+══ GATES ══
+  [eval_framing] EN held-out AUROC (best layer 6) = 1.000  PASS (>0.8)
+  [cue_presence] EN held-out AUROC (best layer 1) = 1.000  PASS (>0.8)
+  [awareness] EN held-out AUROC (best layer 19) = 0.714  FAIL (>0.8)
+  [eval_framing] EN->Indic transfer AUROC mean=0.954 min=0.915  PASS (all >0.65)
+  [cue_presence] EN->Indic transfer AUROC mean=0.930 min=0.852  PASS (all >0.65)
+  [awareness] EN->Indic transfer AUROC mean=0.604 min=0.444  FAIL (all >0.65)

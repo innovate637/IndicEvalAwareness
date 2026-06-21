@@ -1,0 +1,176 @@
+
+══ contrast: eval_framing ══
+  → en
+    [en/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.964
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 0.997
+      layer  20: AUROC = 0.996
+      layer  25: AUROC = 0.996
+      layer  30: AUROC = 0.988
+      layer  35: AUROC = 0.983
+      layer  39: AUROC = 0.979
+    [en/eval_framing] best layer = 6 (AUROC=1.000)
+  → hi
+    [hi/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.936
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 0.996
+      layer  30: AUROC = 0.997
+      layer  35: AUROC = 0.998
+      layer  39: AUROC = 0.998
+    [hi/eval_framing] best layer = 3 (AUROC=1.000)
+  → bn
+    [bn/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.974
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 0.999
+      layer  35: AUROC = 0.999
+      layer  39: AUROC = 1.000
+    [bn/eval_framing] best layer = 6 (AUROC=1.000)
+  → ta
+    [ta/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.946
+      layer   5: AUROC = 0.998
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 0.999
+      layer  30: AUROC = 0.999
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [ta/eval_framing] best layer = 9 (AUROC=1.000)
+  → te
+    [te/eval_framing] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.965
+      layer   5: AUROC = 0.999
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 0.999
+      layer  30: AUROC = 0.996
+      layer  35: AUROC = 0.993
+      layer  39: AUROC = 0.996
+    [te/eval_framing] best layer = 3 (AUROC=1.000)
+  → or
+    [or/eval_framing] missing condition(s): ['eval_log', 'neutral_log'] — skipping.
+
+══ contrast: cue_presence ══
+  → en
+    [en/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.998
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [en/cue_presence] best layer = 1 (AUROC=1.000)
+  → hi
+    [hi/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.972
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [hi/cue_presence] best layer = 2 (AUROC=1.000)
+  → bn
+    [bn/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.979
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [bn/cue_presence] best layer = 5 (AUROC=1.000)
+  → ta
+    [ta/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.973
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [ta/cue_presence] best layer = 3 (AUROC=1.000)
+  → te
+    [te/cue_presence] N=200 (pos=100, neg=100), layers=0..39
+      layer   0: AUROC = 0.954
+      layer   5: AUROC = 1.000
+      layer  10: AUROC = 1.000
+      layer  15: AUROC = 1.000
+      layer  20: AUROC = 1.000
+      layer  25: AUROC = 1.000
+      layer  30: AUROC = 1.000
+      layer  35: AUROC = 1.000
+      layer  39: AUROC = 1.000
+    [te/cue_presence] best layer = 3 (AUROC=1.000)
+  → or
+    [or/cue_presence] missing condition(s): ['eval_log', 'deploy'] — skipping.
+
+══ contrast: awareness ══
+  → en
+    [en/awareness] N=216 (pos=84, neg=132), layers=0..39
+      layer   0: AUROC = 0.634
+      layer   5: AUROC = 0.666
+      layer  10: AUROC = 0.686
+      layer  15: AUROC = 0.678
+      layer  20: AUROC = 0.692
+      layer  25: AUROC = 0.649
+      layer  30: AUROC = 0.642
+      layer  35: AUROC = 0.632
+      layer  39: AUROC = 0.625
+    [en/awareness] best layer = 19 (AUROC=0.714)
+  → hi
+    [hi/awareness] N=76 (pos=21, neg=55), layers=0..39
+Traceback (most recent call last):
+  File "/home/sibayan_mitra_2024/mech_interp/scripts/13_probe_transfer.py", line 499, in <module>
+    main()
+  File "/home/sibayan_mitra_2024/mech_interp/scripts/13_probe_transfer.py", line 495, in main
+    run(langs, limit=args.limit, resume=args.resume)
+  File "/home/sibayan_mitra_2024/mech_interp/scripts/13_probe_transfer.py", line 367, in run
+    rows, cache = per_layer_auroc(lang, contrast, limit=limit)
+  File "/home/sibayan_mitra_2024/mech_interp/scripts/13_probe_transfer.py", line 308, in per_layer_auroc
+    auroc = cv_auroc_at_layer(X[:, layer, :], y)
+  File "/home/sibayan_mitra_2024/mech_interp/scripts/13_probe_transfer.py", line 262, in cv_auroc_at_layer
+    pipe.fit(X_layer[tr], y[tr])
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/base.py", line 1365, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/pipeline.py", line 655, in fit
+    Xt = self._fit(X, y, routed_params, raw_params=params)
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/pipeline.py", line 589, in _fit
+    X, fitted_transformer = fit_transform_one_cached(
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/joblib/memory.py", line 326, in __call__
+    return self.func(*args, **kwargs)
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/pipeline.py", line 1540, in _fit_transform_one
+    res = transformer.fit_transform(X, y, **params.get("fit_transform", {}))
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/utils/_set_output.py", line 316, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/base.py", line 1365, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/decomposition/_pca.py", line 466, in fit_transform
+    U, S, _, X, x_is_centered, xp = self._fit(X)
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/decomposition/_pca.py", line 540, in _fit
+    return self._fit_full(X, n_components, xp, is_array_api_compliant)
+  File "/home/sibayan_mitra_2024/mech_interp/.venv/lib/python3.10/site-packages/sklearn/decomposition/_pca.py", line 554, in _fit_full
+    raise ValueError(
+ValueError: n_components=128 must be between 0 and min(n_samples, n_features)=60 with svd_solver='full'

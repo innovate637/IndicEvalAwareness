@@ -1,0 +1,96 @@
+--resume: 11 (contrast,lang) cells already on disk.
+--resume: loaded 11 existing directions from /home/sibayan_mitra_2024/mech_interp/results/probes/directions.pkl
+
+══ contrast: eval_framing ══
+  [en] cached (--resume) — skipping probe fit.
+  [hi] cached (--resume) — skipping probe fit.
+  [bn] cached (--resume) — skipping probe fit.
+  [ta] cached (--resume) — skipping probe fit.
+  [te] cached (--resume) — skipping probe fit.
+  → or
+    [or/eval_framing] missing condition(s): ['eval_log', 'neutral_log'] — skipping.
+
+══ contrast: cue_presence ══
+  [en] cached (--resume) — skipping probe fit.
+  [hi] cached (--resume) — skipping probe fit.
+  [bn] cached (--resume) — skipping probe fit.
+  [ta] cached (--resume) — skipping probe fit.
+  [te] cached (--resume) — skipping probe fit.
+  → or
+    [or/cue_presence] missing condition(s): ['eval_log', 'deploy'] — skipping.
+
+══ contrast: awareness ══
+  [en] cached (--resume) — skipping probe fit.
+  → hi
+    [hi/awareness] N=76 (pos=21, neg=55), layers=0..39
+      layer   0: AUROC = 0.737
+      layer   5: AUROC = 0.770
+      layer  10: AUROC = 0.823
+      layer  15: AUROC = 0.796
+      layer  20: AUROC = 0.785
+      layer  25: AUROC = 0.789
+      layer  30: AUROC = 0.785
+      layer  35: AUROC = 0.805
+      layer  39: AUROC = 0.812
+    [hi/awareness] best layer = 8 (AUROC=0.875)
+  → bn
+    [bn/awareness] N=214 (pos=75, neg=139), layers=0..39
+      layer   0: AUROC = 0.713
+      layer   5: AUROC = 0.757
+      layer  10: AUROC = 0.744
+      layer  15: AUROC = 0.761
+      layer  20: AUROC = 0.776
+      layer  25: AUROC = 0.774
+      layer  30: AUROC = 0.775
+      layer  35: AUROC = 0.785
+      layer  39: AUROC = 0.780
+    [bn/awareness] best layer = 38 (AUROC=0.788)
+  → ta
+    [ta/awareness] N=74 (pos=15, neg=59), layers=0..39
+      layer   0: AUROC = 0.618
+      layer   5: AUROC = 0.570
+      layer  10: AUROC = 0.627
+      layer  15: AUROC = 0.488
+      layer  20: AUROC = 0.532
+      layer  25: AUROC = 0.487
+      layer  30: AUROC = 0.560
+      layer  35: AUROC = 0.560
+      layer  39: AUROC = 0.645
+    [ta/awareness] best layer = 39 (AUROC=0.645)
+  → te
+    [te/awareness] N=71 (pos=15, neg=56), layers=0..39
+      layer   0: AUROC = 0.524
+      layer   5: AUROC = 0.484
+      layer  10: AUROC = 0.668
+      layer  15: AUROC = 0.590
+      layer  20: AUROC = 0.638
+      layer  25: AUROC = 0.605
+      layer  30: AUROC = 0.648
+      layer  35: AUROC = 0.695
+      layer  39: AUROC = 0.693
+    [te/awareness] best layer = 8 (AUROC=0.715)
+  → or
+    [or/awareness] only one VEA class present across [] (pos=0, neg=0) — skipping.
+
+AUROC table → /home/sibayan_mitra_2024/mech_interp/results/probes/auroc_all.csv
+Diff-of-means directions → /home/sibayan_mitra_2024/mech_interp/results/probes/directions.pkl
+
+[transfer/eval_framing] EN cache unavailable this run (skipped or --resume) — cannot fit transfer source. Skipping.
+
+[transfer/cue_presence] EN cache unavailable this run (skipped or --resume) — cannot fit transfer source. Skipping.
+
+[transfer/awareness] EN cache unavailable this run (skipped or --resume) — cannot fit transfer source. Skipping.
+
+Awareness-direction cosine matrix → /home/sibayan_mitra_2024/mech_interp/results/probes/cosine.csv
+       en     hi     bn     ta     te
+en  1.000  0.148  0.428  0.166  0.084
+hi  0.148  1.000  0.151  0.126  0.328
+bn  0.428  0.151  1.000  0.252  0.114
+ta  0.166  0.126  0.252  1.000  0.093
+te  0.084  0.328  0.114  0.093  1.000
+
+══ GATES ══
+  [eval_framing] EN held-out AUROC (best layer 6) = 1.000  PASS (>0.8)
+  [cue_presence] EN held-out AUROC (best layer 1) = 1.000  PASS (>0.8)
+  [awareness] EN held-out AUROC (best layer 19) = 0.714  FAIL (>0.8)
+  EN->Indic transfer = n/a (no transfer computed this run)
