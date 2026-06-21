@@ -1,0 +1,6 @@
+{
+  "_comment": "Cells whose cue text was CORRECTED after E1/top-up generated them. The live runs load cue JSONs once at startup, so edits don't propagate to data already on disk. scripts/rerun_corrected_cells.py drops these stale rows and regenerates them with the corrected cue. Clear an entry once it has been regenerated.",
+  "rerun": {
+    "bn": ["eval_explicit"]
+  }
+}
