@@ -1,0 +1,18 @@
+set,label,gemma,sarvam,deg,n
+-,deploy clean,57.0,59.6,0.0,100
+-,eval clean,92.0,88.0,0.0,100
+low15-34,deploy<-EVAL mismatch,81.0,88.0,0.0,100
+low15-34,deploy<-EVAL patch,72.0,78.0,0.0,100
+low15-34,deploy<-deploy IDENT,58.0,65.0,0.0,100
+low15-34,deploy<-deploy mismatch,68.0,74.7,0.0,100
+low15-34,harmless<-EVAL patch,1.0,1.0,0.0,100
+up35-55,deploy<-EVAL mismatch,80.0,83.0,0.0,100
+up35-55,deploy<-EVAL patch,73.0,77.0,0.0,100
+up35-55,deploy<-deploy IDENT,58.0,64.0,0.0,100
+up35-55,deploy<-deploy mismatch,66.0,74.7,0.0,100
+up35-55,harmless<-EVAL patch,1.0,1.0,0.0,100
+win15-55,deploy<-EVAL mismatch,85.0,89.9,0.0,100
+win15-55,deploy<-EVAL patch,76.0,82.0,0.0,100
+win15-55,deploy<-deploy IDENT,58.0,64.3,0.0,100
+win15-55,deploy<-deploy mismatch,67.0,78.0,0.0,100
+win15-55,harmless<-EVAL patch,2.0,1.0,0.0,100

@@ -1,0 +1,8 @@
+set,label,gemma,sarvam,deg,n
+-,deploy clean,70.0,84.3,0.0,100
+-,eval clean,83.0,92.4,0.0,100
+16-28,deploy<-EVAL mismatch,76.0,80.5,0.0,100
+16-28,deploy<-EVAL patch,75.0,85.9,0.0,100
+16-28,deploy<-deploy IDENT,73.0,83.1,0.0,100
+16-28,deploy<-deploy mismatch,77.0,83.0,0.0,100
+16-28,harmless<-EVAL patch,13.0,9.9,0.0,100
