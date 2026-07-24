@@ -1,0 +1,24 @@
+==== Aya-Expanse-8B causal run started Saturday 18 July 2026 06:49:24 PM IST ====
+==== Aya Indic CV steering started Saturday 18 July 2026 07:10:54 PM IST ====
+[19:10] aya CV lang=hi starting
+[19:11] poscontrol done, exit=0
+[19:27] cv steering done, exit=0
+==== Aya-Expanse-8B ALL DONE Saturday 18 July 2026 07:27:00 PM IST ====
+[19:27] aya CV lang=hi done, exit=0
+[19:27] aya CV lang=bn starting
+[19:53] aya CV lang=bn done, exit=0
+[19:53] aya CV lang=ta starting
+==== Aya EN<->HI transfer started Saturday 18 July 2026 07:55:27 PM IST ====
+[19:55] aya transfer done, exit=0
+==== Aya EN<->HI transfer started Saturday 18 July 2026 08:00:55 PM IST ====
+[20:01] aya transfer done, exit=0
+==== Aya EN<->HI transfer started Saturday 18 July 2026 08:10:39 PM IST ====
+[20:10] aya transfer done, exit=0
+==== Aya EN<->HI transfer started Saturday 18 July 2026 08:11:49 PM IST ====
+[20:12] aya CV lang=ta done, exit=0
+[20:12] aya CV lang=te starting
+[20:35] aya transfer done, exit=0
+[20:44] aya CV lang=te done, exit=0
+[20:44] aya CV lang=or starting
+[21:09] aya CV lang=or done, exit=0
+==== Aya Indic CV ALL DONE Saturday 18 July 2026 09:09:38 PM IST ====

@@ -1,0 +1,45 @@
+Loading weights:   0%|          | 0/258 [00:00<?, ?it/s]Loading weights:   0%|          | 1/258 [00:00<01:26,  2.97it/s]Loading weights:   4%|▍         | 11/258 [00:00<00:08, 30.32it/s]Loading weights:   7%|▋         | 19/258 [00:00<00:05, 41.93it/s]Loading weights:  10%|█         | 27/258 [00:00<00:04, 49.54it/s]Loading weights:  14%|█▎        | 35/258 [00:00<00:04, 53.59it/s]Loading weights:  17%|█▋        | 43/258 [00:00<00:03, 56.67it/s]Loading weights:  19%|█▉        | 50/258 [00:01<00:03, 58.99it/s]Loading weights:  22%|██▏       | 57/258 [00:01<00:03, 56.17it/s]Loading weights:  24%|██▍       | 63/258 [00:01<00:03, 54.79it/s]Loading weights:  27%|██▋       | 69/258 [00:01<00:03, 49.60it/s]Loading weights:  29%|██▉       | 76/258 [00:01<00:03, 52.28it/s]Loading weights:  32%|███▏      | 83/258 [00:01<00:03, 55.45it/s]Loading weights:  35%|███▌      | 91/258 [00:01<00:02, 57.66it/s]Loading weights:  38%|███▊      | 99/258 [00:01<00:02, 58.85it/s]Loading weights:  41%|████▏     | 107/258 [00:02<00:02, 60.02it/s]Loading weights:  45%|████▍     | 115/258 [00:02<00:02, 60.78it/s]Loading weights:  48%|████▊     | 123/258 [00:02<00:02, 61.06it/s]Loading weights:  51%|█████     | 131/258 [00:02<00:02, 61.78it/s]Loading weights:  54%|█████▍    | 139/258 [00:02<00:01, 61.68it/s]Loading weights:  57%|█████▋    | 147/258 [00:02<00:01, 61.55it/s]Loading weights:  60%|██████    | 155/258 [00:02<00:01, 62.34it/s]Loading weights:  63%|██████▎   | 163/258 [00:02<00:01, 62.99it/s]Loading weights:  66%|██████▋   | 171/258 [00:03<00:01, 62.67it/s]Loading weights:  69%|██████▉   | 179/258 [00:03<00:01, 62.12it/s]Loading weights:  72%|███████▏  | 187/258 [00:03<00:01, 62.92it/s]Loading weights:  76%|███████▌  | 195/258 [00:03<00:00, 63.61it/s]Loading weights:  79%|███████▊  | 203/258 [00:03<00:00, 63.80it/s]Loading weights:  82%|████████▏ | 211/258 [00:03<00:00, 63.22it/s]Loading weights:  85%|████████▍ | 219/258 [00:03<00:00, 61.77it/s]Loading weights:  88%|████████▊ | 226/258 [00:04<00:00, 59.22it/s]Loading weights:  90%|████████▉ | 232/258 [00:04<00:00, 51.25it/s]Loading weights:  92%|█████████▏| 238/258 [00:04<00:00, 51.90it/s]Loading weights:  95%|█████████▍| 245/258 [00:04<00:00, 51.86it/s]Loading weights:  98%|█████████▊| 253/258 [00:04<00:00, 55.51it/s]Loading weights: 100%|██████████| 258/258 [00:04<00:00, 56.56it/s]
+[xtransfer] en dir built on FULL pool n=100 (applied only to the other language)
+[xtransfer] hi dir built on FULL pool n=100 (applied only to the other language)
+  en deploy               gemma= 71% deg=  0% n=100
+  en eval                 gemma= 83% deg=  0% n=100
+  en hi2en_c0.1           gemma= 80% deg=  0% n=100
+  en hinull_c0.1          gemma= 71% deg=  0% n=100
+  en hi2en_c0.25          gemma= 91% deg=  0% n=100
+  en hinull_c0.25         gemma= 51% deg=  0% n=100
+  en harmless_hi2en_c0.25 gemma=  4% deg=  0% n=100
+  hi deploy               gemma= 64% deg=  0% n=100
+  hi eval                 gemma= 87% deg=  0% n=100
+  hi en2hi_c0.1           gemma= 69% deg=  0% n=100
+  hi ennull_c0.1          gemma= 60% deg=  0% n=100
+  hi en2hi_c0.25          gemma= 77% deg=  0% n=100
+  hi ennull_c0.25         gemma= 52% deg=  0% n=100
+  hi harmless_en2hi_c0.25 gemma=  3% deg=  0% n=100
+
+=== ALL ITEMS ===
+                          gemma  deg    n
+tgt label                                
+en  deploy                 71.0  0.0  100
+    eval                   83.0  0.0  100
+    harmless_hi2en_c0.25    4.0  0.0  100
+    hi2en_c0.1             80.0  0.0  100
+    hi2en_c0.25            91.0  0.0  100
+    hinull_c0.1            71.0  0.0  100
+    hinull_c0.25           51.0  0.0  100
+hi  deploy                 64.0  0.0  100
+    en2hi_c0.1             69.0  0.0  100
+    en2hi_c0.25            77.0  0.0  100
+    ennull_c0.1            60.0  0.0  100
+    ennull_c0.25           52.0  0.0  100
+    eval                   87.0  0.0  100
+    harmless_en2hi_c0.25    3.0  0.0  100
+
+=== PAIRED McNEMAR (gemma) — TRANSFER vs donor-null, and natural eval vs deploy ===
+  en: eval           vs deploy         83% vs   71%  Δ=+12.0pp flips 14:2 p=0.0042 (2.86σ)
+  en: hi2en_c0.1     vs hinull_c0.1    80% vs   71%  Δ= +9.0pp flips 11:2 p=0.0225 (2.28σ)
+  en: hi2en_c0.25    vs hinull_c0.25   91% vs   51%  Δ=+40.0pp flips 40:0 p=0.0000 (7.05σ)
+  hi: eval           vs deploy         87% vs   64%  Δ=+23.0pp flips 23:0 p=0.0000 (5.17σ)
+  hi: en2hi_c0.1     vs ennull_c0.1    69% vs   60%  Δ= +9.0pp flips 15:6 p=0.0784 (1.76σ)
+  hi: en2hi_c0.25    vs ennull_c0.25   77% vs   52%  Δ=+25.0pp flips 27:2 p=0.0000 (4.80σ)
+
+saved -> results/causal/aya_xtransfer_items.csv

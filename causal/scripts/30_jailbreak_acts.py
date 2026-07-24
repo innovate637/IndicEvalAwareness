@@ -70,7 +70,7 @@ def extract_all_layers(model, tokenizer, formatted):
 
 # ---- parallel gemma judge (OpenRouter) ----
 def or_key():
-    for l in open(os.path.expanduser("/localstorage/home/dhruvkumar/IndicEvalAwareness/.env")):
+    for l in open(os.path.expanduser("~/CAISc/.env")):
         if l.startswith("OPENROUTER_API_KEY="):
             return l.split("=", 1)[1].strip()
 def gemma_judge(prompt, answer, lang, key):
