@@ -47,12 +47,12 @@ GEMMA_CSV = config.BEHAV_DIR / "refusal_judge.csv"
 
 
 def sarvam_key() -> str:
-    for line in open(os.path.expanduser("/localstorage/home/dhruvkumar/IndicEvalAwareness/.env")):
+    for line in open(os.path.expanduser("$PROJECT_ROOT/.env")):
         if line.startswith("SARVAM_API_KEY="):
             v = line.split("=", 1)[1].strip()
             if v:
                 return v
-    raise RuntimeError("SARVAM_API_KEY not found in /localstorage/home/dhruvkumar/IndicEvalAwareness/.env")
+    raise RuntimeError("SARVAM_API_KEY not found in $PROJECT_ROOT/.env")
 
 
 KEY = None

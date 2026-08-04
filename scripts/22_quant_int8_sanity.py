@@ -32,7 +32,7 @@ import behavioral_common as bc   # gives bc.LanguageModel / BitsAndBytesConfig /
 _spec = importlib.util.spec_from_file_location("e1grid", str(Path(__file__).parent / "09_cue_battery_grid.py"))
 e1 = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(e1)
 
-LANGS = ["en", "bn"]                 # en: keyword reliable (fast signal); bn: Sibayan validates + judge
+LANGS = ["en", "bn"]                 # en: keyword reliable (fast signal); bn: the annotator validates + judge
 CONDS = ["deploy", "eval_log"]       # the core eval-cue contrast
 OUT = config.BEHAV_DIR / "quant_sanity_int8.csv"
 INT4_BASELINE = config.BEHAV_DIR / "cue_battery_grid.csv"

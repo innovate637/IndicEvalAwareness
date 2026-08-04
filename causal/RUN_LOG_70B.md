@@ -2,11 +2,11 @@
 
 > Living record of the Hermes-3-**70B** scale replication of the 8B causal eval-awareness positive
 > (`llama_causal_experiments/`). All paths relative to
-> `/localstorage/home/dhruvkumar/IndicEvalAwareness/`. Results writeup → `RESULTS_70B.md`.
+> `$PROJECT_ROOT/`. Results writeup → `RESULTS_70B.md`.
 > The 8B originals are `RESULTS.md` / `HYPOTHESIS.md` / `README.md`; the sarvam-m E4 pipeline log is the
 > top-level `../RUN_LOG.md`.
 
-**Server:** BITS Pilani APPCAIR cloud — node `2xh100-nvl-bitspilani-vm2` (2× H100 NVL), Slurm. Driver
+**Server:** university compute cloud — node `2xh100-nvl-cluster-vm2` (2× H100 NVL), Slurm. Driver
 565.57.01 / CUDA 12.7. Partition `h100-full` (whole 94 GB GPU). venv `../.venv` (torch 2.12.1+cu126).
 GPU code via `sbatch`; each job exports `HF_HOME=../.hf_cache` and the API keys from `../.env`, and runs
 from `scripts/`.

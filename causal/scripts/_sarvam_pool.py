@@ -6,7 +6,7 @@ module to replace it with a key-rotating version (retire a key on HTTP 401/402/4
 """
 import json, time, threading, urllib.request, urllib.error
 
-ENV = "/localstorage/home/dhruvkumar/IndicEvalAwareness/.env"
+ENV = "$PROJECT_ROOT/.env"
 
 
 def load_keys(env=ENV):

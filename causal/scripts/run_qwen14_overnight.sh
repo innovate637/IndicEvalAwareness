@@ -4,7 +4,7 @@
 # Phase A: auto-localize eval band (12-layer windows over 48 layers) + positive control + single-layer patch.
 # Phase B (at picked band): cross-lingual PATCHING (en/hi/bn/ta/te/or) + eval-steer sweep + cross-lingual STEERING.
 # All checkpoint per-condition. Uses q14_*.py (originals untouched). 14B fp16 ~28GB → fits one 49GB GPU, no int8.
-cd /home/sibayan_mitra_2024/mech_interp
+cd $PROJECT_ROOT
 PY=.venv/bin/python
 Q=results/causal/qwen14_overnight.log
 DL_PID=${1:-2368847}

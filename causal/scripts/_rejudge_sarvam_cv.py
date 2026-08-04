@@ -12,7 +12,7 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import pandas as pd, numpy as np
 
-ROOT = Path("/localstorage/home/dhruvkumar/IndicEvalAwareness/llama_causal_experiments")
+ROOT = Path("$PROJECT_ROOT/llama_causal_experiments")
 sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT / "scripts"))
 import config
 
@@ -41,7 +41,7 @@ def build_prompt_map():
 # ---- 3-key rotator with failover ----
 def load_keys():
     keys = []
-    for line in open("/localstorage/home/dhruvkumar/IndicEvalAwareness/.env"):
+    for line in open("$PROJECT_ROOT/.env"):
         if line.startswith("SARVAM_API_KEY"):
             v = line.split("=", 1)[1].strip()
             if v:

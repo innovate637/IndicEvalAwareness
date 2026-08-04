@@ -4,7 +4,7 @@
 > cross-lingual eval-steering experiment. The English base and hi/bn were already done (job 312, see
 > `RUN_LOG_70B.md §8` / `RESULTS_70B.md §6`); this file covers the te/ta/or completion run and the
 > data-quality investigation it triggered. All paths relative to
-> `/localstorage/home/dhruvkumar/IndicEvalAwareness/`.
+> `$PROJECT_ROOT/`.
 
 ---
 
@@ -12,7 +12,7 @@
 
 | Item | Detail |
 |---|---|
-| Job | Slurm **383**, `sbatch_xlingual70b_taor.sh`, node `2xh100-nvl-bitspilani-vm2`, 1×H100, `--mem=96G` |
+| Job | Slurm **383**, `sbatch_xlingual70b_taor.sh`, node `2xh100-nvl-cluster-vm2`, 1×H100, `--mem=96G` |
 | Command | `41_xlingual_hermes.py --langs te ta or --n 100 --win 15-55` |
 | Date | 2026-07-11 (start 19:19 → complete 22:56 IST) |
 | Model | `unsloth/Hermes-3-Llama-3.1-70B-bnb-4bit` (4-bit NF4, 80 layers, d_model 8192) |

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Overnight causal queue: 3 GPU pipelines (1/2/3) in parallel, each sequential, all checkpointed.
 # GPU 0 left FREE for the co-tenant. Judge = gemma only (free; no real-money sarvam overnight).
-cd /home/sibayan_mitra_2024/mech_interp
+cd $PROJECT_ROOT
 PY=.venv/bin/python
 mkdir -p results/causal
 Q=results/causal/overnight.log

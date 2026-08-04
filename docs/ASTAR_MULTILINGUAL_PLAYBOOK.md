@@ -260,7 +260,7 @@ carry it.
    datasheet. Cheap, and it upgrades the paper from "study" to "study + resource."
 5. **Cue transcreation audit (P8).** Native speaker reads the 6-language cue battery for naturalness (not
    just correctness) — an unnatural eval cue in Odia is a confound (model may react to weird text, not to
-   "being evaluated"). Sibayan covers bn; hi via friend; need ta/te/or readers or scope the claim.
+   "being evaluated"). the annotator covers bn; hi via friend; need ta/te/or readers or scope the claim.
 6. **Cite the direct precedents** and position against them: 2505.17306 (refusal-direction transfer = our
    method's precedent, different concept), 2402.18120 (cross-lingual concept control), 2310.06474 +
    2310.02446 + 2310.00905 (multilingual safety gaps we connect eval-awareness to), 2404.14397 (judge

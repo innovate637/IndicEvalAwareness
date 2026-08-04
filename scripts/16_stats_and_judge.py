@@ -80,7 +80,7 @@ SM_INSTALL_HINT = (
     "[statsmodels not found] The clustered bootstrap below still gives you valid CIs and "
     "TOST bounds. To ALSO fit the mixed/cluster-robust logistic regression, install it "
     "into the project venv only:\n"
-    "    /home/sibayan_mitra_2024/mech_interp/.venv/bin/pip install statsmodels"
+    "    $PROJECT_ROOT/.venv/bin/pip install statsmodels"
 )
 
 BEHAV = config.BEHAV_DIR

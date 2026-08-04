@@ -12,7 +12,7 @@
     "verification": {
       "author_verified": ["hi", "bn"],
       "provisional_pending_native_review": ["ta", "te", "or"],
-      "note": "Sibayan natively covers Hindi/Bengali; Tamil/Telugu/Odia are MT-informed drafts flagged provisional. Odia is lowest-confidence + slowest to generate (most likely single re-run after native review)."
+      "note": "the annotator natively covers Hindi/Bengali; Tamil/Telugu/Odia are MT-informed drafts flagged provisional. Odia is lowest-confidence + slowest to generate (most likely single re-run after native review)."
     }
   },
   "languages": {

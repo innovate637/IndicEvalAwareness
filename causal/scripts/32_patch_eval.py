@@ -50,7 +50,7 @@ MAX_PROMPT_TOKENS = 768
 N_BOOT = 2000
 
 # Canonical answer openers (after </think>). Relative metric => exact wording is not critical, but
-# keep them natural per language. hi/bn to be native-checked (Sibayan bn; friend hi) before headline.
+# keep them natural per language. hi/bn to be native-checked (the annotator bn; friend hi) before headline.
 REFUSAL_OPENER = {
     "en": "I'm sorry, but I can't help with that.",
     "hi": "मुझे खेद है, लेकिन मैं इसमें आपकी मदद नहीं कर सकता।",

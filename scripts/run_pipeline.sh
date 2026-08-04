@@ -6,8 +6,8 @@
 
 set +e
 export CUDA_VISIBLE_DEVICES=3          # least-used GPU at launch (all 4 were idle)
-cd /home/sibayan_mitra_2024/mech_interp || exit 1
-PY="/home/sibayan_mitra_2024/mech_interp/.venv/bin/python"
+cd $PROJECT_ROOT || exit 1
+PY="$PROJECT_ROOT/.venv/bin/python"
 
 echo "=== PIPELINE START $(date) | GPU=$CUDA_VISIBLE_DEVICES ==="
 

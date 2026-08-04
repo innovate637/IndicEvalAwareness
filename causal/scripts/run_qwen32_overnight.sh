@@ -4,7 +4,7 @@
 # Phase A: auto-localize eval band (12-layer windows) + positive control + single-layer patch (validity).
 # Phase B (at picked band): cross-lingual PATCHING (en/hi/bn/ta/te/or) + eval-steer + cross-lingual STEERING.
 # All runs checkpoint per-condition → safe to span >1 night / resume. Uses q32_*.py (originals untouched).
-cd /home/sibayan_mitra_2024/mech_interp
+cd $PROJECT_ROOT
 PY=.venv/bin/python
 Q=results/causal/qwen32_overnight.log
 DL_PID=${1:-2359706}; POS_PID=${2:-2357295}

@@ -7,10 +7,10 @@
 # Phase A: localize eval band (12-layer windows over 60L) + positive control + single-layer patch.
 # Phase B (picked band): cross-lingual PATCHING (en/hi/bn/ta/te/or) + eval-steer sweep +
 #          cross-lingual STEERING at the proportional full window L11-41 (Hermes lesson: bands under-power).
-cd /home/sibayan_mitra_2024/mech_interp
+cd $PROJECT_ROOT
 PY=.venv_gemma4/bin/python
 export CUDA_HOME=/usr/local/cuda-12.8 CUDA_PATH=/usr/local/cuda-12.8
-export PATH="/home/sibayan_mitra_2024/mech_interp/.venv_gemma4/bin:/usr/local/cuda-12.8/bin:$PATH"
+export PATH="$PROJECT_ROOT/.venv_gemma4/bin:/usr/local/cuda-12.8/bin:$PATH"
 export TORCH_CUDA_ARCH_LIST="8.9"
 Q=results/causal/gemma4_overnight.log
 echo "==== gemma4 FULL (steer+patch, dual judge) queued $(date) ====" >> "$Q"

@@ -19,8 +19,8 @@
 # No sudo, venv-only, all writes under mech_interp/.
 # ─────────────────────────────────────────────────────────────────────────────
 set +e
-cd /home/sibayan_mitra_2024/mech_interp || exit 1
-PY=/home/sibayan_mitra_2024/mech_interp/.venv/bin/python
+cd $PROJECT_ROOT || exit 1
+PY=$PROJECT_ROOT/.venv/bin/python
 LOG3=results/behavioral/e1_gpu3.log
 LOG2=results/behavioral/e1_gpu2.log
 TLOG=results/behavioral/topup.log

@@ -2,7 +2,7 @@
 # Queue: wait for the steering-localization run to finish, pick the carrying band, then run the
 # cross-lingual EN->hi/bn steering transfer at that band (fall back to full 6-22 if no single 8-layer
 # band captures >=70% of the full-window specific effect). GPU2 (freed by localization). GPU 0 free.
-cd /home/sibayan_mitra_2024/mech_interp
+cd $PROJECT_ROOT
 PY=.venv/bin/python
 Q=results/causal/queue.log
 echo "==== xlingual queue started $(date) ====" >> "$Q"

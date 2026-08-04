@@ -5,8 +5,8 @@
 # a final authoritative merge rebuilds cue_battery_grid.csv from all of them.
 # No sudo, venv-only, all writes under mech_interp/.
 set +e
-cd /home/sibayan_mitra_2024/mech_interp || exit 1
-PY=/home/sibayan_mitra_2024/mech_interp/.venv/bin/python
+cd $PROJECT_ROOT || exit 1
+PY=$PROJECT_ROOT/.venv/bin/python
 
 echo "=== E1 2-GPU START $(date) ==="
 # remove dry-run partials so the full run regenerates each language completely

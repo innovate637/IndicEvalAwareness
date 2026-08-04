@@ -65,10 +65,10 @@ LABEL_NAMES  = {LABEL_EVAL: "eval", LABEL_DEPLOY: "deploy"}
 
 # ==== Hermes-3-70B replication overrides (2026-07-03) ====
 from pathlib import Path as _P
-_EXP = _P("/localstorage/home/dhruvkumar/IndicEvalAwareness/experiments")
+_EXP = _P("$PROJECT_ROOT/experiments")
 DATA_DIR    = _EXP / "data"
 SAFETY_DIR  = DATA_DIR / "safety_prompts"
-RESULTS_DIR = _P("/localstorage/home/dhruvkumar/IndicEvalAwareness/llama_causal_experiments/results")
+RESULTS_DIR = _P("$PROJECT_ROOT/llama_causal_experiments/results")
 MODEL_NAME  = "unsloth/Hermes-3-Llama-3.1-70B-bnb-4bit"
 NUM_LAYERS  = 80
 D_MODEL     = 8192
