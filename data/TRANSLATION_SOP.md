@@ -139,7 +139,7 @@ item boundaries stop mattering.
 | `status` | string | always — `"ok"`, `"refused"`, or `"error"` |
 | `note` | string | only if `status != "ok"` — one line on what happened |
 | `translation_method` | string | only on rows not produced by the standard Claude Opus pass — `"google_translate_manual"` for a manually-supplied fallback (§6) |
-| `cometkiwi` | float | added by `scripts/score_cometkiwi.py`, only on `status == "ok"` rows |
+| `cometkiwi` | float | added by the §8 scoring script, only on `status == "ok"` rows |
 | `retried` | bool | only if this row went through the §7a automatic retry |
 | `prior_translation` | string | only if `retried == true` — the pre-retry text, never deleted |
 | `prior_cometkiwi` | float | only if `retried == true` — the pre-retry score, never deleted |
@@ -194,12 +194,15 @@ When an item is refused:
 At the end of the run, collect every `itemnum` with `status == "refused"` into a list and
 report it explicitly, with this instruction attached verbatim:
 
-> The following item numbers were declined by Claude Opus and need to be translated manually
-> using Google Translate (translate.google.com): **[list]**. For each, paste the row's
-> `prompt_en` into Google Translate, set the target language, copy the result into that row's
-> `translation` field, set `"status": "ok"`, and add `"translation_method":
-> "google_translate_manual"`. Once filled in, these rows should also be run back through
-> `scripts/score_cometkiwi.py` so they get a `cometkiwi` score like every other row.
+> The following item numbers were declined by Claude Opus and need to be translated via Google
+> Translate instead: **[list]**. Either paste each row's `prompt_en` into
+> translate.google.com by hand, or use the Google Cloud Translation API (`googleapis.dev` /
+> `cloud.google.com/translate` — needs a GCP project, billing enabled, and an API key or
+> service account; the client library is `google-cloud-translate`). For each, copy the result
+> into that row's `translation` field, set `"status": "ok"`, and add `"translation_method":
+> "google_translate_manual"` (keep this exact value even if the API was used, not the web UI —
+> it marks the row as non-Opus-sourced for downstream analysis). Once filled in, run these rows
+> back through the §8 scoring script so they get a `cometkiwi` score like every other row.
 
 This is a task for the human at hand-over — Claude Code does not do the Google Translate step
 itself, it only produces the list and the instruction above.
@@ -223,11 +226,7 @@ python3 -m venv .cometkiwi_venv
 
 **Do not try to match `torch`'s CUDA build to the machine's driver.** Run COMET-Kiwi on CPU —
 it's the path that's actually been verified to work, it needs no driver/toolkit matching, and
-200 short (source, translation) pairs takes under two minutes on CPU:
-
-```bash
-CUDA_VISIBLE_DEVICES="" .cometkiwi_venv/bin/python scripts/score_cometkiwi.py data/harmful_<code>.json
-```
+200 short (source, translation) pairs takes under two minutes on CPU.
 
 **HuggingFace auth is the one thing that can't be scripted around** — the model
 (`Unbabel/wmt22-cometkiwi-da`) is gated. If `huggingface-cli whoami` (or `hf auth whoami`)
@@ -240,12 +239,65 @@ already cached (check `~/.cache/huggingface/token`), skip this entirely.
 
 ## 8. COMET-Kiwi scoring and the pass threshold
 
-Score with `scripts/score_cometkiwi.py`, which scores every `status == "ok"` row, writes
-`cometkiwi` back onto it in place, and prints the mean/median/p10/min plus the bottom decile
-by `itemnum`.
+There is no checked-in scoring script in this repo — write the one below to a temp file (e.g.
+`score_cometkiwi.py`) and run it yourself each time. It scores every `status == "ok"` row,
+writes `cometkiwi` back onto it in place, and prints the mean/median/p10/min plus the bottom
+decile by `itemnum`.
+
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import json
+import sys
+import statistics as st
+
+
+def main(path):
+    from comet import download_model, load_from_checkpoint
+
+    try:
+        import torch
+        gpus = 1 if torch.cuda.is_available() else 0
+    except Exception:
+        gpus = 0
+    print("scoring %s on %s" % (path, "GPU (cuda)" if gpus else "CPU"))
+
+    model = load_from_checkpoint(download_model("Unbabel/wmt22-cometkiwi-da"))
+
+    rows = json.load(open(path, encoding="utf-8"))
+    ok = [r for r in rows if r.get("status") == "ok" and r.get("translation", "").strip()]
+    data = [{"src": r["prompt_en"], "mt": r["translation"]} for r in ok]
+    scores = model.predict(data, batch_size=8, gpus=gpus).scores
+
+    for r, s in zip(ok, scores):
+        r["cometkiwi"] = float(s)
+
+    # write scores back in place (keeps refused/error rows untouched, no re-ordering)
+    with open(path, "w", encoding="utf-8") as fh:
+        json.dump(rows, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+
+    n = len(scores)
+    ssorted = sorted(scores)
+    p10 = ssorted[int(0.1 * n)]
+    print("n=%d mean=%.3f median=%.3f p10=%.3f min=%.3f" % (
+        n, st.mean(scores), st.median(scores), p10, min(scores)))
+
+    print("\nbottom decile (review these — see §8a for the automatic retry rule):")
+    scored = sorted(((r["cometkiwi"], r["itemnum"]) for r in ok))
+    for score, itemnum in scored[:max(1, n // 10)]:
+        flag = "  < 0.70, goes to §8a" if score < 0.70 else ""
+        print("  item %3d : %.3f%s" % (itemnum, score, flag))
+
+
+if __name__ == "__main__":
+    main(sys.argv[1] if len(sys.argv) > 1 else "data/harmful_hi.json")
+```
+
+Run it CPU-only, on your isolated venv:
 
 ```bash
-CUDA_VISIBLE_DEVICES="" .cometkiwi_venv/bin/python scripts/score_cometkiwi.py data/harmful_<code>.json
+CUDA_VISIBLE_DEVICES="" .cometkiwi_venv/bin/python score_cometkiwi.py data/harmful_<code>.json
 ```
 
 **Pass threshold: `cometkiwi >= 0.70`.** This is not an arbitrary number — published guidance
