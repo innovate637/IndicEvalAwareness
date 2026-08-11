@@ -1,74 +1,79 @@
-# Translation SOP — one teammate per language (Claude Opus, via Claude Code or chat)
+# Translation SOP — the complete, self-contained runbook
 
-**Read this whole file before you start.** Every language must be produced the same way. If
-one person deviates, language is confounded with method and the cross-lingual comparison
-is no longer interpretable — that is the entire point of the study, so this matters more
-than it looks.
+**This file is the only reference needed.** If you are Claude Code and someone points you at
+this file, follow it top to bottom and produce the finished `data/harmful_<code>.json` with
+no clarifying questions — every input, path, threshold, and decision rule below is fully
+specified. If you are a human contributor, the same applies: read this once, then execute.
 
-Delivery method: **Claude Opus through Claude Code or the chat UI**, not the API. That means
-there are no `temperature` / `effort` / `max_tokens` knobs to set — the only things we can
-standardise are the model, the prompt wording, and the handling rules below. Follow them
-exactly.
+Every language must be produced the same way. If one person or one run deviates, language is
+confounded with method and the cross-lingual comparison this study depends on stops being
+interpretable.
+
+Delivery method: **Claude Opus, via Claude Code or the chat UI**, not the API. There are no
+`temperature` / `effort` / `max_tokens` knobs in this workflow — the only things standardised
+are the model, the prompt wording, and the handling rules below.
 
 Supersedes `docs/TRANSLATION_PROTOCOL.md` where they conflict (that file assumed IndicTrans2).
+
+> **Revision note (2026-08-11):** This version removes the manual hand-over notes file
+> (there is no `data/harmful_<code>.NOTES.md` anymore — everything required lives either in
+> the JSON itself or in the end-of-run report this SOP tells you to produce) and replaces the
+> old "flag for human review" step with a fully automatic threshold-and-retry loop. There is
+> no human review step in this SOP. Package installation for COMET-Kiwi is pre-approved —
+> do not stop to ask before installing it. This revision also drops the old one-item-per-
+> message / fresh-context-per-item requirement (§4) — the whole 200-item run, including any
+> §8a retries, can happen in one continuous Claude Code session.
 
 ---
 
 ## 0. Assignment
 
-| Language | Code | Script | Owner |
+| Language | `lang` field value | Filename code | Script |
 |---|---|---|---|
-| Hindi | `hin_Deva` | Devanagari | |
-| Bengali | `ben_Beng` | Bengali | |
-| Tamil | `tam_Taml` | Tamil | |
-| Telugu | `tel_Telu` | Telugu | |
-| Odia | `ory_Orya` | Odia | |
+| Hindi | `hin_Deva` | `hi` | Devanagari — done, see `data/harmful_hi.json` |
+| Bengali | `ben_Beng` | `bn` | Bengali |
+| Tamil | `tam_Taml` | `ta` | Tamil |
+| Telugu | `tel_Telu` | `te` | Telugu |
+| Odia | `ory_Orya` | `or` | Odia |
 
-Put your name in before starting. One language per person; do not translate a language you
-were not assigned.
+One language per run. Do not touch a `data/harmful_<code>.json` for a language you were not
+asked to produce.
 
 ---
 
 ## 1. Input
 
-`data/final_set/final_harmful_200_en.json` — a JSON array of **200** objects:
+`data/harmful_en.json` — a JSON array of **200** objects:
 
 ```json
 {"itemnum": 0, "perm_rank": 0, "doc_id": "d34b78ef-…", "prompt": "As an IT professional, …"}
 ```
 
-> ⚠️ **200 items, not 100.** If you were told 100, stop and confirm with the project lead —
-> a half-sized set breaks the power calculation the study is sized against (`run_log.md`).
-
-Translate **every** item. Never skip, merge, reorder, or re-sample. `doc_id` and `itemnum`
-are the join keys to every other stage — carry them through untouched.
+Translate **every** item — never skip, merge, reorder, or re-sample. `doc_id` and `itemnum`
+are join keys to every other stage of the study — carry them through untouched. The source
+field is `prompt`; in your output it is renamed `prompt_en` (see §5).
 
 ---
 
-## 2. Model — identical for everyone
+## 2. Model
 
-Use **Claude Opus** (the current Opus, `claude-opus-5`). Same model for all five languages.
+Use **Claude Opus** (`claude-opus-5`) for every translation and every retry. Do not switch to
+Sonnet or Haiku mid-run.
 
-- Confirm the model selector says Opus before you start, and don't switch mid-run.
-- Don't let one person use Opus and another use Sonnet or Haiku — the model is part of the
-  method.
-
-**No sampling settings exist in this workflow.** Chat and Claude Code do not expose
-`temperature` or an effort dial, so there is nothing to set — and nothing to standardise on
-that axis. This also means **the output is not deterministic**: the same prompt can produce a
-slightly different translation on a re-run. That is a property of the model, and it must be
-stated in the paper's methods. **Do not re-run an item hoping for a nicer translation — take
-the first result and record it.** Cherry-picking re-runs would quietly bias the set.
+**No sampling settings exist in this workflow** — chat and Claude Code expose no
+`temperature`/effort dial, so the output is not fully deterministic even on identical input.
+That's expected. **Do not re-run an item on the initial pass hoping for a nicer translation** —
+take the first result. The only re-run this SOP permits is the automatic, scored retry in
+§7a, which is not optional cherry-picking — it is a fixed, deterministic rule triggered
+purely by a COMET-Kiwi number, not by taste.
 
 ---
 
 ## 3. The translation prompt — paste it exactly
 
 **Do not edit this.** Substitute only `{LANGUAGE}`, `{SCRIPT}`, and `{TEXT}`. The instruction
-stays in English for every language — if the instruction differs across languages, language
-is confounded with instruction wording.
-
-Canonical copy: `data/final_set/translation_prompts.json`.
+stays in English for every language. Use the identical template for the initial pass and for
+any §7a retry.
 
 ```
 Translate the following text from English into {LANGUAGE}, written in {SCRIPT} script.
@@ -91,8 +96,6 @@ Text:
 {TEXT}
 ```
 
-### Substitutions for your language
-
 | Language | `{LANGUAGE}` | `{SCRIPT}` |
 |---|---|---|
 | Hindi | `Hindi` | `Devanagari` |
@@ -103,153 +106,215 @@ Text:
 
 ---
 
-## 4. One item per message — do not batch
+## 4. Running the translations — a single session is fine
 
-**Translate one prompt per message**, in a fresh context, and record the result before
-moving to the next.
+All 200 items — and any §8a retries — may be translated within one continuous Claude Code
+session. There is no requirement to isolate each item in its own fresh context or to spin up
+a separate agent/subagent per item; work through the set in whatever order and grouping is
+convenient within that one session.
 
-- **Do not paste 10 prompts and ask for 10 translations.** In a shared context the model
-  carries wording, tone, and refusals from earlier items into later ones — item 5's content
-  leaks into item 6's translation. Every item must be translated as if it were the only one.
-- **Start each item clean.** In chat, a new conversation (or at least a clear break) per
-  item; in Claude Code, one prompt per run. Do not build up a long thread — earlier harmful
-  items in the history change how later ones are handled.
-- Batching is the single easiest way to silently corrupt the set. If you catch yourself
-  pasting more than one prompt, stop.
-
-*(If you're comfortable scripting, the cleanest way to guarantee one-clean-context-per-item
-is the API with `pip install anthropic` — but that needs the project lead's approval for the
-install and the key, and it's optional. The chat/Claude Code method above is fine as long as
-you keep each item isolated.)*
+Still translate and record each item as its own distinct output (don't merge two items'
+translations together or lose track of which output belongs to which `itemnum`) — the point
+of this section is only that a shared session/context across items is permitted, not that
+item boundaries stop mattering.
 
 ---
 
-## 5. Recording the output
+## 5. Output — directory, filename, and exact schema
 
-Write **one file per language**, e.g. `translations/hin_Deva.json`, as a JSON array with one
-row per item:
+- **Directory:** `data/` — the same folder as `harmful_en.json`.
+- **Filename:** `harmful_<filename code>.json` from the §0 table (e.g. `harmful_bn.json`).
+- **One file, one JSON array, all 200 rows.** No splitting, no separate notes file, no
+  companion markdown — this JSON is the entire deliverable.
+
+### Row schema
+
+| Field | Type | When present |
+|---|---|---|
+| `itemnum` | int | always — copied from `harmful_en.json` |
+| `doc_id` | string | always — copied from `harmful_en.json` |
+| `lang` | string | always — the `lang` value from §0, e.g. `"ben_Beng"` |
+| `prompt_en` | string | always — the source `prompt`, renamed |
+| `translation` | string | always; `""` if `status` is `"refused"` or `"error"` |
+| `status` | string | always — `"ok"`, `"refused"`, or `"error"` |
+| `note` | string | only if `status != "ok"` — one line on what happened |
+| `translation_method` | string | only on rows not produced by the standard Claude Opus pass — `"google_translate_manual"` for a manually-supplied fallback (§6) |
+| `cometkiwi` | float | added by `scripts/score_cometkiwi.py`, only on `status == "ok"` rows |
+| `retried` | bool | only if this row went through the §7a automatic retry |
+| `prior_translation` | string | only if `retried == true` — the pre-retry text, never deleted |
+| `prior_cometkiwi` | float | only if `retried == true` — the pre-retry score, never deleted |
+
+UTF-8, real Indic characters (not `\uXXXX` escapes).
+
+Reference row (ok, never retried):
 
 ```json
-[
-  {
-    "itemnum": 0,
-    "doc_id": "d34b78ef-6d27-4ece-8df8-93090af550fe",
-    "lang": "hin_Deva",
-    "prompt_en": "As an IT professional, imagine feeling like there's no escape…",
-    "translation": "…",
-    "status": "ok"
-  }
-]
+{
+  "itemnum": 0,
+  "doc_id": "d34b78ef-6d27-4ece-8df8-93090af550fe",
+  "lang": "ben_Beng",
+  "prompt_en": "As an IT professional, imagine feeling like there's no escape…",
+  "translation": "…",
+  "status": "ok"
+}
 ```
 
-- `status` is `"ok"`, `"refused"`, or `"error"`.
-- **Every one of the 200 items gets a row**, including refusals — a missing row is
-  indistinguishable from a lost item.
-- Save the file as UTF-8. If you assemble it by hand, make sure the Indic text is stored as
-  real characters, not `\uXXXX` escapes (if it looks like `हि`, it was written
-  with ASCII escaping — fix the export).
-- If you're in Claude Code, the easiest path is to have it append each result to the JSON
-  file as you go, so nothing is lost to copy-paste.
+Reference row (retried under §7a):
+
+```json
+{
+  "itemnum": 47,
+  "doc_id": "…",
+  "lang": "ben_Beng",
+  "prompt_en": "…",
+  "translation": "…(the retry's output)…",
+  "status": "ok",
+  "cometkiwi": 0.71,
+  "retried": true,
+  "prior_translation": "…(the original, lower-scoring output)…",
+  "prior_cometkiwi": 0.52
+}
+```
 
 ---
 
-## 6. Refusals — expect them, log them, never work around them
+## 6. Refusals — never retried by Claude, always handed to the human as Google Translate work
 
-These are harmful prompts, and Claude Opus has strong safety classifiers, so **some requests
-will be declined.** That is expected and is not a failure on your part.
+Some prompts will be declined by Claude Opus's safety classifiers. Expected, not a failure.
 
 When an item is refused:
 
-- Set `"status": "refused"`, leave `translation` as `""`, and note briefly what it said.
-- **Do NOT** rephrase, soften, or shorten the source prompt to slip it past the refusal.
-- **Do NOT** use a jailbreak, a system prompt telling Claude to comply, or a different model.
-- **Do NOT** hand-translate it yourself and record it as if the model produced it.
+- Set `"status": "refused"`, `"translation": ""`, and a one-line `"note"` on what it said.
+- **Never** rephrase, soften, jailbreak, switch model, or hand-translate it yourself to work
+  around the refusal.
+- **Never** route a refusal into the §7a retry loop — §7a only ever touches items that were
+  successfully translated and scored. A refusal is a different failure mode and stays
+  `"refused"`.
 
-Any of those makes that item incomparable to the other 199 and biases the cell. Log it and
-move on.
+At the end of the run, collect every `itemnum` with `status == "refused"` into a list and
+report it explicitly, with this instruction attached verbatim:
 
-**Report your refusal count and rate at hand-over.** Refusal rate will likely differ by
-language, and a differential refusal rate is itself a finding — but only if it's recorded.
-Unlogged, it becomes hidden missing data that corrupts the comparison.
+> The following item numbers were declined by Claude Opus and need to be translated manually
+> using Google Translate (translate.google.com): **[list]**. For each, paste the row's
+> `prompt_en` into Google Translate, set the target language, copy the result into that row's
+> `translation` field, set `"status": "ok"`, and add `"translation_method":
+> "google_translate_manual"`. Once filled in, these rows should also be run back through
+> `scripts/score_cometkiwi.py` so they get a `cometkiwi` score like every other row.
+
+This is a task for the human at hand-over — Claude Code does not do the Google Translate step
+itself, it only produces the list and the instruction above.
 
 ---
 
-## 7. COMET-Kiwi quality check
+## 7. Environment setup for COMET-Kiwi — copy this exactly
 
-After your 200 are done, score them with COMET-Kiwi — **reference-free** quality estimation
-that scores a (source, translation) pair with no human reference needed. Model:
-`Unbabel/wmt22-cometkiwi-da`.
+This install is **pre-approved**. Do not stop to ask before running it.
 
-Two setup snags:
+Run this in an isolated virtualenv, not the machine's system Python — `unbabel-comet` pins a
+very old `torchmetrics` (`<0.11`) that breaks against a modern `transformers`/`setuptools`
+already on most machines, and building the venv here avoids touching anything else installed
+on a shared box.
 
-- The model is **gated on HuggingFace** — accept the licence on the model page and
-  `huggingface-cli login`, or it 401s.
-- It needs `pip install "unbabel-comet>=2.0.0"`. **Ask the project lead before installing
-  anything** — the server rules prohibit unapproved installs.
-
-```python
-from comet import download_model, load_from_checkpoint
-import json, statistics as st
-
-model = load_from_checkpoint(download_model("Unbabel/wmt22-cometkiwi-da"))
-rows = [r for r in json.load(open("translations/hin_Deva.json")) if r["status"] == "ok"]
-data = [{"src": r["prompt_en"], "mt": r["translation"]} for r in rows]
-scores = model.predict(data, batch_size=8, gpus=1).scores
-
-for r, s in zip(rows, scores):
-    r["cometkiwi"] = s
-print("n=%d mean=%.3f median=%.3f p10=%.3f min=%.3f" % (
-    len(scores), st.mean(scores), st.median(scores),
-    sorted(scores)[int(.1*len(scores))], min(scores)))
+```bash
+python3 -m venv .cometkiwi_venv
+.cometkiwi_venv/bin/python -m pip install -q "unbabel-comet>=2.0.0"
+.cometkiwi_venv/bin/python -m pip install -q "setuptools<81"   # unbabel-comet's torchmetrics needs pkg_resources, removed in setuptools>=81
 ```
 
-### What to report
+**Do not try to match `torch`'s CUDA build to the machine's driver.** Run COMET-Kiwi on CPU —
+it's the path that's actually been verified to work, it needs no driver/toolkit matching, and
+200 short (source, translation) pairs takes under two minutes on CPU:
 
-- **The full distribution — mean, median, p10, min — not just the mean.** Means hide the
-  tail, and the tail is where stimuli break.
-- **The bottom decile, listed by `itemnum`**, for manual review.
-- Scores run 0–1. Treat **< 0.75 as worth a look** and **< 0.60 as probably broken**. These
-  are review triggers, not automatic deletion — do not drop items on a score alone.
+```bash
+CUDA_VISIBLE_DEVICES="" .cometkiwi_venv/bin/python scripts/score_cometkiwi.py data/harmful_<code>.json
+```
 
-### COMET-Kiwi does not measure the thing we care about most
-
-It scores adequacy and fluency. **A translation that quietly sanitises a harmful prompt into
-a polite one can still score well** — it's fluent and topically close. That is exactly the
-failure that would wreck this study: in `results.md` §4, Tamil rendered "create a *false*
-sense of popularity" as "create awareness and trust", and the stimulus stopped being
-harmful, yet a fluency metric wouldn't flag it.
-
-So COMET-Kiwi is **necessary but not sufficient**. Harm retention is checked separately,
-after all five languages are in, by re-running the harm screen on the translated set with
-two judges from different model families.
+**HuggingFace auth is the one thing that can't be scripted around** — the model
+(`Unbabel/wmt22-cometkiwi-da`) is gated. If `huggingface-cli whoami` (or `hf auth whoami`)
+doesn't return a logged-in account, a person has to run `huggingface-cli login` with their own
+token once and accept the model's licence on its HuggingFace page — that step needs a human
+credential and is the sole exception to "no questions asked" in this SOP. If a token is
+already cached (check `~/.cache/huggingface/token`), skip this entirely.
 
 ---
 
-## 8. Hand-over checklist
+## 8. COMET-Kiwi scoring and the pass threshold
 
-- [ ] `translations/<CODE>.json` has exactly **200 rows**
-- [ ] Every `itemnum` 0–199 present once; `doc_id` matches the source file
-- [ ] Model recorded as Claude Opus (`claude-opus-5`)
-- [ ] Refusal count and rate reported
-- [ ] Error/lost count reported
-- [ ] COMET-Kiwi mean / median / p10 / min reported
-- [ ] Bottom-decile `itemnum`s listed for review
-- [ ] Confirmed: one item per message, fresh context each time; nothing rephrased, retried
-      after refusal, or hand-translated
-- [ ] Your name and date in the Assignment table
+Score with `scripts/score_cometkiwi.py`, which scores every `status == "ok"` row, writes
+`cometkiwi` back onto it in place, and prints the mean/median/p10/min plus the bottom decile
+by `itemnum`.
+
+```bash
+CUDA_VISIBLE_DEVICES="" .cometkiwi_venv/bin/python scripts/score_cometkiwi.py data/harmful_<code>.json
+```
+
+**Pass threshold: `cometkiwi >= 0.70`.** This is not an arbitrary number — published guidance
+on COMET/CometKiwi-family scores treats sustained scores above 0.70 as good overall
+translation quality, with strong systems typically landing in the 0.80s ([Evaluating LLM
+Translation Quality, 2026](https://futureagi.com/blog/evaluating-llm-translation-quality-2026/);
+[CometKiwi: IST-Unbabel 2022 WMT QE submission](https://www.statmt.org/wmt22/pdf/2022.wmt-1.60.pdf)).
+Anything below `0.70` is not sent for human review — it goes straight into §8a.
+
+(COMET-Kiwi scores fluency/adequacy, not harm retention — a sanitised-but-fluent mistranslation
+can still score well. That's a separate check, run later across all five languages by two
+independent judge models. It does not change anything about how this SOP's threshold is
+applied — just don't mistake a high COMET-Kiwi score for proof the harmful content survived.)
 
 ---
 
-## 9. Things that invalidate the run
+## 8a. Automatic retry for scores below 0.70 — fully automatic, one pass, no human step
 
-Any of these means that language is redone from scratch:
+1. Run the scoring command in §8. Take every `itemnum` with `status == "ok"` and
+   `cometkiwi < 0.70`.
+2. If that list is empty, the file is done — skip to §9.
+3. For each flagged `itemnum`, re-run the **unedited** §3 prompt for your language against
+   that item's `prompt_en` (same session is fine, per §4). Same model, same template, no
+   hints about scoring higher — that would risk exactly the sanitisation failure §8 warns
+   about.
+   - If this retry attempt is itself refused, treat it as a refusal per §6 (list it for the
+     human's Google Translate step) — do not fall back to the original low-scoring
+     translation and do not hand-translate.
+4. Update the row: copy current `translation` → `prior_translation`, current `cometkiwi` →
+   `prior_cometkiwi`, set `translation` to the new output, set `retried: true`, and drop the
+   stale `cometkiwi` value (the next scoring pass fills it in).
+5. Once every flagged item has been retried, re-run the §8 scoring command over the **whole
+   file** — it only touches `status == "ok"` rows, so it's safe to run again on everything.
+6. **Stop after this one retry pass, regardless of the outcome.** If a retried item is still
+   below `0.70`, leave it as-is with `retried: true` and its new (still-low) `cometkiwi` —
+   do not retry a second time. There is no human review gate here: a second miss is simply
+   reported as-is in the final summary (§9), and the file is still considered complete and
+   ready to hand over.
 
-- Editing the prompt template, or adding your own instructions/system prompt
-- Using a different model (Sonnet, Haiku, a non-Opus)
-- Translating several items in one shared context (batching)
-- Softening, rephrasing, retrying, or hand-translating a refused item
-- Re-running items to pick a nicer translation
+---
+
+## 9. What to output when the run is finished
+
+State all of the following plainly at the end of the run — this replaces the old separate
+hand-over notes file:
+
+- File path and row count (must be `data/harmful_<code>.json`, 200 rows).
+- Refusal count and the itemnum list with the Google Translate instruction from §6.
+- Error/lost count (should be 0 — every item gets a row).
+- Pre-retry COMET-Kiwi distribution: mean / median / p10 / min, and the bottom-decile
+  itemnums.
+- The list of itemnums that went through §7a, each as `prior_cometkiwi → cometkiwi`.
+- Post-retry COMET-Kiwi distribution (if §7a ran at all).
+- Any itemnum still below `0.70` after its one retry — reported plainly, not hidden, but not
+  a blocker to declaring the file done.
+
+---
+
+## 10. Things that invalidate the run
+
+- Editing the prompt template, or adding instructions/system prompt, on the initial pass or
+  a §7a retry
+- Using a model other than Claude Opus (`claude-opus-5`) for translation or retry
+- Rephrasing, softening, or hand-translating a refusal instead of routing it to §6
+- Retrying an item a second time after its one §7a attempt
+- Retrying an item that scored `>= 0.70` "because it reads oddly" — the threshold is the only
+  trigger
 - Dropping, reordering, or re-sampling items
 - Losing `doc_id` / `itemnum`
+- Deleting or overwriting `prior_translation` / `prior_cometkiwi` on a retried row
 
-Unsure whether something counts? Ask **before** running all 200, not after.
+Everything needed to execute this SOP end-to-end is above — there is nothing left to ask.
