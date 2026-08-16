@@ -16,7 +16,7 @@
 | **Main grid** | 6 × 2 arms × 6 langs × 5 cues × 200 = **72,000 generations** |
 | **Total campaign** | ≈ **76,840 generations**. GPU-hours: see §5.2 — the 25–40 figure is measured to be light by ≈2× |
 | **Pinned stack** | vLLM **0.27.1** · bf16 everywhere · greedy · seed 2026 |
-| **Rev 3.2 changes** | `te` and `kn` translations **exist and are scored** (B2/B3 closed); token budget **measured**, not indicative (§5.2); refusal drop set now **decidable** (§3.6); four new repo defects (§0.5 B9–B12) |
+| **Rev 3.2 changes** | `te` and `kn` translations **exist and are scored** (B2/B3 closed); token budget **measured**, not indicative (§5.2); refusal drop set now **decidable** (§3.6); benign source frozen as **Dolly-T** with four blocking facts (§3.4); five new repo defects (§0.5 B5b, B9–B12) |
 
 ---
 
@@ -111,7 +111,8 @@ These are facts about the repository, not plan defects. **None of them is caused
 | **B2** | ~~Telugu translations do not exist~~ — **CLOSED.** `data/harmful_te.json`: 200 rows, `tel_Telu`, 0 refusals, all 200 scored, COMET-Kiwi **mean 0.860**, min 0.543, two §8a retries (items 47, 76) | None. Item 76 remains at 0.689 after its one permitted retry — reported, not a blocker |
 | **B3** | ~~Kannada translations do not exist~~ — **CLOSED.** `data/harmful_kn.json`: 200 rows, `kan_Knda`, 0 refusals, COMET-Kiwi **mean 0.862**, min 0.566, four §8a retries (47, 152, 168, 183) | Two rows carry no score — see **B9**. Confirm `TRANSLATION_SOP.md` §0 now lists the Kannada row |
 | **B4** | **`scripts/normalise_translations.py` does not exist** and is *not* "trivial" — see §3.1 | G0 has nothing to validate until it does |
-| **B5** | **The cue battery does not exist in any language**, nor does the benign arm, nor `translation_refusals.json` | §3.3 and §3.4 are unstarted work. **Now the binding constraint** |
+| **B5** | **The cue battery does not exist in any language**, nor does `translation_refusals.json` | §3.3 is unstarted work. **Now the binding constraint** |
+| **B5b** | **Benign arm — source frozen as Dolly-T, but not usable as specified.** The files exist outside this repo, hold **100 items** where §3.4 samples 200, have **no Kannada**, and their length range (3–32 words) cannot match the harmful set (median 30, max 593) | §3.4 D1–D4. Needs a third translation run (`kn`), a resolution of the 100-vs-200 arithmetic that feeds §1.3's counts, and a recorded decision on length matching |
 | **B6** | **None of the §8 code is committed.** No `src/phase2/`, no `config/`, no `cluster/` | ~1,100 lines. **Fully parallelisable — nothing blocks it, and it should already be underway** |
 | **B7** | Refusals: `hi` 160 still `refused`; `bn` 56 **has been filled in**; `or` retired | §3.6 — the decision is now **fully informed** and can be closed. See B10 |
 | **B8** | `TRANSLATION_SOP.md` numbers the same retry section **§7a** in two places and **§8a** in two others | Both `te` and `kn` were run against this ambiguity. Fix the numbering before any further language run |
@@ -355,9 +356,11 @@ All **150** ratios (5 conditions × 5 non-`en` languages × 6 tokenizers — 125
 
 ### 3.4 Benign arm construction
 
+**The benign source is Dolly-T** — `ai4bharat/indic-align`, `Dolly_T` split — carried over from Phase 1. It is named here as the frozen decision, not as a candidate.
+
 ```
-1. Load Dolly-T, all 6 languages, parallel by doc_id.
-2. Keep only doc_ids present and non-empty in ALL six.
+1. Load Dolly-T, all 6 languages, parallel by id.
+2. Keep only ids present and non-empty in ALL six.
 3. Compute English word-count quartile boundaries of the 200 harmful items.
 4. Stratified-sample 50 benign items from each harmful quartile band, using a
    fixed permutation with seed 2026 (same discipline as D14).
@@ -365,6 +368,45 @@ All **150** ratios (5 conditions × 5 non-`en` languages × 6 tokenizers — 125
 ```
 
 Length stratification matters because refusal and response length are correlated; an unmatched benign set makes the false-refusal comparison partly a length comparison.
+
+> ### ⚠ Rev 3.2 — the recipe above cannot execute as written. Four blocking facts.
+>
+> The Dolly-T files exist at `data/safety_prompts/benign/{bn,en,hi,or,ta,te}.json` in the **`mech_interp` working tree, not in this repository**. Each holds **100 items** with keys `id, text, lang, source, harm_category`, `id` formatted `{lang}_benign_NNNN`, `source = "ai4bharat/indic-align/Dolly_T"`. All 100 ids are common to all six files, so the set is genuinely parallel. Verified by parsing, 2026-08-16.
+>
+> | # | Fact | Consequence |
+> |---|---|---|
+> | **D1** | **The pool holds 100 items per language; step 4 samples 4 × 50 = 200** | Arithmetically impossible. Either halve the benign arm to n = 100, or pull 100 more Dolly-T items per language. **This changes §1.3's generation counts** — the benign arm is currently costed at 200 |
+> | **D2** | **There is no Kannada file.** Coverage is `bn, en, hi, or, ta, te` — the language set *before* the substitution | A sixth benign set must be produced for `kn`, and `or` is retired. This is a **third translation run**, not counted anywhere in §0.5 or the critical path |
+> | **D3** | **The key is `id`, not `doc_id`** | Step 1 said "parallel by doc_id"; corrected above. The benign items have no `doc_id` at all — do not let §3.2's all-or-nothing `doc_id` rule silently fail open on the benign arm |
+> | **D4** | **Length stratification is unachievable from this pool.** English benign runs 3–32 words (median 9); English harmful runs 5–593 (median 30) | **Over half the harmful items are longer than the longest benign item.** Harmful quartiles 3 and 4 have no benign counterpart at any sampling rate. The matching this section requires cannot be done with Dolly-T |
+>
+> **D4 is the one that matters,** because this section's own justification is that an unmatched benign set makes the false-refusal comparison partly a length comparison — and with Dolly-T it unavoidably is. Three honest responses:
+>
+> 1. **Accept and declare it.** Use Dolly-T, drop the quartile language from step 3–4, sample uniformly, and state plainly in the limitations that the benign arm is systematically shorter. False-refusal rates are then not length-controlled and must not be compared to harmful refusal rates as though they were.
+> 2. **Match on the achievable band only.** Restrict the *harmful* comparison set to items ≤32 words when computing false-refusal contrasts, and report that subset size. Costs power, buys a clean comparison.
+> 3. **Change source.** A benign pool with a length distribution reaching the harmful median is required for step 4 as written. Dolly-T is not it.
+>
+> **This plan's position: option 1, declared.** Option 2 discards most of the item set for the one contrast it protects, and option 3 reopens a frozen decision late. But the choice must be *recorded*, because silently running step 4 against a pool that cannot satisfy it produces a benign arm that looks stratified and is not.
+>
+> ### Provenance guard — this exact dataset was claimed before and never run
+>
+> **Phase 1's writeup stated Dolly-T was used as the benign set. It was not.** All 11,400 rows of `results/behavioral/refusal_judge.csv` carry `{lang}_safety_NNNN` ids from the Toxic Matrix harmful set; **zero** carry a `benign` id. The reported `benign%` column was the share of *harmful* items the judge screened as `prompt_harmful == 0` — a translation-degradation rate, not a refusal rate on a benign corpus. The claim survived into multiple drafts because the input files existed in `data/` and nobody checked the output.
+>
+> **G0 must therefore assert usage, not availability.** Add to `gates.py`:
+>
+> ```python
+> # A benign input file existing in data/ is NOT evidence the benign arm ran.
+> # Assert the fingerprint appears in the OUTPUT, per (model, language).
+> benign_ids = {r["id"] for r in load(f"benign_200_{lang}.json")}
+> emitted    = {rec["item_id"] for rec in read_jsonl(shard) if rec["arm"] == "benign"}
+> assert emitted, f"benign arm produced no rows for {model}/{lang}"
+> assert emitted <= benign_ids, f"benign shard {model}/{lang} contains foreign ids"
+> assert len(emitted) == N_BENIGN, f"{model}/{lang}: {len(emitted)}/{N_BENIGN} benign rows"
+> ```
+>
+> The same rule applies to every "we used X" sentence in the paper: **grep the output for X's item-ID fingerprint before writing it down.** Related failures in this project with the same shape — recognition numbers quoted from a superseded run, a Benjamini–Hochberg correction described but absent from the code, a bootstrap described as refitting when it computed an unadjusted difference — are catalogued in §14.
+>
+> **Before G0:** commit the six Dolly-T files into `data/` with their SHA-256 in the manifest (§3.5), resolve D1 and D2, and record the D4 decision in `analysis_plan_frozen.md`.
 
 ### 3.5 The manifest
 
