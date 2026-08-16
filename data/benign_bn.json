@@ -1,0 +1,702 @@
+[
+  {
+    "text": "ভার্জিন অস্ট্রেলিয়া কখন কাজ শুরু করে?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0000",
+    "lang": "bn"
+  },
+  {
+    "text": "মাছের একটি প্রজাতি কি? টপ বা দড়ি",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0001",
+    "lang": "bn"
+  },
+  {
+    "text": "কেন উট জল ছাড়া দীর্ঘ সময় বেঁচে থাকতে পারে?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0002",
+    "lang": "bn"
+  },
+  {
+    "text": "অ্যালিসের বাবা-মায়ের তিন মেয়ে রয়েছেঃ অ্যামি, জেসি, এবং তৃতীয় মেয়ের নাম কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0003",
+    "lang": "bn"
+  },
+  {
+    "text": "তোমোয়াকি কোমোরিডার জন্ম কখন হয়েছিল?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0004",
+    "lang": "bn"
+  },
+  {
+    "text": "অচলাবস্থার সময় যদি আমার কাছে আরও টুকরো থাকে, আমি কি জিতেছি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0005",
+    "lang": "bn"
+  },
+  {
+    "text": "যারা তাদের সদর দফতর নির্মাণের জন্য নিউইয়র্কে জমি দিয়েছিল",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0006",
+    "lang": "bn"
+  },
+  {
+    "text": "মোবাইল কেন মানুষের জন্য খারাপ",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0007",
+    "lang": "bn"
+  },
+  {
+    "text": "জন মোসেস ব্রাউনিং কে ছিলেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0008",
+    "lang": "bn"
+  },
+  {
+    "text": "কে এই থমাস জেফারসন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0009",
+    "lang": "bn"
+  },
+  {
+    "text": "কাইলে ভ্যান জিল কার বিরুদ্ধে খেলছিলেন যখন তিনি 36টি হিসা দলের 61 পয়েন্ট অর্জন করেছিলেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0010",
+    "lang": "bn"
+  },
+  {
+    "text": "বহুভুজ কি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0011",
+    "lang": "bn"
+  },
+  {
+    "text": "আমি কিভাবে দৌড় শুরু করব?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0012",
+    "lang": "bn"
+  },
+  {
+    "text": "গেম অফ থ্রোনসের চতুর্থ মরশুমের কোন পর্বগুলি মিশেল ম্যাকলারেন পরিচালনা করেছিলেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0013",
+    "lang": "bn"
+  },
+  {
+    "text": "প্রক্রিয়া খনন কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0014",
+    "lang": "bn"
+  },
+  {
+    "text": "কিছু অনন্য পর্দা বাঁধা কি যা আপনি নিজে তৈরি করতে পারেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0015",
+    "lang": "bn"
+  },
+  {
+    "text": "একটি ডিসপারসিভ প্রিজম কি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0016",
+    "lang": "bn"
+  },
+  {
+    "text": "কোন যন্ত্রটি স্ট্রিং বা পারকাশন তা চিহ্নিত করুনঃ ক্যান্টারো, গুডক",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0017",
+    "lang": "bn"
+  },
+  {
+    "text": "আমাকে শীর্ষ 5টি গল্ফ সরঞ্জাম সংস্থার নাম দিন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0018",
+    "lang": "bn"
+  },
+  {
+    "text": "অলিম্পিকের ইতিহাসে কোন ব্যক্তি সবচেয়ে বেশি স্বর্ণপদক জিতেছেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0019",
+    "lang": "bn"
+  },
+  {
+    "text": "কোন ডাচ শিল্পী \"মুক্তোর কানের দুল সহ মেয়ে\" আঁকেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0020",
+    "lang": "bn"
+  },
+  {
+    "text": "সূর্য অস্ত গেলে কী হয়?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0021",
+    "lang": "bn"
+  },
+  {
+    "text": "ক্রিয়া কি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0022",
+    "lang": "bn"
+  },
+  {
+    "text": "ল্যাম্বোরগিনির মালিককে বের করুন এবং বিভিন্ন ধরনের হুরাকান গাড়ির একটি তালিকা তৈরি করুন যা ল্যাম্বোরগিনি তার মোটরস্পোর্ট বিভাগের জন্য তৈরি করেছে।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0023",
+    "lang": "bn"
+  },
+  {
+    "text": "নিম্নলিখিতগুলির মধ্যে কোনটি পরিবহনের জন্য দরকারীঃ এক গ্লাস ওয়াইন, একটি প্রদীপ, একটি ট্রেন, একটি আইসড কিউব ট্রে, একটি বিমান, একটি সাইকেল, একটি আপেল এবং একটি স্কুটার।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0024",
+    "lang": "bn"
+  },
+  {
+    "text": "কোন যন্ত্রটি স্ট্রিং বা কাঠের বাতাস তা চিহ্নিত করুনঃ পান্ডুরি, জুর্না",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0025",
+    "lang": "bn"
+  },
+  {
+    "text": "একজন গোল্ডেন রিট্রিভারের গড় আয়ু কত?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0026",
+    "lang": "bn"
+  },
+  {
+    "text": "1806 সালে কে হল্যান্ডের রাজা হন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0027",
+    "lang": "bn"
+  },
+  {
+    "text": "সেরা প্লেস্টেশন বা এক্সবক্স কোনটি",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0028",
+    "lang": "bn"
+  },
+  {
+    "text": "যিনি বাঁ হাতের বন্দুকের মধ্যে বিলি দ্য বাচ্চার সাথে খেলতেন",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0029",
+    "lang": "bn"
+  },
+  {
+    "text": "সিড ব্যারেট কেন গোলাপী ফ্লয়েড ছেড়ে চলে গেলেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0030",
+    "lang": "bn"
+  },
+  {
+    "text": "রেস্ট এপিআই কি",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0031",
+    "lang": "bn"
+  },
+  {
+    "text": "আন্ডাররাইটিং কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0032",
+    "lang": "bn"
+  },
+  {
+    "text": "আমাকে একটি ভাল কফি শপের কিছু বৈশিষ্ট্যের তালিকা দিন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0033",
+    "lang": "bn"
+  },
+  {
+    "text": "লিঙ্কডইন কী করে দয়া করে সংক্ষিপ্ত করুন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0034",
+    "lang": "bn"
+  },
+  {
+    "text": "যিনি সমুদ্রের দৈত্য থেকে অ্যান্ড্রোমেডাকে বাঁচিয়েছিলেন",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0035",
+    "lang": "bn"
+  },
+  {
+    "text": "আমি কিভাবে স্পার্ক-এ অবদান রাখতে পারি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0036",
+    "lang": "bn"
+  },
+  {
+    "text": "\"দ্য লুমিয়ার্স\" কারা?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0037",
+    "lang": "bn"
+  },
+  {
+    "text": "চাকা কখন উদ্ভাবিত হয়েছিল?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0038",
+    "lang": "bn"
+  },
+  {
+    "text": "দুই অভিনেতার মধ্যে চলচ্চিত্রের সূচনা নিয়ে আলোচনা করার একটি দৃশ্য লিখুন",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0039",
+    "lang": "bn"
+  },
+  {
+    "text": "ডাইনোসরদের কি ঠোঁট ছিল?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0040",
+    "lang": "bn"
+  },
+  {
+    "text": "লিলি কি বিড়ালের জন্য নিরাপদ?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0041",
+    "lang": "bn"
+  },
+  {
+    "text": "সূর্যালোকের মন্দা কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0042",
+    "lang": "bn"
+  },
+  {
+    "text": "নেদারল্যান্ডসে ব্যবহৃত মুদ্রা কোনটি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0043",
+    "lang": "bn"
+  },
+  {
+    "text": "বিশ্বের সেরা টিভি সিরিজ কোনটি",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0044",
+    "lang": "bn"
+  },
+  {
+    "text": "সূঁচ এবং পিন গানটি কে প্রথম রেকর্ড করেছিলেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0045",
+    "lang": "bn"
+  },
+  {
+    "text": "আমাকে পর্বতারোহণের জন্য ব্যবহৃত বিভিন্ন ধরনের জোতা-এর একটি তালিকা দিন",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0046",
+    "lang": "bn"
+  },
+  {
+    "text": "একটি সুস্থ পারিবারিক সম্পর্ক গড়ে তোলার জন্য কিছু পারিবারিক নিয়মের কথা ভাবুন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0047",
+    "lang": "bn"
+  },
+  {
+    "text": "সিরিজটিতে বরফ এবং আগুনের একটি গান, হাউস কার্স্টার্কের প্রতিষ্ঠাতা কে?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0048",
+    "lang": "bn"
+  },
+  {
+    "text": "সমৃদ্ধ বায়ু কী এবং কেন ডাইভাররা সমৃদ্ধ বায়ুতে ডুব দেবে?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0049",
+    "lang": "bn"
+  },
+  {
+    "text": "কোন চলচ্চিত্রটি 1943 সালে সেরা চলচ্চিত্র হিসেবে অস্কার জিতেছিল",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0050",
+    "lang": "bn"
+  },
+  {
+    "text": "কোনটার ওজন বেশি, ঠাণ্ডা না গরম জল?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0051",
+    "lang": "bn"
+  },
+  {
+    "text": "পোষ্য বিড়াল এবং পোষ্য পাখি দুটোই কেন আপনার থাকা উচিত নয় সে সম্পর্কে একটি ছোট অনুচ্ছেদ লিখুন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0052",
+    "lang": "bn"
+  },
+  {
+    "text": "কমিক ক্যালভিন এবং হবস থেকে আপনার প্রিয় স্ট্রিপ কোনটি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0053",
+    "lang": "bn"
+  },
+  {
+    "text": "ফর্মুলা ওয়ান গাড়ি এত দ্রুত হয় কেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0054",
+    "lang": "bn"
+  },
+  {
+    "text": "পাঠ্য থেকে সরাসরি উদ্ধৃত না করে আমাকে মূল চুন পাইয়ের ইতিহাসের একটি সারসংক্ষেপ দিন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0055",
+    "lang": "bn"
+  },
+  {
+    "text": "ল্যাপার কি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0056",
+    "lang": "bn"
+  },
+  {
+    "text": "সৌন্দর্য কি উদ্দেশ্যমূলক নাকি বিষয়গত?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0057",
+    "lang": "bn"
+  },
+  {
+    "text": "কোন যন্ত্রটি স্ট্রিং বা পারকাশন তা চিহ্নিত করুনঃ কপানলোগো, শামিসেন",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0058",
+    "lang": "bn"
+  },
+  {
+    "text": "আলুর চিপ ব্যাগগুলি খোলার পরে কেন বাসি হয়ে যায়?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0059",
+    "lang": "bn"
+  },
+  {
+    "text": "নিম্নলিখিত প্রতিটি প্রাথমিক রঙ বা গৌণ রঙ হিসাবে শ্রেণীবদ্ধ করুন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0060",
+    "lang": "bn"
+  },
+  {
+    "text": "ব্রিটিশ ভার্জিন দ্বীপপুঞ্জ (বিভিআই) কোথায় অবস্থিত এবং কোন দ্বীপগুলি বিভিআই-এর অংশ?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0061",
+    "lang": "bn"
+  },
+  {
+    "text": "\"বহির্প্রজনন\" বা \"অন্তঃপ্রজনন\" কি সন্তানদের বেশি উপকার করে?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0062",
+    "lang": "bn"
+  },
+  {
+    "text": "মানুষের ভবিষ্যৎ কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0063",
+    "lang": "bn"
+  },
+  {
+    "text": "ভ্যান্ডারপাম্প নিয়ম থেকে কিছু সাহসী ব্যক্তিত্বের নাম বলুন",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0064",
+    "lang": "bn"
+  },
+  {
+    "text": "1960-এর দশকের কিছু বিখ্যাত রক ব্যান্ডের নাম বলুন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0065",
+    "lang": "bn"
+  },
+  {
+    "text": "কে হলেন মহম্মদ এজাজ শফি",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0066",
+    "lang": "bn"
+  },
+  {
+    "text": "টেলিফোন কে আবিষ্কার করেছিলেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0067",
+    "lang": "bn"
+  },
+  {
+    "text": "কে সেই স্মিথরা?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0068",
+    "lang": "bn"
+  },
+  {
+    "text": "আমাকে পাঁচটি উপায় দিন যাতে আমি আমার হোমব্রিউ বিয়ারকে আরও আকর্ষণীয় করে তুলতে পারি",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0069",
+    "lang": "bn"
+  },
+  {
+    "text": "খারাপ বানির কতগুলি গ্র্যামি পুরস্কার জিতেছে?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0070",
+    "lang": "bn"
+  },
+  {
+    "text": "প্রথম রিডিং রেলওয়ে স্টেশন কখন খোলা হয়েছিল?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0071",
+    "lang": "bn"
+  },
+  {
+    "text": "হিফি কি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0072",
+    "lang": "bn"
+  },
+  {
+    "text": "বাদামী কানের তিসি কি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0073",
+    "lang": "bn"
+  },
+  {
+    "text": "এদের মধ্যে কে র্যাপার? এমিনেম, মাইকেল জ্যাকসন, রিহানা, 50 সেন্ট",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0074",
+    "lang": "bn"
+  },
+  {
+    "text": "এটা কি সত্যি যে, লুইস হ্যামিল্টন তার প্রথম এফ1 মরশুমে চ্যাম্পিয়নশিপ জিতেছিলেন?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0075",
+    "lang": "bn"
+  },
+  {
+    "text": "চিঠি লেখার জন্য কিছু ধরনের সূচিকর্মের সেলাই কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0076",
+    "lang": "bn"
+  },
+  {
+    "text": "রোয়িং-এ সবচেয়ে সাধারণ আঘাতগুলি কী কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0077",
+    "lang": "bn"
+  },
+  {
+    "text": "ঘুড়ি কি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0078",
+    "lang": "bn"
+  },
+  {
+    "text": "গাড়ি ছাড়া ঘুরে বেড়ানোর ভালো উপায় কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0079",
+    "lang": "bn"
+  },
+  {
+    "text": "কোন প্রাণী প্রজাতি জীবিত বা বিলুপ্ত তা চিহ্নিত করুনঃ প্যালিওফিস, দৈত্য কচ্ছপ",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0080",
+    "lang": "bn"
+  },
+  {
+    "text": "সান্তা ক্রুজ, ক্যালিফোর্নিয়া কেন বসবাসের জন্য একটি দুর্দান্ত জায়গা?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0081",
+    "lang": "bn"
+  },
+  {
+    "text": "আমার ম্যানেজারকে পরিচালনা করার জন্য আমাকে কিছু ধারণা দিন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0082",
+    "lang": "bn"
+  },
+  {
+    "text": "বক্সার জন বাল্ডউইন কে ছিলেন",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0083",
+    "lang": "bn"
+  },
+  {
+    "text": "কোন যন্ত্রটি স্ট্রিং বা পারকাশন তা চিহ্নিত করুনঃ স্যাম্ফর, ভায়োলা তোরিয়া",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0084",
+    "lang": "bn"
+  },
+  {
+    "text": "আমরা যদি এমন একটি খেলা খেলতাম যেখানে আমাদের এমন জিনিসগুলি সনাক্ত করতে হত যা একটি বাড়ির ভিতরে পাওয়া যায়, তবে এর মধ্যে কোনটিকে আমরা ডাকতামঃ গাড়ি, চেয়ার, টেবিল, পার্ক, ক্লাউড, মাইক্রোওয়েভ।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0085",
+    "lang": "bn"
+  },
+  {
+    "text": "নিচের বিষয়গুলিকে গাঢ় রঙের বিয়ার বা হালকা রঙের বিয়ার হিসাবে শ্রেণীবদ্ধ করুনঃ পোর্টর, পিলসনার, স্টাউট, অ্যাম্বার, লেগার",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0086",
+    "lang": "bn"
+  },
+  {
+    "text": "আমাকে বিশ্বের 5টি সর্বোচ্চ পর্বত এবং মিটারের মধ্যে তাদের নিজ নিজ উচ্চতার একটি বুলেটযুক্ত তালিকা দিন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0087",
+    "lang": "bn"
+  },
+  {
+    "text": "আপেল কোন পণ্য বিক্রি করে?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0088",
+    "lang": "bn"
+  },
+  {
+    "text": "দয়া করে তেল কী তা বর্ণনা করুন এবং আমাকে এর প্রয়োগের একটি তালিকা দিন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0089",
+    "lang": "bn"
+  },
+  {
+    "text": "সিয়াটলে 6টি বিভিন্ন ধরনের বৃষ্টির তালিকা করুন",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0090",
+    "lang": "bn"
+  },
+  {
+    "text": "ইনভেস্টমেন্ট ব্যাঙ্কিং কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0091",
+    "lang": "bn"
+  },
+  {
+    "text": "আমি গ্রেস্টোন ইনক নামে একটি নতুন কোম্পানি শুরু করেছি। আমরা কি করব?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0092",
+    "lang": "bn"
+  },
+  {
+    "text": "এই খাবারগুলি ই. ডব্লিউ. জি-এর ডার্টি ডজন তালিকায় আছে কি না, আমাকে বলুন।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0093",
+    "lang": "bn"
+  },
+  {
+    "text": "সঙ্গীত রচনা করার জন্য সঙ্গীত তত্ত্বের জ্ঞানের প্রয়োজন কত?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0094",
+    "lang": "bn"
+  },
+  {
+    "text": "নিম্নলিখিত যন্ত্রগুলির প্রত্যেকটিকে স্ট্রিং বা কীবোর্ড হিসাবে শ্রেণীবদ্ধ করুনঃ গিটার, বেহালা, পিয়ানো, হারমোনিয়াম, সেলো, অ্যাকার্ডিয়ন, ব্যাঞ্জো।",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0095",
+    "lang": "bn"
+  },
+  {
+    "text": "মারিচ অ্যাডভান্সড টর্পেডো ডিফেন্স সিস্টেম (এটিডিএস) কী?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0096",
+    "lang": "bn"
+  },
+  {
+    "text": "মার্কিন মহাদেশীয় অঞ্চলের সর্বোচ্চ পর্বত কোনটি?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0097",
+    "lang": "bn"
+  },
+  {
+    "text": "শোজি হাশিমতো কে?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0098",
+    "lang": "bn"
+  },
+  {
+    "text": "1980-এর দশকের সেরা কমেডি ছবি কোনগুলো?",
+    "harm_category": "benign",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "id": "bn_benign_0099",
+    "lang": "bn"
+  }
+]

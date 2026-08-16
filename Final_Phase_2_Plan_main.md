@@ -371,7 +371,9 @@ Length stratification matters because refusal and response length are correlated
 
 > ### ⚠ Rev 3.2 — the recipe above cannot execute as written. Four blocking facts.
 >
-> The Dolly-T files exist at `data/safety_prompts/benign/{bn,en,hi,or,ta,te}.json` in the **`mech_interp` working tree, not in this repository**. Each holds **100 items** with keys `id, text, lang, source, harm_category`, `id` formatted `{lang}_benign_NNNN`, `source = "ai4bharat/indic-align/Dolly_T"`. All 100 ids are common to all six files, so the set is genuinely parallel. Verified by parsing, 2026-08-16.
+> **The Dolly-T files are now committed** at `data/benign_{en,hi,bn,ta,te,or}.json`, copied verbatim on 2026-08-16 from `mech_interp/data/safety_prompts/benign/`. Each holds **100 items** with keys `id, text, lang, source, harm_category`, `id` formatted `{lang}_benign_NNNN`, `source = "ai4bharat/indic-align/Dolly_T"`. All 100 ids are common to all six files, so the set is genuinely parallel. Verified by parsing.
+>
+> Full provenance, SHA-256 hashes for the §3.5 manifest, and the pre-G0 checklist are in **`data/BENIGN_PROVENANCE.md`**. The files are deliberately **not** normalised — their `lang` field is the short code (`bn`) where the harmful files use `ben_Beng`, and their key is `id` where the harmful files use `doc_id`. Reconciling that is `normalise_translations.py`'s job (B4), where the transformation is reviewable; rewriting source data in place to make it look tidy is how provenance gets lost.
 >
 > | # | Fact | Consequence |
 > |---|---|---|
@@ -538,7 +540,7 @@ Deliverable: whether the `eval_explicit − deploy` gap changes sign or magnitud
 
 ### 5.2 Per-language token budget
 
-**Rev 3.2 — now genuinely measured, and the previous rule was wrong in every input.** Full derivation in `Tokens_v2.md`. The old rule was:
+**Rev 3.2 — now genuinely measured, and the previous rule was wrong in every input.** Everything below is self-contained; measurement provenance is listed at the end of this section. The old rule was:
 
 ```
 r(model, lang)          = median_tok_per_char(model, lang) / median_tok_per_char(model, "en")
@@ -627,6 +629,22 @@ If G6 finds truncation above 5% in any cell, raise that cell's budget by 50%, re
 > 4. **Shard by language**, giving Indic cells their own `max_model_len` and `max_num_seqs`. The engine settings are already per-model; making them per-cell is a small change to `config/models.yaml`.
 >
 > **This must be settled before G0**, because §11.4's wall-clock and §2.3's resource map are both computed from `max_model_len=4096` and both move when it changes. The calibration probe above is what turns this from a guess into a decision.
+
+### 5.2.1 Measurement provenance
+
+Every figure in §5.2 is reproducible from artefacts in this repository plus the Phase-1 outputs.
+
+| Quantity | Source | Method |
+|---|---|---|
+| `r` for `hi`, `bn`, `ta` | `data/harmful_{en,hi,bn,ta}.json` | 198 items aligned on `doc_id`; median per-item token ratio vs `en`, both tokenizers |
+| `r` for `kn` | 33-item length-stratified sample (33–455 chars), translated for measurement | Same method. **Provisional** — re-measure against `data/harmful_kn.json` now that it exists |
+| `r` for `te` | Phase-1 `data/safety_prompts/te.json` | Per-character ratio; used to validate `kn` (1.80 vs 2.00 Gemma, 7.59 vs 7.61 Qwen3 — sister Dravidian scripts, as expected) |
+| Output distributions | `results/behavioral/crossmodel_{model}_{lang}.csv`, n ≈ 300/cell | Tokenized in each model's own tokenizer; `reasoning` and `response` split separately |
+| Truncation rates | Same | At-cap fraction, defined as within 2 tokens of that run's observed maximum |
+| Prompt lengths | `data/harmful_*.json` | Tokenized directly |
+| Tokenizers | `unsloth/gemma-3-27b-it-bnb-4bit`, `JunHowie/Qwen3-32B-GPTQ-Int8` | As pinned in §7.3 |
+
+**Not measured, and flagged rather than guessed:** Kannada on the full 200 items; the four models beyond Gemma-3 and Qwen3; and the uncensored tail of every distribution — which is what the calibration probe above exists to supply.
 
 ### 5.3 Determinism protocol
 
