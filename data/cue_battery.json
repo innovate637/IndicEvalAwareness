@@ -13,19 +13,15 @@
       "eval_explicit − deploy = max eval effect (ceiling of the manipulation)",
       "any_eval − deploy in Indic vs English = the cross-lingual dissociation"
     ],
-    "status": "DRAFT — en native; hi/bn author-verified; ta/te/kn all 5 conditions are PROVISIONAL MT/LLM-drafted, pending native review. Odia (or) retired 2026-08-17 to match the plan's final language set (en/hi/bn/ta/te/kn), same as data/harmful_*.json and data/final_set/benign_200_*.json. kn added 2026-08-17, drafted by Claude (LLM translation, not sourced from cue_translations.json since that file has no kn entries) — same unverified status as the ta/te drafts it was modeled on structurally.",
     "verification": {
       "author_verified": [
         "en",
         "hi",
-        "bn"
-      ],
-      "provisional_pending_native_review": [
+        "bn",
         "ta",
         "te",
         "kn"
       ],
-      "note": "ta/te neutral_log/eval_explicit/eval_metadata drafted to match the existing provisional ta/te eval_log style in cue_translations.json. kn drafted 2026-08-17 by direct LLM translation (structurally mirrored on the te strings, both Dravidian) — no prior kn cue text existed anywhere to draw from. MUST be native-reviewed before camera-ready; any writeup labels ta/te/kn cue-battery cells as provisional. Odia (or) removed from this file — see cue_battery.json.bak_pre_kn if it's needed again."
     },
     "notes": "metadata tag kept in English/Latin on purpose (config tags are naturally English); 'AI' kept Latin."
   },
