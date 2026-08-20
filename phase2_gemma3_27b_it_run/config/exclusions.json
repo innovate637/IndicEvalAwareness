@@ -1,0 +1,5 @@
+{
+  "_note": "Legitimate, recorded cells that will never be filled. Written ONLY by a human after a G4 failure. verify.py subtracts these. Plan §7.4.",
+  "excluded": [
+  ]
+}

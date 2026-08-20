@@ -1,0 +1,24 @@
+{
+  "gate": "G0",
+  "checks": {
+    "unicode_ranges_pairwise_disjoint": "ok",
+    "cues_unapproved": [],
+    "harmful/n_expected": 199,
+    "harmful/en": "ok",
+    "harmful/hi": "ok",
+    "harmful/bn": "ok",
+    "harmful/ta": "ok",
+    "harmful/te": "ok",
+    "harmful/kn": "ok",
+    "harmful/doc_id_aligned": true,
+    "benign/n_expected": 200,
+    "benign/en": "ok",
+    "benign/hi": "ok",
+    "benign/bn": "ok",
+    "benign/ta": "ok",
+    "benign/te": "ok",
+    "benign/kn": "ok",
+    "benign/doc_id_aligned": true
+  },
+  "pass": true
+}

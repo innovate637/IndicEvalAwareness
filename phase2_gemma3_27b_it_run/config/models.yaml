@@ -1,0 +1,103 @@
+# Phase-2 model set. Verbatim from Final_Phase_2_Plan_main1.md §7.3 EXCEPT the
+# resource rows, which are re-derived for THIS cluster. Deviations are marked
+# [LOCAL] and explained in record.md Q18.
+#
+# [LOCAL] Sharanga's `gpu_h100_4` / `gpu_h200_8` partitions do not exist here.
+#   This cluster (slurm.conf) has ONE node, 2xh100-nvl-bitspilani-vm2:
+#     Gres=gpu:nvidia_h100_nvl:1, gpu:nvidia_h100_nvl_1g.12gb:7
+#     PartitionName=h100-full  (DenyAccounts=students,students-limited)
+#     PartitionName=h100-mig   (Default=YES)
+#   A 12 GB MIG slice cannot hold any model in this set, so every row targets
+#   h100-full and gres nvidia_h100_nvl:1.
+#
+# [LOCAL] mem is 32G everywhere, NOT the plan's 120-160G. CLAUDE.md rule 4 is a
+#   hard rule and overrides the plan: with no/large --mem this cluster reserves
+#   the entire node RAM (~503 GB) and blocks the node for everyone else. Weights
+#   live in GPU VRAM; real system-RAM use is a few GB.
+#
+# [LOCAL] KV arithmetic re-derived for H100 NVL (94 GB, not the plan's 80 GB):
+#   Gemma 3 27B KV = 2*62*16*128*2 = 507,904 B = 0.50 MB/token (plan §2.3).
+#   0.90 * 94 GB = ~85 GB usable, minus ~54 GB weights, minus ~4 GB activations
+#   => ~27 GB KV => ~54,000 KV tokens, roughly double the plan's 80 GB budget.
+#   max_model_len 4096 / max_num_seqs 48 are therefore KEPT UNCHANGED and now
+#   carry extra headroom rather than less. Do not raise them without redoing
+#   this arithmetic.
+
+defaults:
+  dtype: bfloat16
+  max_model_len: 4096          # see §2.3 KV arithmetic
+  gpu_memory_utilization: 0.90
+  enforce_eager: true
+  max_num_seqs: 64
+  max_num_batched_tokens: 8192
+  cpus_per_task: 8
+  trust_remote_code: false
+
+models:
+  - {slug: sarvam-m,         repo: sarvamai/sarvam-m,
+     revision: null, kind: instruct, thinking_kwarg: enable_thinking,
+     true_system_role: true,  tensor_parallel: 1, partition: h100-full,
+     gres: "gpu:nvidia_h100_nvl:1",
+     gpus: 1, mem: 32G, time: "08:00:00", approx_bf16_gb: 47, conditional: false}
+
+  - {slug: mistral-24b-base, repo: mistralai/Mistral-Small-3.1-24B-Base-2503,
+     revision: null, kind: base,     thinking_kwarg: null,
+     true_system_role: false, tensor_parallel: 1, partition: h100-full,
+     gres: "gpu:nvidia_h100_nvl:1",
+     gpus: 1, mem: 32G, time: "08:00:00", approx_bf16_gb: 47, conditional: false}
+
+  # ---- ACTIVE MODEL (user instruction 2026-08-18) --------------------------
+  - {slug: gemma3-27b-it,    repo: google/gemma-3-27b-it,
+     # [LOCAL] resolved commit SHA, pinned 2026-08-18 (plan §3.5/§5.3 require
+     # model_revision to be a resolved SHA, not a moving branch). The SHA comes
+     # from public repo metadata, which resolves without a licence.
+     # !! GATED, NOT YET ACCESSIBLE. Downloading config.json on HF account
+     # `Trizal` returns 403 GatedRepoError: "Access to model
+     # google/gemma-3-27b-it is restricted and you are not in the authorized
+     # list." G0 requires "Gemma licences accepted" and this FAILS today.
+     # Action: accept the gemma licence at https://huggingface.co/google/gemma-3-27b-it
+     # on the account holding ~/.cache/huggingface/token. gemma3-27b-pt is a
+     # SEPARATE gated repo and needs its own acceptance.
+     revision: "005ad3404e59d6023443cb575daa05336842228a", kind: instruct, thinking_kwarg: null,
+     true_system_role: false, tensor_parallel: 1, partition: h100-full,
+     gres: "gpu:nvidia_h100_nvl:1",
+     gpus: 1, mem: 32G, time: "08:00:00", approx_bf16_gb: 54,
+     max_num_seqs: 48, conditional: false}
+
+  - {slug: gemma3-27b-pt,    repo: google/gemma-3-27b-pt,
+     revision: null, kind: base,     thinking_kwarg: null,
+     true_system_role: false, tensor_parallel: 1, partition: h100-full,
+     gres: "gpu:nvidia_h100_nvl:1",
+     gpus: 1, mem: 32G, time: "08:00:00", approx_bf16_gb: 54,
+     max_num_seqs: 48, conditional: false}
+
+  - {slug: qwen3-32b,        repo: Qwen/Qwen3-32B,
+     revision: null, kind: instruct, thinking_kwarg: enable_thinking,
+     true_system_role: true,  tensor_parallel: 1, partition: h100-full,
+     gres: "gpu:nvidia_h100_nvl:1",
+     gpus: 1, mem: 32G, time: "10:00:00", approx_bf16_gb: 64,
+     max_num_seqs: 96, conditional: false}
+
+  - {slug: sarvam-30b,       repo: sarvamai/sarvam-30b,
+     revision: null, kind: instruct, thinking_kwarg: enable_thinking,
+     true_system_role: true,  tensor_parallel: 1, partition: h100-full,
+     gres: "gpu:nvidia_h100_nvl:1",
+     gpus: 1, mem: 32G, time: "10:00:00", approx_bf16_gb: 60,
+     max_num_seqs: 96, trust_remote_code: true, conditional: true}
+
+# [LOCAL] One full GPU on the node => concurrent cap is 1, not the plan's 3.
+# Array throttle must therefore be %1, not %3. Keys are partition names.
+qos_gpu_caps: {h100-full: 1, h100-mig: 0}
+# [LOCAL] Resolved from sacctmgr 2026-08-19. Plan §7.3 says "set if sacctmgr
+# shows they are required" — it does, and the QOS is NOT optional:
+#   assoc: bits2 | professors-limited | DefaultQOS=professor-allmig-limited
+#   professor-allmig-limited  -> MaxTRESPerUser gres/gpu:nvidia_h100_nvl_1g.12gb=14
+#   professor-fullgpu-limited -> MaxTRESPerUser gres/gpu:nvidia_h100_nvl=1
+# The DEFAULT QOS permits MIG slices ONLY. A job asking for
+# --gres=gpu:nvidia_h100_nvl:1 under the default QOS is blocked by the TRES
+# limit, so --qos=professor-fullgpu-limited is MANDATORY for every job in this
+# campaign. h100-full DenyAccounts=students,students-limited does NOT include
+# professors-limited, so partition access is granted.
+# The fullgpu QOS caps the full GPU at 1 per user -> confirms qos_gpu_caps
+# h100-full: 1 and the %1 array throttle above.
+slurm: {account: professors-limited, qos: professor-fullgpu-limited}
