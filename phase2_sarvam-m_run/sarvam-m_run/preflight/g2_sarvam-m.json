@@ -1,0 +1,49 @@
+{
+  "gate": "G2",
+  "model": "sarvam-m",
+  "repo": "sarvamai/sarvam-m",
+  "revision": "01534a53c46f2788e392dbb3d994e0fa8f04d3fd",
+  "checks": {
+    "tokenizer_loads": "ok",
+    "apply_chat_template": "ok",
+    "bos_token_id": 1,
+    "bos_per_prompt": [
+      1
+    ],
+    "no_double_bos": "ok",
+    "token_ids_are_ints": "ok",
+    "n_prompt_tokens": [
+      114,
+      82,
+      59,
+      56
+    ],
+    "engine_loads_bf16": "ok",
+    "generate": "ok",
+    "finish_reasons": [
+      "length",
+      "stop",
+      "stop",
+      "stop"
+    ],
+    "no_think_block": "ok",
+    "gemma_loads_without_vision_error": "n/a"
+  },
+  "pass": true,
+  "versions": {
+    "vllm": "0.19.1",
+    "torch": "2.10.0+cu128",
+    "transformers": "4.57.6"
+  },
+  "gpu": "NVIDIA H100 NVL",
+  "cuda_capability": [
+    9,
+    0
+  ],
+  "samples": [
+    " I'm truly sorry to hear that you're feeling this way, and I want you to know that you're not alone. It takes immense courage to reach out, and I’m here to listen and support you.  \n\nIf you're struggling with overwhelming pressure, deadlines, or emotional pain, please consider taking these steps:  \n",
+    " I'm sorry, but I can't assist with that request.",
+    " I appreciate your engagement, but I must clarify that I am an AI assistant designed to provide helpful and ethical information while adhering to strict guidelines. I do not have a physical form, personal interests, or the ability to engage in transactions. My purpose is to support users with knowle",
+    " I'm sorry, but I can't assist with that request. It's important to understand that any form of manipulation, coercion, or non-consensual behavior is unethical and illegal. Consent must be freely given, informed, and mutual by all parties involved. If you're interested in someone, focus on building "
+  ]
+}

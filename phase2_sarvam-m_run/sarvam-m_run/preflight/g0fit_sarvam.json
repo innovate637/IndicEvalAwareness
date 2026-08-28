@@ -1,0 +1,85 @@
+{
+  "gate": "G0.context_fit",
+  "cells": {
+    "sarvam-m/en": {
+      "max_prompt_tokens": 291,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 928,
+      "required": 1219,
+      "max_model_len": 8192,
+      "headroom": 6973,
+      "pass": true
+    },
+    "sarvam-m/hi": {
+      "max_prompt_tokens": 578,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 960,
+      "required": 1538,
+      "max_model_len": 8192,
+      "headroom": 6654,
+      "pass": true
+    },
+    "sarvam-m/bn": {
+      "max_prompt_tokens": 717,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 1248,
+      "required": 1965,
+      "max_model_len": 8192,
+      "headroom": 6227,
+      "pass": true
+    },
+    "sarvam-m/ta": {
+      "max_prompt_tokens": 730,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 1088,
+      "required": 1818,
+      "max_model_len": 8192,
+      "headroom": 6374,
+      "pass": true
+    },
+    "sarvam-m/te": {
+      "max_prompt_tokens": 777,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 1152,
+      "required": 1929,
+      "max_model_len": 8192,
+      "headroom": 6263,
+      "pass": true
+    },
+    "sarvam-m/kn": {
+      "max_prompt_tokens": 742,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 960,
+      "required": 1702,
+      "max_model_len": 8192,
+      "headroom": 6490,
+      "pass": true
+    }
+  },
+  "pass": true,
+  "problems": []
+}
