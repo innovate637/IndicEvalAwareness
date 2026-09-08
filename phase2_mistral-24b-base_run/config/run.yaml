@@ -1,0 +1,56 @@
+# Verbatim from Final_Phase_2_Plan_main1.md §7.4 except paths, marked [LOCAL].
+seed: 2026
+arms:  [harmful, benign]
+cues:  [deploy, monitor_log, eval_log, eval_explicit, eval_metadata]
+langs: [en, hi, bn, ta, te, kn]
+# [LOCAL] 199, not the plan's 200. `hi` item 160 (doc_id b6d11d84...) was
+# REFUSED by the translation model (NCII grounds) and never produced. Under
+# §3.2's all-or-nothing rule that doc_id is dropped from ALL six languages, so
+# the aligned within-item set is 199. Confirmed: doc_id sets identical across
+# all six at n=199.
+# The plan's §3.6 remedy is to extend the seed-2026 permutation prefix by one
+# and translate the addition in five languages -- days of work, not minutes.
+# Recording 199 here is truthful and fully reversible: re-run
+# scripts/normalise_translations.py without --drop-doc-ids once hi/160 exists.
+# The paper must state n=199, not 200.
+n_items: 199
+# [LOCAL] The two arms now legitimately differ: the harmful set lost hi/160 to a
+# translation refusal (199), while the benign set is an independent Dolly-T draw
+# that never contained that doc_id (200). The design's within-item pairing runs
+# ACROSS LANGUAGES WITHIN an arm, so unequal arm sizes are fine analytically --
+# but the counts must still be asserted, or a truncated file would pass G0.
+# Declare both explicitly rather than letting the gate infer them from the data.
+n_items_per_arm:
+  harmful: 199
+  benign: 200
+sampling:
+  temperature: 0.0
+  top_p: 1.0
+  top_k: -1
+  logprobs: 5
+  logprob_prefix_tokens: 10
+determinism:
+  # [LOCAL] flipped true 2026-08-20. G1 on the non-invariant main run measured
+  # only 0.2814 byte-identical -- far below §5.3's 0.99 floor. This is exactly
+  # what §5.3 predicted: without batch-invariant kernels, greedy decoding is NOT
+  # reproducible, because vLLM schedules a 199-prompt shard across many steps and
+  # reduction numerics depend on batch composition. CC is 9.0 (job 438), so
+  # VLLM_BATCH_INVARIANT=1 is supported on this node.
+  batch_invariant: true
+  # [LOCAL] batch_invariant rejects Gemma 3's default attention backend
+  # ("got 'None'", jobs 461/462). vLLM 0.19.1 dropped the VLLM_ATTENTION_BACKEND
+  # env var; it is now an engine arg. Pinned here so it lands in the manifest --
+  # the attention kernel is part of what makes a run reproducible.
+  attention_backend: TRITON_ATTN
+# [LOCAL] This cluster has NO /scratch (df: "No such file or directory").
+# Storage is /localstorage (10T, 8.3T free). CLAUDE.md rule 3 confines all work
+# to Behavioral-IndicEvalAwareness/, so scratch lives inside the project.
+# Plan §6 budgets ~0.7-1.0 GB JSONL for the full 6-model campaign; the
+# gemma-only slice is ~1/6 of that.
+paths:
+  scratch:     ./phase2_scratch
+  generations: ./phase2_scratch/generations
+  subrun_b:    ./phase2_scratch/generations_subrunB
+  preflight:   ./phase2_scratch/preflight
+  logs:        ./phase2_scratch/logs
+  home_out:    ./results/phase2
