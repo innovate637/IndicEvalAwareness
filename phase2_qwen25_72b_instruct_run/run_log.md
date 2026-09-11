@@ -797,3 +797,44 @@ Comfortably within the 24h walltime — no resume cycle needed.
 
 ### Next step
 Submit Job B (activation capture) after verifying scratch target directory exists.
+
+---
+
+## 2026-09-11 — G0–G8 gates run (excluding G1)
+
+All gates run on the login node using slaybench conda Python 3.12.13. Environment:
+`HF_HOME=/scratch/jagatsesh/hf`, `HF_HUB_OFFLINE=1`, `PYTHONPATH=$PWD/src`.
+Gate outputs saved to `preflight/*.json`.
+
+| Gate | Result | Key finding |
+|---|---|---|
+| G0 | **FAIL** | benign Indic `translation_source="opus"` vs gate's expected `{"indictrans2","google_translate_manual"}` — gate code carryover, not a data defect |
+| G0.5 | **FAIL** | 20/25 cue ratios >2.5 (max 8.25 te/eval_explicit) — same as qwen3-32b, tokenizer issue |
+| G0.context_fit | **PASS** | te headroom 25 tok (tightest in any model run) |
+| G3 | **PASS** | 11,970/11,970 cue present |
+| G4/G5 | **PASS** | benign 99.5–100%, harmful 89.8–100% |
+| G6 | **FAIL** | 23 cells >5%; harmful kn worst at 23.6% — degenerate repetition |
+| G7 | **PASS** | en deploy 22.8%, eval_explicit 28.1% (advisory, Indic lexicons empty) |
+| G8 | **PASS** | en discordance 19.5% (30 more-refusing, 9 less-refusing under eval) |
+| verify.py | **PASS** | 11,970 rows, 0 missing, 0 dupes, 0 errors, 0 manifest mismatches |
+| G1 | NOT RUN | needs GPU job to regenerate one shard for byte-comparison |
+
+### G0 failure detail
+All G0 sub-checks pass except benign/{hi,bn,ta,te,kn} `translation_source`. Our
+benign data was translated by Claude Opus (same pipeline as harmful), so `opus` is
+correct. The gate's allowed set `{"indictrans2","google_translate_manual"}` was
+written for the gemma run where benign came from Dolly-T/IndicTrans2 provenance.
+The code was copied byte-identical per D-72B-6; the mismatch is expected and
+documented.
+
+### G6 failure detail
+Truncation rates in harmful arm: en 0%, hi ≤1%, bn 0%, ta 7.5–14.6%, te 17.1–21.6%,
+kn 20.1–23.6%. Substantially worse than qwen3-32b (peak 7.44%) and gemma (peak
+0.80%). Probe audit confirmed all truncation is degenerate repetition, not real
+content. Phase 3 must exclude degenerate rows per language.
+
+### G7/G8 notes
+G7 English refusal rates (22.8–28.1%) are much lower than gemma's (65–74%). G8
+discordance 19.5% shows the DV is live and asymmetrically directed (more refusal
+under eval framing). Both gates report English only — Indic marker lists are empty
+per §9.

@@ -1,0 +1,79 @@
+{
+  "gate": "G4/G5",
+  "per_cell": {
+    "qwen25-72b-instruct/benign/bn": {
+      "n": 1000,
+      "lang_match_rate": 0.998,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/benign/en": {
+      "n": 1000,
+      "lang_match_rate": 1.0,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/benign/hi": {
+      "n": 1000,
+      "lang_match_rate": 0.997,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/benign/kn": {
+      "n": 1000,
+      "lang_match_rate": 0.995,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/benign/ta": {
+      "n": 1000,
+      "lang_match_rate": 0.998,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/benign/te": {
+      "n": 1000,
+      "lang_match_rate": 0.997,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/harmful/bn": {
+      "n": 995,
+      "lang_match_rate": 0.954,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/harmful/en": {
+      "n": 995,
+      "lang_match_rate": 1.0,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/harmful/hi": {
+      "n": 995,
+      "lang_match_rate": 0.898,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/harmful/kn": {
+      "n": 995,
+      "lang_match_rate": 0.983,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/harmful/ta": {
+      "n": 995,
+      "lang_match_rate": 0.951,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    },
+    "qwen25-72b-instruct/harmful/te": {
+      "n": 995,
+      "lang_match_rate": 0.99,
+      "empty_rate": 0.0,
+      "unknown_rate": 0.0
+    }
+  },
+  "violations": [],
+  "pass": true
+}

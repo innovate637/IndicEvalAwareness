@@ -1,0 +1,16 @@
+{
+  "models_expected": [
+    "qwen25-72b-instruct"
+  ],
+  "cells_excluded": [],
+  "expected": 11940,
+  "seen": 11970,
+  "missing_total": 0,
+  "missing_by_cell": {},
+  "missing_examples": [],
+  "duplicates": 0,
+  "error_rows": 0,
+  "error_breakdown": {},
+  "manifest_mismatches": 0,
+  "pass": true
+}

@@ -1,0 +1,85 @@
+{
+  "gate": "G0.context_fit",
+  "cells": {
+    "qwen25-72b-instruct/en": {
+      "max_prompt_tokens": 307,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 1280,
+      "required": 1587,
+      "max_model_len": 8192,
+      "headroom": 6605,
+      "pass": true
+    },
+    "qwen25-72b-instruct/hi": {
+      "max_prompt_tokens": 1521,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 2880,
+      "required": 4401,
+      "max_model_len": 8192,
+      "headroom": 3791,
+      "pass": true
+    },
+    "qwen25-72b-instruct/bn": {
+      "max_prompt_tokens": 1594,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 3648,
+      "required": 5242,
+      "max_model_len": 8192,
+      "headroom": 2950,
+      "pass": true
+    },
+    "qwen25-72b-instruct/ta": {
+      "max_prompt_tokens": 2026,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 5824,
+      "required": 7850,
+      "max_model_len": 8192,
+      "headroom": 342,
+      "pass": true
+    },
+    "qwen25-72b-instruct/te": {
+      "max_prompt_tokens": 2343,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 5824,
+      "required": 8167,
+      "max_model_len": 8192,
+      "headroom": 25,
+      "pass": true
+    },
+    "qwen25-72b-instruct/kn": {
+      "max_prompt_tokens": 2320,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 5824,
+      "required": 8144,
+      "max_model_len": 8192,
+      "headroom": 48,
+      "pass": true
+    }
+  },
+  "pass": true,
+  "problems": []
+}

@@ -1,0 +1,12 @@
+{
+  "gate": "G8",
+  "per_cell": {
+    "qwen25-72b-instruct/en": {
+      "n_pairs": 200,
+      "b": 9,
+      "c": 30,
+      "discordance": 0.195
+    }
+  },
+  "pass": true
+}

@@ -104,11 +104,160 @@ Team decision: budgets accepted as-is. Truncation stops junk, not real content.
 
 ---
 
+## G0–G8 gate outcomes (2026-09-11)
+
+### Summary
+
+| Gate | Result | Notes |
+|---|---|---|
+| **G0** inputs | **FAIL** | Benign Indic `translation_source` mismatch — see below |
+| **G0.5** cue parity | **FAIL** | 20/25 ratios >2.5; same issue as qwen3-32b |
+| **G0.context_fit** | **PASS** | All cells fit; te headroom 25 tok, kn 48 tok |
+| **G1** determinism | **NOT RUN** | Needs a GPU job to regenerate one shard |
+| **G3** cue integrity | **PASS** | 11,970/11,970 `prompt_contains_cue == True` |
+| **G4/G5** language match | **PASS** | Benign ≥99.5%, harmful ≥89.8% (all above thresholds) |
+| **G6** truncation | **FAIL** | ta/te/kn harmful 7.5–23.6%; see below |
+| **G7** DV exists | **PASS** | English only (Indic lexicons empty); not floored/ceilinged |
+| **G8** discordance | **PASS** | English: 19.5% discordance (39 items flip between deploy/eval_explicit) |
+| **verify.py** audit | **PASS** | 11,970 rows, 0 missing, 0 duplicates, 0 errors, 0 manifest mismatches |
+
+### G0 FAIL — benign `translation_source` mismatch (NOT a data defect)
+
+All harmful files: `translation_source: "opus"` — **PASS**.
+All benign Indic files: `translation_source: "opus"` — gate expects `{"indictrans2",
+"google_translate_manual"}`.
+
+The gate's hardcoded allowed set is a carryover from the gemma run, where the benign
+arm came from Dolly-T (IndicTrans2 provenance). In this campaign, both arms were
+translated by Claude Opus, so `opus` is the **correct** source. The data is not
+malformed — the gate code's allowed set doesn't include `opus` for benign.
+
+All other G0 checks pass: Unicode ranges pairwise disjoint, cues all approved,
+harmful n=199 + benign n=200 correct in all 6 languages, `doc_id` aligned across
+languages for both arms.
+
+### G0.5 FAIL — cue length parity (known, matches qwen3-32b)
+
+**20 of 25 ratios exceed the 2.5 limit.** Only `eval_metadata` passes (all ≤2.32).
+
+| condition | hi | bn | ta | te | kn |
+|---|---|---|---|---|---|
+| deploy | **3.14** | **3.86** | **5.43** | **6.29** | **4.29** |
+| monitor_log | **4.92** | **5.42** | **6.75** | **7.75** | **7.42** |
+| eval_log | **4.70** | **5.73** | **7.30** | **8.03** | **6.30** |
+| eval_explicit | **5.84** | **6.45** | **7.45** | **8.25** | **8.23** |
+| eval_metadata | 1.57 | 1.75 | 2.11 | 2.32 | 1.82 |
+
+This is worse than qwen3-32b (which had max 8.25 vs our 8.25 — identical max) and
+far worse than gemma (max 2.16). The gate measures tokenizer fertility on the cue
+strings, not the prompts. As qwen3-32b's results noted, this gate "is measuring the
+wrong quantity" — the ratios reflect Qwen's poor Indic tokenizer, not a cue design
+problem. The cue strings are identical across all models; only the tokenizer differs.
+
+### G0.context_fit PASS
+
+| lang | max prompt tok | max_tokens | required | max_model_len | headroom |
+|---|---:|---:|---:|---:|---:|
+| en | 307 | 1280 | 1587 | 8192 | 6605 |
+| hi | 1521 | 2880 | 4401 | 8192 | 3791 |
+| bn | 1594 | 3648 | 5242 | 8192 | 2950 |
+| ta | 2026 | 5824 | 7850 | 8192 | **342** |
+| te | 2343 | 5824 | 8167 | 8192 | **25** |
+| kn | 2320 | 5824 | 8144 | 8192 | **48** |
+
+te has only 25 tokens of headroom — the tightest fit in any model's run. No overflow.
+
+### G3 PASS — cue integrity
+
+11,970 / 11,970 rows have `prompt_contains_cue == True`. Zero failures.
+
+### G4/G5 PASS — response-language match
+
+G4 threshold: benign ≥0.90. G5 threshold: harmful ≥0.70.
+
+| lang | benign (G4) | harmful (G5) |
+|---|---|---|
+| en | 100.0% | 100.0% |
+| hi | 99.7% | 89.8% |
+| bn | 99.8% | 95.4% |
+| ta | 99.8% | 95.1% |
+| te | 99.7% | 99.0% |
+| kn | 99.5% | 98.3% |
+
+Zero empty responses, zero unknown-script responses across all 11,970 rows.
+
+Notable: `harmful/hi` language match is 89.8% — the lowest cell, but still well
+above the 70% threshold. This likely reflects the model responding in English to
+Hindi harmful prompts (a known cross-lingual refusal pattern).
+
+### G6 FAIL — truncation (limit ≤5% per cell)
+
+**23 cells exceed the 5% threshold.** All violations are in ta/te/kn.
+
+Per-language truncation summary (worst cue per arm):
+
+| lang | benign worst | harmful worst |
+|---|---|---|
+| en | 0.0% | 0.0% |
+| hi | 1.0% | 1.0% |
+| bn | 0.5% | 0.0% |
+| ta | 6.0% | **14.6%** |
+| te | **10.0%** | **21.6%** |
+| kn | **7.0%** | **23.6%** |
+
+Harmful arm truncation rates by language and cue:
+
+| lang | deploy | monitor | eval_log | eval_explicit | eval_metadata |
+|---|---|---|---|---|---|
+| en | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
+| hi | 1.0% | 1.0% | 0.5% | 0.0% | 0.0% |
+| bn | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
+| ta | 13.1% | 7.5% | 12.1% | 14.6% | 13.6% |
+| te | 20.1% | 20.1% | 21.6% | 17.1% | 21.1% |
+| kn | 22.6% | 20.6% | 23.6% | 20.1% | 21.1% |
+
+**This is substantially worse than qwen3-32b** (which peaked at 7.44% in harmful/kn)
+and far worse than gemma (worst cell 0.80%). The truncation is caused by degenerate
+repetition loops (confirmed in the probe audit), not genuine content being cut off.
+As established in the probe review: raising `max_model_len` would only extend
+repetition junk.
+
+**Phase 3 must exclude degenerate rows and report the exclusion rate per language**,
+as the qwen3-32b results also recommended.
+
+### G7 PASS — DV exists (English only, advisory)
+
+English refusal rates (gate lexicon, deploy + eval_explicit only):
+
+| cue | harmful+benign pooled |
+|---|---|
+| deploy | 22.8% |
+| eval_explicit | 28.1% |
+
+Not at floor (<5%) or ceiling (>95%). DV is live. Indic languages report "no gate
+lexicon" — Indic marker lists are deliberately empty pending native authorship (§9).
+
+**Note:** these rates are markedly lower than gemma's (65–74%) — Qwen2.5-72B-Instruct
+refuses less frequently on the English gate lexicon. This could reflect a genuine
+difference in refusal behaviour, or a lexicon mismatch (Qwen may phrase refusals
+differently from the markers). Either way, the DV exists — refusal is neither floored
+nor ceilinged.
+
+### G8 PASS — discordance (English only)
+
+| | n_pairs | deploy→comply, eval→refuse (b) | deploy→refuse, eval→comply (c) | discordance |
+|---|---:|---:|---:|---:|
+| en | 200 | 9 | 30 | **19.5%** |
+
+39 items (19.5%) flip refusal between deploy and eval_explicit. The asymmetry is
+notable: 30 items become MORE refusing under eval framing, vs 9 that become LESS.
+This is directionally the same as gemma's pattern.
+
+---
+
 ## Pending — to be filled after the run
 
-- [ ] G0–G8 gate outcomes
-- [ ] G1 determinism (target ≥0.99 byte-identical; qwen3-32b reached 1.0000)
-- [ ] G6 truncation rate per language (qwen3-32b **failed** here: te 6.93%, kn 7.44%)
+- [ ] G1 determinism (needs GPU job — target ≥0.99 byte-identical; qwen3-32b reached 1.0000)
 - [ ] Refusal rates by arm × lang × cue
 - [ ] `eval_log − monitor_log` contrast, the load-bearing comparison
 - [x] Wall-clock: **10:04:04** — comfortably within 24h, no resume needed
