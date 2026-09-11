@@ -1,0 +1,73 @@
+# Phase-2 run config — Qwen2.5-72B-Instruct run (Sharanga).
+# Structure follows phase2_gemma3_27b_it_run/config/run.yaml. [72B] marks
+# choices specific to this model/cluster.
+seed: 2026
+arms:  [harmful, benign]
+cues:  [deploy, monitor_log, eval_log, eval_explicit, eval_metadata]
+langs: [en, hi, bn, ta, te, kn]
+
+# [72B] 199, matching BOTH precedent runs exactly. `hi` item 160
+# (doc_id b6d11d84-439a-4509-9d23-1defd0f78781) was REFUSED by the translation
+# model on NCII grounds and has an empty translation. Under §3.2's
+# all-or-nothing rule that doc_id is dropped from ALL six languages, so the
+# aligned within-item set is 199.
+#
+# Verified four independent ways before adopting (2026-08-30):
+#   1. phase2_gemma3_27b_it_run/config/run.yaml names the same doc_id.
+#   2. Both runs' run_log.md record the actual command:
+#      `normalise_translations.py --drop-doc-ids b6d11d84...`
+#   3. qwen3-32b shards: all 6 langs are 199/199 rows, the single missing
+#      doc_id is b6d11d84... in every one.
+#   4. gemma3-27b-it shards: identical result across all 6 langs.
+# It is the ONLY bad row in the harmful set — scanning all six languages for
+# status != "ok" or empty text yields exactly this one.
+#
+# NOTE: normalise_translations.py's docstring shows a two-id example
+# (e6efb528...,b6d11d84...). That is STALE. Item 56 (e6efb528...) was an
+# earlier refusal candidate in ta+kn that was subsequently resolved — it is
+# status "ok" in the current data and present in every precedent shard. Use
+# ONE id, not two.
+n_items: 199
+
+# [72B] The arms legitimately differ, as in both precedents: harmful lost
+# hi/160 to a translation refusal (199); the benign set is an independent
+# Dolly-T draw that never contained that doc_id (200). Within-item pairing runs
+# ACROSS LANGUAGES WITHIN an arm, so unequal arm sizes are analytically fine —
+# but the counts must be asserted, or a truncated file would pass G0.
+n_items_per_arm:
+  harmful: 199
+  benign: 200
+
+sampling:
+  temperature: 0.0
+  top_p: 1.0
+  top_k: -1
+  logprobs: 5
+  logprob_prefix_tokens: 10
+
+determinism:
+  # [72B] Required, not optional. The gemma3 run measured only 0.2814
+  # byte-identical WITHOUT batch-invariant kernels — far below §5.3's 0.99
+  # floor — because vLLM schedules a shard across many steps and reduction
+  # numerics depend on batch composition. With it, qwen3-32b reached 1.0000.
+  # H200 NVL is compute capability 9.0, so VLLM_BATCH_INVARIANT is supported.
+  batch_invariant: true
+  # [72B] Set HERE, not via the VLLM_ATTENTION_BACKEND env var — vLLM 0.19.1
+  # dropped that env var and made it an engine arg. generate.py passes this
+  # through to LLM(attention_backend=...). Pinned so it lands in the manifest:
+  # the attention kernel is part of what makes a run reproducible.
+  attention_backend: TRITON_ATTN
+
+# [72B] Paths are RELATIVE and resolve from the process CWD, so both sbatch
+# scripts `cd` into this run directory before invoking anything. config.py's
+# REPO/CONFIG are absolute (derived from __file__) and work from anywhere; only
+# these paths depend on CWD.
+#
+# `activations` is a SYMLINK to /scratch/jagatsesh/IEA-qwen72b-activations.
+# Activations are ~61 GiB and CANNOT live in /home (40 GiB quota, CLAUDE.md §8).
+paths:
+  generations: ./generations
+  preflight:   ./preflight
+  logs:        ./logs
+  activations: ./activations
+  home_out:    ./results

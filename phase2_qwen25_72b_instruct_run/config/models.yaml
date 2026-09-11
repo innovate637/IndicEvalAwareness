@@ -1,0 +1,84 @@
+# Phase-2 model config — Qwen2.5-72B-Instruct run (Sharanga).
+#
+# Structure follows phase2_gemma3_27b_it_run/config/models.yaml. Resource rows
+# are re-derived for THIS model on THIS cluster; deviations marked [72B].
+#
+# [72B] Target cluster is the REAL Sharanga (hpc01.sharanga.local), unlike the
+#   two precedent runs, which executed on a substitute single-node cluster
+#   (bits2/bitspilani-slurmvm02, partitions h100-full/h100-mig) because
+#   Sharanga's slurmctld was down at the time. Partition/QOS names here are
+#   Sharanga's real ones and are NOT carried over from those runs.
+#
+# [72B] KV arithmetic for Qwen2.5-72B-Instruct on H200 NVL (141 GB), per plan
+#   §2.3 methodology, using values read from the downloaded config.json:
+#     layers=80, num_key_value_heads=8 (GQA), head_dim = 8192/64 = 128
+#     KV bytes/token = 2 * 80 * 8 * 128 * 2 = 327,680 B = 0.3125 MB/token
+#     weights bf16   = ~145 GB total => ~72.5 GB per GPU at tensor_parallel=2
+#     usable/GPU     = 0.90 * 141 GB = ~126.9 GB
+#     minus weights (72.5) minus ~4 GB activations => ~50 GB KV per GPU
+#     TP=2 shards KV across both GPUs => ~100 GB KV pool
+#     ~100 GB / 0.3125 MB/token => ~320,000 KV tokens
+#   At max_model_len 8192 that is ~39 simultaneous FULL-length sequences; real
+#   prompts here are ~100-600 tokens, so max_num_seqs 64 has wide headroom.
+#   Do not raise max_model_len or max_num_seqs without redoing this arithmetic.
+#
+# [72B] max_model_len 8192, not the plan's/gemma's 4096. Precedent: the
+#   qwen3-32b run raised it to 8192 for exactly this reason — Qwen tokenizers
+#   produce ~4x more tokens on Indic prompts than Gemma's. Prompt-side headroom,
+#   not a completion budget (that is config/max_tokens.json).
+#
+# [72B] tensor_parallel: 2. 145 GB bf16 weights do not fit one 141 GB H200.
+#   TP=2 requires num_attention_heads (64) and num_key_value_heads (8) to be
+#   divisible by 2 — both are. qos_gpu_h200 caps a user at 3 GPUs, so 2 is
+#   within cap and leaves a GPU free rather than monopolising the node.
+#
+# [72B] bf16 ONLY. Plan §5.4 forbids FP8/AWQ/GPTQ/KV-quantisation anywhere in
+#   the main grid: quantisation is documented to move refusal rates, which is
+#   the dependent variable. This is not negotiable for fit reasons.
+
+defaults:
+  dtype: bfloat16
+  max_model_len: 8192
+  gpu_memory_utilization: 0.90
+  enforce_eager: true
+  max_num_seqs: 64
+  max_num_batched_tokens: 8192
+  cpus_per_task: 8
+  trust_remote_code: false
+
+models:
+  # repo/revision are the HF id + resolved commit SHA, NOT the local snapshot
+  # path, so that model_repo/model_revision in every JSONL row carry real
+  # provenance (plan §3.5/§5.3 require a resolved SHA, not a moving branch).
+  # The weights are already staged at
+  #   /scratch/jagatsesh/hf/hub/models--Qwen--Qwen2.5-72B-Instruct
+  #     /snapshots/495f39366efef23836d0cfae4fbe635880d2be31
+  # and the sbatch sets HF_HOME + HF_HUB_OFFLINE=1, so this resolves from cache
+  # with no network access.
+  - {slug: qwen25-72b-instruct, repo: Qwen/Qwen2.5-72B-Instruct,
+     revision: "495f39366efef23836d0cfae4fbe635880d2be31",
+     kind: instruct,
+     # [72B] Qwen2.5 is NOT a hybrid-thinking model (that is Qwen3). There is no
+     # enable_thinking kwarg to pass; thinking_kwarg stays null. Verified: the
+     # rendered prompt contains no <think> block, unlike the qwen3-32b run.
+     thinking_kwarg: null,
+     # [72B] Qwen2.5 has a genuine system role. Recorded truthfully, but the
+     # main grid runs placement=user_prepend, so it is not exercised here.
+     # See docs/PLAN_DEVIATIONS.md D-72B-1 for the default-system-prompt issue
+     # this interacts with.
+     true_system_role: true,
+     tensor_parallel: 2, partition: gpu_h200_8,
+     gres: "gpu:2",
+     gpus: 2, mem: 300G, time: "24:00:00", approx_bf16_gb: 145,
+     max_num_seqs: 64, conditional: false}
+
+# [72B] Per-user QOS cap on Sharanga: qos_gpu_h200 = 3 GPUs (CLAUDE.md §9,
+# sourced from Sharanga_HPC_SOP.pdf §4.2). This job takes 2, so the concurrent
+# job cap at tensor_parallel=2 is 1. Array throttle must be %1.
+qos_gpu_caps: {gpu_h200_8: 3}
+
+# [72B] Sharanga account/QOS. gpu_h200_8 MaxTime is 1-00:00:00 (24h) — verified
+# live via `sinfo -p gpu_h200_8`, which CONTRADICTS the SOP PDF's stated
+# 4-00:00:00. Live cluster state is ground truth; re-verify before relying on
+# it, since admins can change Slurm config at any time (CLAUDE.md §9).
+slurm: {account: bits, qos: qos_gpu_h200}

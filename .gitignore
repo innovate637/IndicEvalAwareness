@@ -1,0 +1,20 @@
+*SOP*.pdf
+Sharanga_HPC_SOP.pdf
+
+# Python
+__pycache__/
+*.pyc
+
+# Server-specific logs (contain Slurm job IDs, server paths, usernames)
+*/logs/
+
+# Symlinks to /scratch (won't resolve on other machines)
+activations
+
+# Server maintenance files
+download_qwen72b.log
+touch_scratch.log
+touch_scratch.sh
+
+# Claude Code operating contract (server-specific)
+CLAUDE.md

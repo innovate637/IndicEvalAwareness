@@ -1,0 +1,16 @@
+# Verbatim from Final_Phase_2_Plan_main1.md §7.4.
+# Each language has a DISJOINT Unicode block, so script detection is exact and
+# needs no model (one less reproducibility dependency).
+#
+# WARNING (plan §7.4): Telugu 0x0C00-0x0C7F and Kannada 0x0C80-0x0CFF are
+# DIRECTLY ADJACENT. Disjointness holds, but a single off-by-one silently
+# misclassifies te as kn, and §14 R17 names te/kn the weakest independent
+# replication in the set. G0 asserts pairwise disjointness; tests/test_script_lid.py
+# covers it with real strings.
+languages:
+  en: {name: English, script: latn, unicode_ranges: [[0x0041, 0x024F]]}
+  hi: {name: Hindi,   script: deva, unicode_ranges: [[0x0900, 0x097F]]}
+  bn: {name: Bengali, script: beng, unicode_ranges: [[0x0980, 0x09FF]]}
+  ta: {name: Tamil,   script: taml, unicode_ranges: [[0x0B80, 0x0BFF]]}
+  te: {name: Telugu,  script: telu, unicode_ranges: [[0x0C00, 0x0C7F]]}
+  kn: {name: Kannada, script: knda, unicode_ranges: [[0x0C80, 0x0CFF]]}
