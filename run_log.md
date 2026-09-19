@@ -821,3 +821,170 @@ Small in absolute terms, but a generation artifact that appears **only** under o
 degeneracy correlated with the independent variable — structurally the same objection §2.1
 used to exclude the base checkpoints, and `eval_metadata` is contrast C4. Recording it now so
 it is a pre-registered known quantity rather than something noticed after C4 is computed.
+
+---
+
+## 2026-09-20 — D1/D2: `judge.py` and `run_judge.sbatch` built (no job submitted)
+
+`2026-09-19T18:33:02Z` (`2026-09-20 00:03:02 IST`). Login node. **No `sbatch` run, no GPU job
+submitted**, per CLAUDE.md §5 rule 7.
+
+### Plan sections re-read before writing code
+
+§3 (triage + window), §4 (judge config), §5 (rubric + blinding), §7 (gates). Three parameters
+in the task spec conflicted with the plan; the plan was followed in each case.
+
+| parameter | task spec said | plan says | used |
+|---|---|---|---|
+| seed | "42 (or plan value if one exists)" | §4.4 **2026**, matches Phase 2 | **2026** |
+| J2 second pass | "same seed, same order" | §7.2 **"different batch orders"**, stated twice (L513, L523) | **different orders** |
+| window source field | `response_text` | §3.3 `response_answer` | **`response_answer`** |
+
+The J2 one is substantive, not cosmetic. §7.2's stated purpose is to detect run-to-run
+variation from "batch composition, vLLM version and kernel selection". Re-running in an
+identical order removes batch composition from the test and would pass trivially. `run_j2()`
+shuffles twice from the seeded RNG and hard-fails if the two orders collide.
+
+`response_text` vs `response_answer` is a no-op in practice — verified identical in all 47,880
+rows — but the plan's field is used so the code matches the pre-registered wording.
+
+### Measured parameters (nothing guessed)
+
+Tokenized with the judge's own `GemmaTokenizer`, not word or character counts:
+
+| quantity | value |
+|---|---|
+| system prompt | **1,031 tokens** |
+| `item_text`, max over all **2,394** distinct (doc_id, lang) | **477** (kn) |
+| `item_text` max by language | en 233 · bn 304 · hi 365 · ta 418 · te 463 · **kn 477** |
+| response length | p50 233 · p95 886 · p99 1,414 · max 2,699 |
+| responses exceeding the 450-token threshold | **25.7%** |
+
+Note the item-length gradient: Kannada items cost **2.05×** the tokens of the same item in
+English. That is the R17 language axis reappearing at the tokenizer level, and it means the
+judge reads systematically more tokens in Dravidian languages. The §3.3 window equalises the
+*response* side but not the *item* side, since items are not windowed.
+
+An initial 576-row sample put the item max at 169; the exact pass over all 2,394 distinct
+items found 477. Sampling would have under-sized the context budget by 3×.
+
+### `max_model_len` = 4096
+
+```
+system 1,031 + item 477 (kn worst case) + window 455 + scaffold/template ~40 = 2,003 in
++ 200 out = 2,203   ->  4096 leaves 1,893 tokens headroom
+```
+
+Explicitly set. The model's `max_position_embeddings` is **262,144**; allowing that default
+would have made vLLM size the KV pool for a 262k context and fail to allocate.
+
+### Partition: `gpu_h200_8` / `qos_gpu_h200`
+
+Weights **58.25 GiB** from the safetensors index `total_size` (62,546,177,752 B), which
+includes the ~1.1 GB vision tower. KV per token, worst case (all 60 layers at local sizing,
+ignoring `sliding_window=1024` and `attention_k_eq_v=true`):
+`2 × 16 kv_heads × 256 head_dim × 2 B × 60 layers = 983,040 B = 0.9375 MiB/token`.
+
+| | A100 80GB | H200 NVL 141GB |
+|---|---:|---:|
+| budget @ 0.90 | 67.1 GiB | 118.2 GiB |
+| − weights − overhead | −62.25 | −62.25 |
+| KV pool | **~4.9 GiB** | **~56 GiB** |
+| KV tokens | ~5,300 | ~61,000 |
+| concurrent 2.2k-token seqs | **~2** | **~27** |
+
+A100 boots (5,300 > 4,096) but a batch of ~2 across 47,880 rows is not viable. Plan §4.1 and
+§12.2 both specify H200 and `qos_gpu_h200`. **CLAUDE.md §2 is stale on this point** — it names
+`gpu_a100_8` and states "~61.4 GB at bf16 → fits on 1×A100 80GB", which counts weights only
+and omits KV entirely.
+
+Cost of the choice: `gpu_h200_8` caps at **1-00:00:00** where `gpu_a100_8` allows 5 days
+(confirmed via `sinfo`). J4 therefore sits exactly at the H200 ceiling, which is why
+`judge.py` checkpoints after every chunk and skips already-written `record_id`s on restart.
+Time is passed via `--time` on the command line rather than hardcoded, so the wall clock is
+visible at submission.
+
+### Engine configuration, verified against vLLM 0.25.1 source
+
+`LLM.__init__` exposes `model, revision, tokenizer, dtype, seed, tensor_parallel_size,
+gpu_memory_utilization, enforce_eager, trust_remote_code, hf_overrides, mm_processor_kwargs,
+skip_tokenizer_init` plus `**kwargs`; `max_model_len`, `max_num_seqs` and
+`limit_mm_per_prompt` are `EngineArgs` fields reached through that `**kwargs` (all three
+confirmed present in `engine/arg_utils.py`). `SamplingParams` is a msgspec Struct, so
+`inspect.signature` reports nothing — fields confirmed by reading `sampling_params.py`.
+
+**Thinking mode.** The exact kwarg is `enable_thinking`, consumed by `chat_template.jinja`
+(L186, defaults false) and passed explicitly as
+`llm.chat(..., chat_template_kwargs={"enable_thinking": False})`. With it false the template
+emits `<|channel>thought\n<channel|>` — an immediately-closed thought channel — so the model
+goes straight to the answer. Recorded per §4.4's "pin it off and record the exact kwarg".
+
+**Vision tower.** `limit_mm_per_prompt={"image": 0}` is set. Stated honestly: this zeroes the
+multimodal *input* budget so no encoder cache or mm-profiling memory is reserved; it does
+**not** prevent the vision weights loading, as they are part of the checkpoint. That ~1.1 GB
+is already inside the 58.25 GiB figure. vLLM 0.25.1 offers no flag to drop the tower.
+
+Fixed and recorded per §4.4: `max_num_seqs=32`, `enforce_eager=True` (mirrors Phase 2,
+avoids CUDA-graph capture variance), `gpu_memory_utilization=0.90`, `tensor_parallel_size=1`.
+Written to `preflight/j_config.json` at startup, before the GPU is touched, and stamped on
+every judgment row.
+
+### CPU verification before any GPU time
+
+| check | result |
+|---|---|
+| `python -c "import ast; ast.parse(...)"` both files | OK |
+| `bash -n run_judge.sbatch`, bad-mode guard | OK, rejects empty and `j9` |
+| `parse_judgment` clean / fenced / prose-wrapped | parsed |
+| `parse_judgment` bad label / garbage / empty | rejected → `PARSE_ERROR` |
+| `build_window` short (146 tok) | passthrough, no separator |
+| `build_window` long (1,080 tok) | → 453 tok, separator present |
+| worst-case prompt fits `max_model_len` | 2,203 < 4,096 |
+
+**Bug found and fixed during verification.** The first `assert_blinding` searched the prompt
+for blinded values. One cue is named **`deploy`** and one arm is **`harmful`** — both ordinary
+words that occur legitimately inside responses and items. A response saying "deploy the
+container" would have raised `AssertionError` and aborted the entire J4 run, directly
+violating the requirement to log individual failures and continue. It was also
+under-inclusive: `arm` was explicitly skipped, so an actual arm leak would not have been
+caught.
+
+Replaced with a **structural** check: the prompt must be exactly two messages, the system
+turn byte-identical to the rubric, and the user turn byte-identical to
+`USER_TEMPLATE.format(item, window)`. Construction is verified rather than content searched,
+so it cannot false-positive. Re-tested: a response containing `deploy`, `monitor_log` and
+`harmful` passes, while an appended third message, a tampered system prompt, an appended
+`CUE:` line and a prepended `ARM:` line are all caught.
+
+### Known gaps, not blockers for J2
+
+1. **No few-shot examples.** §5.5 requires 6–8 per language, native-authored, ≥3 indirect
+   refusals each, at `phase3/rubric/fewshot_<lang>.json`. None of the six exist, so
+   `fewshot_sha` is emitted as `null`. P2 (indirect Indic refusals scored COMPLY) is rated
+   **Critical** with native-authored few-shot as a named mitigation — J3 cannot properly run
+   until these exist.
+2. **J4 throughput is unvalidated.** No GPU job has run, so hours-per-row is unknown against
+   the 24h cap. The J2 run will give the first real rate; extrapolate from it before
+   submitting J4.
+3. **`enforce_eager=True` costs throughput.** Chosen for determinism. If J2 passes comfortably
+   and J4 looks tight against 24h, this is the first dial to reconsider — but changing it
+   invalidates J2 and requires a re-run.
+4. **Prefix caching left off.** The 1,031-token system prompt is identical on every call, so
+   `enable_prefix_caching=True` would cut prefill substantially, but it is a known source of
+   numeric variation and §7.2 exists to detect exactly that. Not enabled without a decision.
+
+### Two corrections applied before commit
+
+1. **`run_judge.sbatch` header arithmetic.** The partition-choice comment carried first-pass
+   numbers that treated the H200's 141 **GB** as 141 **GiB**. Corrected to match the figures
+   in this log: budget 118.2 GiB on a 131.3 GiB card, ~56 GiB KV pool, ~61,000 KV tokens,
+   ~27 concurrent sequences, and ~4.9 GiB (not ~10 GiB) for the A100 comparison. The
+   partition decision is unchanged — the A100 looks *worse* under the corrected numbers, not
+   better.
+2. **`lang` / `language` duplication in `judge.py`.** The judgment row emitted both keys with
+   the same value (§7.3 names neither; the task spec asked for `language`). Collapsed to
+   `lang` alone, matching the Phase 2 generation schema so the join key set is identical on
+   both sides.
+
+`judge.py` is **522 lines** after the fix. The commit message drafted for this change said
+513; corrected to 522 rather than commit a wrong count.
