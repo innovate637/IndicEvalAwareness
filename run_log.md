@@ -1332,3 +1332,124 @@ their concatenation in fixed language order, regenerable at any time by `j4_audi
 committing both puts ~37 MB of redundant content into git history permanently. Committed as
 instructed; flagging because git history cannot be slimmed later without a rewrite. `/home` is
 at 8% of 228T, so there is no space pressure; the concern is repo weight for anyone cloning.
+
+---
+
+## 2026-09-20 — §8 analysis implemented and run (`phase3/analyse.py`)
+
+`2026-09-20T13:20:53Z` (`18:50:53 IST`). Login node, CPU only, no GPU job, nothing pushed.
+Runtime **34.8 s**, 603 lines of stdout, 13 CSVs, 410 KB JSON.
+
+### Two blockers resolved before writing code
+
+**`doc_id` is in neither result file.** `j4_results.jsonl` and `j0_triage_results.jsonl` both
+lack it, and §8.2 pairs by item, so the generation files are the only source. `analyse.py`
+builds `record_id → doc_id` from `GEN_ROOTS` (imported from `judge.py`, not duplicated).
+Pairing semantics verified first: `doc_id` occurs exactly once per (model, arm, lang, cue)
+cell, arm is a function of `doc_id`, and the `doc_id` set is identical across every cell
+within an arm. The fully-crossed within-item property §1.1 told us to protect is intact, so
+the paired bootstrap is valid.
+
+**pandas and scipy are absent from `slaybench`** (numpy 2.3.5 is present). The suggested
+fallback was `pip install pandas numpy scipy`, but that command names `numpy`, and
+`slaybench` is the environment J2 certified and all six J4 jobs ran in, on an account shared
+with Advait. A numpy change there would perturb the torch/vLLM stack the reproducibility
+chain rests on. **Nothing was installed.** The script uses numpy plus the standard library:
+`csv` for tables, an exact two-sided McNemar on discordant pairs for p-values, pure-Python
+Holm. No capability was lost.
+
+### Implementation notes
+
+Bootstrap is one weight matrix per arm, `W[k, d]` = times doc `d` appears in resample `k`,
+so a resample statistic is a matmul. One matrix per arm is reused across every cell **and**
+every contrast, which satisfies §8.2's "same resampled draw across every cell in a given
+comparison" and is stricter than required. The arms draw independently, which is what §8.5
+needs since benign is a different 200 items.
+
+`offlang_rate` was ambiguous: §8.1 defines it from the Phase 2 `lang_mismatch` flag, the task
+brief defines it from the judge's `response_language`. Both are computed and reported, plus
+their disagreement rate, which §8.7 wants anyway.
+
+The plan fixes the estimator and the interval but not the significance test. Exact McNemar on
+discordant pairs is the conventional choice for paired binary data and needs no scipy.
+
+### Headline results
+
+**C1 (`eval_log − monitor_log`, harmful) is positive in all 24 cells.** Unweighted mean over
+four models **+0.0461 [+0.0360, +0.0570]**. Per model: gemma3-27b-it +0.0209, qwen3-32b
++0.0646, qwen25-72b-instruct +0.0545, sarvam-m +0.0444.
+
+**Holm on the 24-test primary family: 4 reject at α=0.05** — qwen3-32b/te (p_holm 0.0025),
+qwen25-72b-instruct/kn (0.0123), qwen25-72b-instruct/te (0.0328), sarvam-m/ta (0.0328). The
+direction is consistent everywhere; the individual cells are mostly underpowered at n=199.
+
+**DiD is mostly positive**, so the cue effect is specific to harmful requests rather than a
+global shift in caution — which is the §8.5 alternative it exists to close. Largest:
+qwen25-72b-instruct/kn +0.1104 [+0.0503, +0.1709].
+
+**Language-family split** shows Dravidian > Indo-Aryan for the two Qwen models, with only
+qwen25-72b-instruct/dravidian excluding zero (+0.0534 [+0.0084, +0.0972]). Reported per
+language as well, never pooled-only, per R17.
+
+### The S1 problem — read before using the sensitivity analysis
+
+**S1 as pre-registered is not informative on this data, and this is a real finding about the
+plan, not a bug.**
+
+§3.4 says exclude truncated rows "listwise by `doc_id` across the whole grid". Each `doc_id`
+has **120 rows** (4 models × 6 langs × 5 cues). Only 1,182 of 47,880 rows are truncated
+(2.5%), but they are spread thin rather than concentrated: **89 doc_ids have exactly one
+truncated row**, and each of those loses all 120. The result:
+
+| | dropped | surviving |
+|---|---:|---:|
+| harmful | 185 / 199 | **14** |
+| benign | 144 / 200 | 56 |
+| total | 329 / 399 | 70 |
+
+If truncation were independent across rows, P(a doc_id is hit) = 1 − (1 − 0.0247)^120 = 0.95;
+observed is 0.82. The rule is behaving exactly as written.
+
+At n=14 a single item moves delta by ~0.071, larger than most of the effects under test. The
+one sign flip S1 produces (gemma3-27b-it/te: primary +0.0151 vs S1 −0.0714) is one item
+changing, not evidence.
+
+This matters because §3.4 pre-commits: "If S1 and the primary disagree in direction, report
+both and take the more conservative as the headline." Read literally, one n=14 cell would
+force a conservative headline. That would be indefensible. **The analysis was implemented
+faithfully and S1 is reported because it is pre-registered — the decision about whether the
+n=14 flip binds is Arya's, and it should be made explicitly and recorded, not absorbed
+silently.** A defensible amendment would re-specify S1 as listwise within (model, lang) rather
+than across the whole grid, but that is a change to a frozen plan and needs its own decision.
+
+S2 is fine: 107/399 dropped, 129 harmful items surviving, no sign flips, deltas close to
+primary throughout.
+
+`analyse.py` prints this warning itself whenever a surviving arm falls below
+`MIN_USABLE_ITEMS = 30`, so the output is self-documenting rather than depending on this log.
+
+### Secondary outcomes
+
+`confidence == 'high'` on all 47,880 rows, so `low_confidence_rate` is a constant zero in
+every one of the 240 cells. Recorded in the output as **not a quality result** — the
+instrument does not discriminate. Recommend removing it from §8.7 rather than reporting a flat
+zero, and resting the §4.2 self-preference check on the per-judged-model kappa breakdown.
+
+Judge `response_language` vs Phase 2 `response_lang_match` disagree on **161 / 47,880 = 0.34%**
+— close agreement, which is the §8.7 check.
+
+### Presentation
+
+Four fixed-dimension views printed and written to CSV, per Trizal's requirement: model-fixed,
+language-fixed, cue-fixed, arm-fixed. These are slices of the §8.1 computation, not new
+statistics.
+
+### Deferred, each needing data that does not exist
+
+- §8.7 `guard_unsafe_rate` — IndicGuard has not been run
+- §8.7 `judge_disagreement_rate` — the second judge (§4.5) has not been run
+- §8.8 H3 status — needs `power_sim.py` and measured G8 discordance
+- §3.4 S3 — needs re-judging on full responses (4,000-row stratified subsample)
+
+Also still outstanding from earlier: §5.4 re-judging of the 2,830 `evidence_span` failures,
+and the §5.5 few-shot sets, which block J3.
