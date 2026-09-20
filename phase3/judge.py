@@ -2,10 +2,13 @@
 """Phase 3 judge — Gemma 4 31B over the 47,880-row primary set.
 
 Modes
-  --mode j2   gate J2 determinism: 500 stratified rows judged twice in
-              DIFFERENT batch orders (plan 7.2), labels compared.
-  --mode j4   gate J4 production: all 47,880 rows, no pre-labelling,
-              no filtering.
+  --mode j2                gate J2 determinism: 500 stratified rows judged
+                           twice in DIFFERENT batch orders (plan 7.2),
+                           labels compared. Takes no --lang.
+  --mode j4 --lang <code>  gate J4 production: every row for one language
+                           (~7,980 = 1,995 per model x 4), no pre-labelling,
+                           no filtering. One job per language; six jobs
+                           cover the 47,880-row grid.
 
 Every generation parameter here is fixed by plan 4.4 and must not be
 changed without re-running J2. Resume-safe: re-running appends only the
@@ -69,6 +72,7 @@ GEN_ROOTS = {
 
 RUBRIC_PATH = os.path.join(REPO, "phase3", "rubric", "judge_system_prompt.txt")
 EXPECTED_ROWS = 47880
+EXPECTED_ROWS_PER_LANG = 7980  # 1,995 per model x 4 models
 VALID_LABELS = {"REFUSAL", "COMPLY", "UNUSABLE"}
 VALID_LANGS = {"en", "hi", "bn", "ta", "te", "kn"}
 VALID_CONFIDENCE = {"high", "medium", "low"}
@@ -398,9 +402,15 @@ def run_j2(llm, sampling_params, rows, system_prompt, tok):
     return 0 if verdict == "PASS" else 1
 
 
-def run_j4(llm, sampling_params, rows, system_prompt, tok):
-    """Plan 7.1 J4: all rows, no pre-labelling, no filtering."""
-    out_path = os.path.join(REPO, "phase3", "j4_judgment_results.jsonl")
+def run_j4(llm, sampling_params, rows, system_prompt, tok, lang):
+    """Plan 7.1 J4: every row for one language, no pre-labelling, no filtering.
+
+    Split one job per language so each fits the 4h wall; at ~1.2 s/row a single
+    47,880-row job would run ~16h against a 24h cap. The split is a scheduling
+    change only: same pinned revision, same rubric_sha, same config, so the
+    whole grid is still judged under one judge snapshot (12.3).
+    """
+    out_path = os.path.join(REPO, "phase3", f"j4_results_{lang}.jsonl")
     done = load_done_ids(out_path)
     if done:
         print(f"[j4] resume: {len(done)} rows already judged, skipping them")
@@ -425,21 +435,33 @@ def run_j4(llm, sampling_params, rows, system_prompt, tok):
         n_done = min(i + chunk, len(todo))
         print(f"[j4] {n_done}/{len(todo)} judged, checkpointed", flush=True)
 
-    labels = summarise(all_results, "J4 FULL RUN (this invocation)")
+    summarise(all_results, f"J4 {lang} (this invocation)")
     total_on_disk = len(load_done_ids(out_path))
-    print(f"\nrows on disk    : {total_on_disk}  (expected {EXPECTED_ROWS})")
-    if total_on_disk != EXPECTED_ROWS:
-        print("NOTE: run again to resume; J4 completeness audit (7.4) not yet satisfiable")
+    print(f"\nrows on disk    : {total_on_disk}  (expected {EXPECTED_ROWS_PER_LANG})")
+    if total_on_disk != EXPECTED_ROWS_PER_LANG:
+        print(f"NOTE: {lang} incomplete — re-submit to resume from the checkpoint")
     print(f"wrote {out_path}")
+    print("\nThe 7.4 completeness audit runs across all 6 language files, "
+          f"not this one: assert {EXPECTED_ROWS} rows total, disjoint and exhaustive.")
     return 0
 
 
 def main():
     ap = argparse.ArgumentParser(description="Phase 3 judge (Gemma 4 31B)")
     ap.add_argument("--mode", required=True, choices=["j2", "j4"])
+    ap.add_argument("--lang", choices=sorted(VALID_LANGS), default=None,
+                    help="j4 only, required: judge just this language "
+                         "(~7,980 rows = 1,995 per model x 4 models)")
     ap.add_argument("--limit", type=int, default=None,
                     help="debug only: cap rows loaded (never use for a real run)")
     args = ap.parse_args()
+
+    # J4 is split one job per language; J2 always uses the stratified 500-row
+    # sample spanning all models and languages, so --lang is meaningless there.
+    if args.mode == "j4" and args.lang is None:
+        ap.error("--mode j4 requires --lang (one of: " + " ".join(sorted(VALID_LANGS)) + ")")
+    if args.mode == "j2" and args.lang is not None:
+        ap.error("--mode j2 does not take --lang; J2 samples across all languages")
 
     global RUBRIC_SHA
     if not os.path.exists(RUBRIC_PATH):
@@ -448,7 +470,7 @@ def main():
     system_prompt = open(RUBRIC_PATH, encoding="utf-8").read()
 
     print("=" * 66)
-    print(f"mode            : {args.mode}")
+    print(f"mode            : {args.mode}" + (f"   lang: {args.lang}" if args.lang else ""))
     print(f"model           : {MODEL_REPO}")
     print(f"revision        : {MODEL_REVISION}")
     print(f"rubric_sha      : {RUBRIC_SHA}")
@@ -462,6 +484,17 @@ def main():
     print(f"loaded {len(rows)} generation rows")
     if len(rows) != EXPECTED_ROWS and args.limit is None:
         print(f"WARNING: expected {EXPECTED_ROWS} rows, got {len(rows)}")
+
+    if args.lang:
+        rows = [r for r in rows if r["lang"] == args.lang]
+        print(f"--lang {args.lang}: {len(rows)} rows "
+              f"(expected {EXPECTED_ROWS_PER_LANG})")
+        if not rows:
+            sys.exit(f"FATAL: no rows matched lang={args.lang!r}")
+        if len(rows) != EXPECTED_ROWS_PER_LANG and args.limit is None:
+            print(f"WARNING: expected {EXPECTED_ROWS_PER_LANG} rows for "
+                  f"{args.lang}, got {len(rows)}")
+
     if args.limit:
         rows = rows[: args.limit]
         print(f"DEBUG --limit active: using {len(rows)} rows")
@@ -473,7 +506,11 @@ def main():
     # Record the pinned config (plan 4.4) before touching the GPU.
     preflight_dir = os.path.join(REPO, "preflight")
     os.makedirs(preflight_dir, exist_ok=True)
-    with open(os.path.join(preflight_dir, "j_config.json"), "w", encoding="utf-8") as fh:
+    # Per-job filename: the six J4 language jobs run concurrently and would
+    # otherwise race on one path, leaving only the last writer's config.
+    cfg_name = f"j_config_{args.mode}" + (f"_{args.lang}" if args.lang else "") + ".json"
+    cfg_path = os.path.join(preflight_dir, cfg_name)
+    with open(cfg_path, "w", encoding="utf-8") as fh:
         json.dump(
             {
                 "model": MODEL_REPO,
@@ -503,17 +540,18 @@ def main():
                 "fewshot_sha": None,
                 "vllm_version": __import__("vllm").__version__,
                 "mode": args.mode,
+                "lang": args.lang,
             },
             fh,
             indent=2,
         )
-    print(f"wrote {preflight_dir}/j_config.json")
+    print(f"wrote {cfg_path}")
 
     llm, sampling_params = init_engine()
 
     if args.mode == "j2":
         return run_j2(llm, sampling_params, rows, system_prompt, tok)
-    return run_j4(llm, sampling_params, rows, system_prompt, tok)
+    return run_j4(llm, sampling_params, rows, system_prompt, tok, args.lang)
 
 
 RUBRIC_SHA = ""

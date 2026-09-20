@@ -988,3 +988,141 @@ so it cannot false-positive. Re-tested: a response containing `deploy`, `monitor
 
 `judge.py` is **522 lines** after the fix. The commit message drafted for this change said
 513; corrected to 522 rather than commit a wrong count.
+
+---
+
+## 2026-09-20 — GATE J2 PASS (job 353752), and J4 split into 6 per-language jobs
+
+Logged `2026-09-20T06:13:21Z` (`11:43:21 IST`). All figures below re-derived from
+`sacct` and from the two output JSONLs, not copied from the submission summary.
+
+### J2 determinism — PASS
+
+```
+sacct -j 353752: j2  gpu_h200_8  COMPLETED  exit 0:0  elapsed 00:29:05
+Start 2026-09-20T03:01:43   End 2026-09-20T03:30:48
+step 353752.0 (python): 00:26:09  -> ~2:56 of the wall was node/env setup
+```
+
+First GPU execution of `judge.py`. The engine loaded `Gemma4ForConditionalGeneration`
+without incident, which retires the open question of whether vLLM 0.25.1 could actually
+serve this architecture — previously confirmed only by a registry lookup.
+
+| | |
+|---|---|
+| rows compared | 500 (125 per model × 4) |
+| labels matching | **500** |
+| agreement | **100.0000%** (threshold 99%) |
+| **GATE J2** | **PASS** |
+
+Run A and run B used different batch orders, as §7.2 requires and as the log line confirms.
+A perfect 100% under *reordered* batches is a stronger result than the same number under an
+identical order would have been: batch composition was genuinely varied and the labels did
+not move.
+
+Label distribution, identical in both runs:
+
+| label | n | share |
+|---|---:|---:|
+| REFUSAL | 220 | 44.0% |
+| COMPLY | 280 | 56.0% |
+| UNUSABLE | 0 | 0.0% |
+| PARSE_ERROR | 0 | 0.0% |
+
+Zero parse errors across 1,000 inferences — the §5.4 strict-JSON contract holds without
+retries. Zero UNUSABLE is consistent with the Element-3 bias instruction, though on a 500-row
+sample it is not yet evidence the rubric can *find* an UNUSABLE when one exists; the 16
+unknown-script rows (Option A, sent to the judge unlabelled) are the real test and they land
+in J4.
+
+Throughput: ~1,000 inferences in ~21 min of judging, **~1.2 s/row**. Extrapolation drives the
+split decision below.
+
+Outputs: `phase3/j2_results_runA.jsonl` (408,041 B), `phase3/j2_results_runB.jsonl`
+(408,021 B).
+
+### Two diagnostics worth recording now
+
+**1. `evidence_span` not a substring of the window: 20/500 (4.0%).** §5.4 requires rejecting
+these and re-judging once; that applies at J4, not here. The important question was whether
+the failures concentrate by language, which is the P2 shape — a judge that mishandles Indic
+text differentially. They do not:
+
+| lang | n | span fails | rate |
+|---|---:|---:|---:|
+| en | 75 | 7 | **9.3%** |
+| hi | 70 | 1 | 1.4% |
+| bn | 81 | 2 | 2.5% |
+| ta | 92 | 4 | 4.3% |
+| te | 81 | 3 | 3.7% |
+| kn | 101 | 3 | 3.0% |
+
+English is the **worst** performer and Hindi the best, which is the opposite of the P2
+prediction. The 4% is a quoting-fidelity nuisance, not a language-competence signal. Re-check
+the same breakdown on the full J4 output before treating this as settled.
+
+**2. `confidence` was `high` on all 500 rows.** §8.7 lists `low_confidence_rate` per cell as a
+secondary outcome and specifically as a tripwire for the §4.2 self-preference concern
+("if this varies by language, the §4.2 concern is showing up in the data"). If the judge
+never emits `medium` or `low`, that diagnostic is dead on arrival — not because the judge is
+uniformly certain, but because the field is not discriminating. Do not read a 100%
+high-confidence rate as evidence of judge quality. Confirm against J4; if it stays constant,
+`low_confidence_rate` should be dropped from §8.7 rather than reported as a flat zero.
+
+### J4 split into 6 per-language jobs
+
+At 1.2 s/row a single J4 job is 47,880 × 1.2 s ≈ **16 h** of judging plus model load, against
+a **24 h** hard cap on `gpu_h200_8`. That leaves little margin for a slow load or a busy node,
+and a single overrun would cost the whole run (recoverable via checkpointing, but a full
+resubmit).
+
+Split by language: 7,980 rows per job (1,995 per model × 4), ≈ **2.7 h** judging + ~3 min
+load ≈ **2.8 h**, comfortably inside a 4 h wall. Six jobs, one GPU each, on a node with 8
+H200s.
+
+This is a scheduling change only — it does not touch the rubric, the window rule, the config,
+or the blinding, so J2's determinism result still covers J4. Every job loads the same pinned
+revision with the same `rubric_sha`, so the whole grid is still judged under one rubric hash
+and one judge snapshot, satisfying §12.3's warning against judging in two passes under
+different conditions.
+
+Output is now one file per language, `phase3/j4_results_<lang>.jsonl`, replacing the single
+`j4_judgment_results.jsonl`. The §7.4 completeness audit must therefore assert
+**6 files totalling 47,880 rows** rather than one file, and confirm the six language sets are
+disjoint and exhaustive. Not yet written.
+
+Language field confirmed by reading one shard from each of the four model directories (not
+assumed): the key is **`lang`**, present in all four, values `en hi bn ta te kn`. The judgment
+rows also carry `lang`, matching the Phase 2 generation schema — the `language` duplicate was
+removed in `58eaf13`.
+
+Filter verified against `judge.py`'s own loader: **7,980 rows per language, exactly 1,995 per
+model in every one**, summing to 47,880 — disjoint and exhaustive, so the six jobs partition
+the grid with nothing dropped or double-counted.
+
+### Changes made
+
+`judge.py` — `--lang` added (choices `bn en hi kn ta te`). Required with `--mode j4`, rejected
+with `--mode j2` (J2 samples across all languages, so a language filter there is meaningless).
+Output path is now `phase3/j4_results_<lang>.jsonl`. Row-count guards warn on anything other
+than 7,980. Chunking, checkpoint/resume, vLLM config, window rule and blinding are untouched.
+
+`run_judge.sbatch` — `--cpus-per-task` fixed to **4** (the on-cluster edit from the rejected
+first J2 submission, now in the committed file). `shift` after the mode check so remaining
+args forward to `judge.py`, which is how `--lang` arrives. Usage comment updated.
+
+`phase3/submit_j4_all.sh` — new, submits the six jobs, echoing each `sbatch` line before
+running it. Accepts an optional language subset for re-runs. Not executed.
+
+**One fix beyond the brief:** `preflight/j_config.json` was written to a single fixed path.
+With six J4 jobs running concurrently they would all race on it and only the last writer's
+config would survive — destroying the §4.4 record for five of the six languages. Path is now
+`preflight/j_config_<mode>[_<lang>].json`, one per job.
+
+### Still outstanding
+
+The §7.4 completeness audit is **not written**. Under the split it must assert across six
+files rather than one: 47,880 rows total, every generation `record_id` judged exactly once,
+no unknown `record_id`s, the six language sets disjoint and exhaustive, and every
+`evidence_span` a substring of its window (J2 showed 4.0% failing that, to be re-judged once
+per §5.4). This gates §8 and nothing downstream should run before it exists.
