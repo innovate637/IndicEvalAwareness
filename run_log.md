@@ -1453,3 +1453,56 @@ statistics.
 
 Also still outstanding from earlier: §5.4 re-judging of the 2,830 `evidence_span` failures,
 and the §5.5 few-shot sets, which block J3.
+
+---
+
+## CC Prompt 9 — Remove S1/S2 sensitivity analyses (PI decision)
+
+**Timestamp:** 2026-09-20T14:01:21Z (`19:31:21 IST`)
+
+**Decision:** S1 and S2 sensitivity analyses (frozen plan §3.4) dropped per PI directive
+(Trizal).
+
+**Rationale:**
+
+- S1 (listwise exclusion of truncated rows by `doc_id` across the whole grid) left only
+  **14 harmful items** — statistically uninformative
+- S2 left **129 harmful items** — PI judged still too few
+- PI directive: do not exclude any truncated rows; primary analysis already includes all rows
+- S3 (re-judging on full responses, §3.4) is unaffected and remains planned
+
+**Correction to the directive as written.** The directive described S2 as "drop only rows
+where that specific row was truncated". That is not what S2 is, in either the frozen plan or
+the code. Per §3.4, **S2 excludes `lang_mismatch` rows, not truncated rows, and it is listwise
+by `doc_id`, not row-level** — the same listwise rule as S1, applied to a different flag. The
+129-item figure is correct and does refer to the S2 that was computed; only the description is
+wrong. Recording the accurate definition here because this entry is the permanent deviation
+record against a pre-registration, and a referee comparing it to §3.4 would otherwise find a
+mismatch. The decision itself is unambiguous and was implemented exactly: both S1 and S2 are
+gone.
+
+**Consequence worth naming.** The stated rationale — "do not exclude any truncated rows" —
+does not actually bear on S2, which excluded nothing on truncation grounds. Dropping S2
+removes the only pre-registered check that the headline is not driven by **off-language
+output**, which is risk P6 and Phase 2 R17, a different risk from truncation (P3). Unlike S1,
+S2 was computable at a workable n (129 harmful items) and showed no sign flips, with deltas
+close to primary throughout — i.e. it was passing. The check is now absent from the analysis
+rather than absent-and-reassuring. If a referee asks whether off-language responses drive the
+Kannada or Tamil result, there is no pre-registered answer. Flagging for the PI; reversing
+this is a one-line change if wanted.
+
+**Files changed:** `phase3/analyse.py` (S1/S2 code removed),
+`phase3/analysis_tables/s34_sensitivity.csv` (deleted),
+`phase3/analysis_output.json` (regenerated without S1/S2)
+
+**Deviation from frozen plan:** §3.4 S1 and S2 dropped. Frozen plan not modified. This entry
+is the record.
+
+**Verification after the change.** Script re-run clean in 31.0 s, exit 0. 12 CSVs (was 13).
+`s34_sensitivity.csv` removed from disk and from git tracking. JSON 410 KB → 214 KB, with
+`s34_sensitivity` reduced to a four-key stub recording the drop; no `S1_no_truncated` or
+`S2_no_langmismatch` subset tags remain anywhere in it. Everything else is unchanged and was
+checked value-by-value: `s82_contrasts` still 240 rows all tagged `primary`, count table 240
+cells, language effect 24, language family 8, model effect 5, DiD 24, Holm 24 with **4
+rejections**, four-model mean C1 still **+0.0461 [+0.0360, +0.0570]**. No package installed,
+`analysis_plan_frozen.md` untouched.
