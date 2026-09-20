@@ -1126,3 +1126,79 @@ files rather than one: 47,880 rows total, every generation `record_id` judged ex
 no unknown `record_id`s, the six language sets disjoint and exhaustive, and every
 `evidence_span` a substring of its window (J2 showed 4.0% failing that, to be re-judged once
 per §5.4). This gates §8 and nothing downstream should run before it exists.
+
+---
+
+## 2026-09-20 — §7.4 completeness audit script written (`phase3/j4_audit.py`)
+
+`2026-09-20T06:52:24Z` (`12:22:24 IST`). Login node, no GPU job submitted, nothing pushed.
+
+J4 is queued as six jobs, **354429–354434** (`j4_en … j4_kn`), all `PENDING (Priority)` on
+`gpu_h200_8` with 4h walls. No result files exist yet.
+
+### What it checks
+
+Closes the gap flagged in the previous entry. Takes no arguments; reads the six fixed paths
+`phase3/j4_results_<lang>.jsonl`. Imports `GEN_ROOTS`, `EXPECTED_ROWS`,
+`EXPECTED_ROWS_PER_LANG` and `VALID_LABELS` **from `judge.py`** rather than duplicating them,
+so the audit and the judge can never disagree about where the generations live or how big the
+grid is.
+
+| # | check | gates? |
+|---|---|---|
+| 1 | total rows across the six files == 47,880 | yes |
+| 2 | exhaustive — every generation `record_id` judged exactly once | yes |
+| 3 | disjoint — no `record_id` appears twice | yes |
+| 4 | language match — row `lang` matches its file **and** its generation | yes |
+| 5 | no unknown `record_id`s | yes |
+| 6 | zero `PARSE_ERROR` rows | yes |
+| 7 | every label in {REFUSAL, COMPLY, UNUSABLE} | yes |
+| 8 | `evidence_span_in_window == false` count, per language and per model | **no — informational** |
+
+Check 4 is stricter than the brief asked: it verifies the row's `lang` against the *generation
+index* as well as against the filename. A row could sit in the right file and still carry a
+language that disagrees with its source row; only the second comparison catches that.
+
+On PASS it concatenates the six files in fixed language order into
+`phase3/j4_results.jsonl` and reports the row count. On FAIL it writes nothing and returns 1 —
+verified explicitly, since a stale merged file left behind by an earlier PASS would be a
+silent trap for §8.
+
+### Verification
+
+The audit gates the entire analysis and cannot be tested against real output until J4
+finishes, so it was tested against synthetic results built from the **real** 47,880-row
+generation index.
+
+Testing could not write to `phase3/j4_results_<lang>.jsonl`: the six jobs are pending and
+`judge.py` resumes by skipping `record_id`s already present in its output file. Test files at
+those paths would have caused the real jobs to skip real rows — silent, and invisible until
+the audit failed much later. All fixtures went to the scratchpad with
+`RESULT_TMPL`/`MERGED_PATH` patched; `phase3/` confirmed untouched afterwards.
+
+| scenario | result |
+|---|---|
+| no result files (current state) | clean FAIL, exit 1, no traceback |
+| clean 47,880-row set | **PASS**, merged file 47,880 rows, ids match the grid exactly |
+| one row dropped | FAIL on 1 (total) and 2 (exhaustive) |
+| one row duplicated | FAIL on 1, 3 (disjoint) |
+| row placed in the wrong language file | FAIL on 4 |
+| unknown `record_id` substituted | FAIL on 2 and 5 |
+| one `PARSE_ERROR` row | FAIL on 6 and 7 |
+| one invalid label (`MAYBE`) | FAIL on 7 |
+| any FAIL | merged file **not** created |
+
+### Note for when the real numbers arrive
+
+The sample report above used random labels, so its distribution means nothing. Two things to
+look at in the real output, both carried forward from J2:
+
+- **`evidence_span` failure rate by language.** J2 showed 4.0% overall with English *worst*
+  (9.3%) and Hindi best (1.4%) — the opposite of the P2 prediction. If the full run reverses
+  that and the Indic rates climb above English, the P2 concern is live and the §5.4 re-judge
+  becomes more than bookkeeping.
+- **`confidence` distribution.** J2 returned `high` on all 500 rows. If that holds at 47,880,
+  §8.7's `low_confidence_rate` is not measuring anything and should be dropped rather than
+  reported as a flat zero.
+
+Neither is a gate. Both are things the audit surfaces and a reader would otherwise miss.
