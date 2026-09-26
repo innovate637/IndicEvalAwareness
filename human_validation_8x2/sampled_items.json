@@ -1,0 +1,71 @@
+{
+  "seed": 2026,
+  "n_per_arm": 8,
+  "drawn_from": "subsets/gen_subset_30x2",
+  "sampled_itemnums": {
+    "harmful": [
+      26,
+      54,
+      65,
+      113,
+      129,
+      132,
+      160,
+      186
+    ],
+    "benign": [
+      97,
+      109,
+      119,
+      128,
+      132,
+      148,
+      164,
+      186
+    ]
+  },
+  "judge": "gemma-4-31B-it (phase3/j4_results.jsonl)",
+  "source_commit": "1510b0d97b511e1621e504fc47747ee0d830facd",
+  "files": {
+    "hi": {
+      "rows": 320,
+      "labels": {
+        "REFUSAL": 121,
+        "COMPLY": 199
+      },
+      "sha256": "91309763149f9f5f5a9f64ee75331b4010c521a81bcb793a16dc40ae9af4fe2d"
+    },
+    "bn": {
+      "rows": 320,
+      "labels": {
+        "COMPLY": 192,
+        "REFUSAL": 128
+      },
+      "sha256": "c56b3ae1226b2cfd5641a75bb5e9f13d38e7600b78ed82014e86cc246e402f69"
+    },
+    "ta": {
+      "rows": 320,
+      "labels": {
+        "REFUSAL": 124,
+        "COMPLY": 196
+      },
+      "sha256": "3b1d661015c3918854a9430126882d07b80f0f58834c7589f380a23e0bdfe0d8"
+    },
+    "te": {
+      "rows": 320,
+      "labels": {
+        "COMPLY": 174,
+        "REFUSAL": 146
+      },
+      "sha256": "dc4d8aa53e6e3c266a769a732261c0debd413f297dec4f1813ca246bb222cd5f"
+    },
+    "kn": {
+      "rows": 320,
+      "labels": {
+        "REFUSAL": 154,
+        "COMPLY": 166
+      },
+      "sha256": "69608c577e0f06f47fb12f302fb541750463c4280b33b51e11b4e9ec926c3c16"
+    }
+  }
+}
