@@ -1,0 +1,1602 @@
+[
+  {
+    "itemnum": 1,
+    "doc_id": "c2757ab5-92d8-4c5d-8662-38f78dd1b8ce",
+    "lang": "kn",
+    "text": "ವರ್ಜಿನ್ ಆಸ್ಟ್ರೇಲಿಯಾ ಯಾವಾಗ ಕಾರ್ಯನಿರ್ವಹಿಸಲು ಪ್ರಾರಂಭಿಸಿತು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 2,
+    "doc_id": "831c06f2-9022-40bd-8ab4-9e1ebde14c18",
+    "lang": "kn",
+    "text": "ಯಾವ ಜಾತಿಯ ಮೀನು? ಟೋಪ್ ಅಥವಾ ಹಗ್ಗ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 3,
+    "doc_id": "b0d515d8-222b-41e4-a9ee-0fb6f36dd202",
+    "lang": "kn",
+    "text": "ಒಂಟೆಗಳು ನೀರಿಲ್ಲದೆ ಏಕೆ ದೀರ್ಘಕಾಲ ಬದುಕಬಲ್ಲವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 4,
+    "doc_id": "db59f151-3c89-49db-8b92-34206a5f7a91",
+    "lang": "kn",
+    "text": "ಆಲಿಸ್ನ ಪೋಷಕರಿಗೆ ಮೂವರು ಪುತ್ರಿಯರಿದ್ದಾರೆಃ ಅಮಿ, ಜೆಸ್ಸಿ, ಮತ್ತು ಮೂರನೇ ಮಗಳ ಹೆಸರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 5,
+    "doc_id": "f6d4431a-8a93-4cdc-8202-d9a6bbfbc8af",
+    "lang": "kn",
+    "text": "ಟೊಮೊಯಾಕಿ ಕೊಮೊರಿಡಾ ಯಾವಾಗ ಜನಿಸಿದರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 6,
+    "doc_id": "268c6aec-0c57-4469-ae24-7dc3c5567845",
+    "lang": "kn",
+    "text": "ಸ್ಥಗಿತದ ಸಮಯದಲ್ಲಿ ನನ್ನ ಬಳಿ ಹೆಚ್ಚು ತುಣುಕುಗಳಿದ್ದರೆ, ನಾನು ಗೆದ್ದಿದ್ದೇನಾ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 7,
+    "doc_id": "73151bbc-c762-498a-abe1-f69b4e6b9f6b",
+    "lang": "kn",
+    "text": "ತಮ್ಮ ಪ್ರಧಾನ ಕಛೇರಿಯನ್ನು ನಿರ್ಮಿಸಲು ಯು. ಎನ್. ಗೆ ನ್ಯೂಯಾರ್ಕ್ ನಲ್ಲಿ ಭೂಮಿಯನ್ನು ನೀಡಿದವರು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 8,
+    "doc_id": "d7c45b18-2895-4bab-ac42-63f71219f12f",
+    "lang": "kn",
+    "text": "ಮೊಬೈಲ್ ಮನುಷ್ಯರಿಗೆ ಏಕೆ ಕೆಟ್ಟದು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 9,
+    "doc_id": "6f6a07d4-18dc-4bb4-a9bc-d60257d4156b",
+    "lang": "kn",
+    "text": "ಜಾನ್ ಮೋಸೆಸ್ ಬ್ರೌನಿಂಗ್ ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 10,
+    "doc_id": "f7464bf0-e9fc-43f1-a406-05507c7db918",
+    "lang": "kn",
+    "text": "ಥಾಮಸ್ ಜೆಫರ್ಸನ್ ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 11,
+    "doc_id": "6b341c1a-5811-4ab4-a4ad-80bd91dc1973",
+    "lang": "kn",
+    "text": "ಕೈಲ್ ವ್ಯಾನ್ ಝೈಲ್ ಅವರು 36 ಹಿಸಾ ತಂಡಗಳಲ್ಲಿ 61 ಅಂಕಗಳನ್ನು ಗಳಿಸಿದಾಗ ಯಾರ ವಿರುದ್ಧ ಆಡುತ್ತಿದ್ದರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 12,
+    "doc_id": "502c4251-dc64-4158-aac2-97446d8da850",
+    "lang": "kn",
+    "text": "ಬಹುಭುಜಾಕೃತಿ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 13,
+    "doc_id": "beef8e99-0f1b-48b8-be79-c4ceb9749860",
+    "lang": "kn",
+    "text": "ನಾನು ಓಡಲು ಹೇಗೆ ಪ್ರಾರಂಭಿಸಬೇಕು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 14,
+    "doc_id": "ffbe6a39-9306-4c78-90b1-51f22dbd9f3b",
+    "lang": "kn",
+    "text": "ಗೇಮ್ ಆಫ್ ಥ್ರೋನ್ಸ್ನ ನಾಲ್ಕನೇ ಸೀಸನ್ ನ ಯಾವ ಕಂತುಗಳನ್ನು ಮೈಕೆಲ್ ಮ್ಯಾಕ್ಲಾರೆನ್ ನಿರ್ದೇಶಿಸಿದರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 15,
+    "doc_id": "6550902c-c4da-4a36-8b26-60c98bdbea3e",
+    "lang": "kn",
+    "text": "ಪ್ರಕ್ರಿಯೆ ಗಣಿಗಾರಿಕೆ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 16,
+    "doc_id": "d56d57de-ee40-4827-8e8e-b075aa0c9836",
+    "lang": "kn",
+    "text": "ನೀವೇ ತಯಾರಿಸಬಹುದಾದ ಕೆಲವು ವಿಶಿಷ್ಟವಾದ ಪರದೆ ಟೈಬ್ಯಾಕ್ಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 17,
+    "doc_id": "7c9568b5-71c6-4e61-9540-88b53071aeac",
+    "lang": "kn",
+    "text": "ಪ್ರಸರಣ ಪ್ರಿಸ್ಮ್ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 18,
+    "doc_id": "e3f00b25-9a72-496e-9b07-c459df048b6f",
+    "lang": "kn",
+    "text": "ಯಾವ ವಾದ್ಯವು ತಂತಿ ಅಥವಾ ತಾಳವಾದ್ಯವಾಗಿದೆ ಎಂಬುದನ್ನು ಗುರುತಿಸಿಃ ಕ್ಯಾಂಟಾರೊ, ಗುಡೋಕ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 19,
+    "doc_id": "23be42ff-e878-473d-9ce9-577b1690769f",
+    "lang": "kn",
+    "text": "ನನಗೆ ಟಾಪ್ 5 ಗಾಲ್ಫ್ ಸಲಕರಣೆಗಳ ಕಂಪನಿಯ ಹೆಸರುಗಳನ್ನು ನೀಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 20,
+    "doc_id": "dc5ab243-3dee-46e5-90d9-c6f22979a13c",
+    "lang": "kn",
+    "text": "ಕ್ರೀಡಾಕೂಟದ ಇತಿಹಾಸದಲ್ಲಿ ಅತಿ ಹೆಚ್ಚು ಒಲಿಂಪಿಕ್ ಚಿನ್ನದ ಪದಕಗಳನ್ನು ಗೆದ್ದ ವ್ಯಕ್ತಿ ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 21,
+    "doc_id": "1c3aabab-99e9-469b-85e2-c68a0cbe86f3",
+    "lang": "kn",
+    "text": "ಯಾವ ಡಚ್ ಕಲಾವಿದ \"ಮುತ್ತು ಕಿವಿಯೋಲೆ ಹೊಂದಿರುವ ಹುಡುಗಿ\" ಯನ್ನು ಚಿತ್ರಿಸಿದ್ದಾರೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 22,
+    "doc_id": "b1d3b448-5cfd-442b-9891-e95e019cfd04",
+    "lang": "kn",
+    "text": "ಸೂರ್ಯ ಮುಳುಗಿದಾಗ ಏನಾಗುತ್ತದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 23,
+    "doc_id": "2a8e03cb-220d-4d66-a837-1504d6a40707",
+    "lang": "kn",
+    "text": "ಕ್ರಿಯಾಪದ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 24,
+    "doc_id": "4e8b48a8-c9ca-4a51-a9f4-e5123a6491cf",
+    "lang": "kn",
+    "text": "ಲ್ಯಾಂಬೊರ್ಗಿನಿಯ ಮಾಲೀಕರನ್ನು ಮತ್ತು ಲ್ಯಾಂಬೊರ್ಗಿನಿಯು ತನ್ನ ಮೋಟಾರುಸ್ಪೋರ್ಟ್ ವಿಭಾಗಕ್ಕಾಗಿ ಉತ್ಪಾದಿಸಿರುವ ವಿವಿಧ ರೀತಿಯ ಹುರಾಕನ್ ಕಾರುಗಳ ಪಟ್ಟಿಯನ್ನು ಹೊರತೆಗೆಯಿರಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 25,
+    "doc_id": "b7aefd4f-ddcb-4a1a-9826-92f4c82d51cc",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನವುಗಳಲ್ಲಿ ಯಾವುದು ಸಾಗಣೆಗೆ ಉಪಯುಕ್ತವಾಗಿದೆಃ ಒಂದು ಲೋಟ ವೈನ್, ಒಂದು ದೀಪ, ಒಂದು ರೈಲು, ಒಂದು ಐಸ್ಡ್ ಕ್ಯೂಬ್ ಟ್ರೇ, ಒಂದು ವಿಮಾನ, ಒಂದು ಬೈಸಿಕಲ್, ಒಂದು ಸೇಬು ಮತ್ತು ಸ್ಕೂಟರ್.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 26,
+    "doc_id": "5739df65-50c0-4e1a-8f02-7bd5a83e2d5e",
+    "lang": "kn",
+    "text": "ಯಾವ ವಾದ್ಯವು ತಂತಿ ಅಥವಾ ಮರದಿಂದ ಬೀಸುವ ಗಾಳಿ ಎಂಬುದನ್ನು ಗುರುತಿಸಿಃ ಪಾಂಡುರಿ, ಜುರ್ನಾ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 27,
+    "doc_id": "3ab093e3-0612-4902-b9e6-bf2f026f9a40",
+    "lang": "kn",
+    "text": "ಗೋಲ್ಡನ್ ರಿಟ್ರೀವರ್ನ ಸರಾಸರಿ ಜೀವಿತಾವಧಿ ಎಷ್ಟು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 28,
+    "doc_id": "0c0d8eee-5c02-4286-b787-c9480b715e51",
+    "lang": "kn",
+    "text": "1806ರಲ್ಲಿ ಹಾಲೆಂಡ್ನ ರಾಜನಾದವರು ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 29,
+    "doc_id": "64296955-b070-4369-9997-7b38d59dc315",
+    "lang": "kn",
+    "text": "ಅತ್ಯುತ್ತಮ ಪ್ಲೇಸ್ಟೇಷನ್ ಅಥವಾ ಎಕ್ಸ್ಬಾಕ್ಸ್ ಯಾವುದು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 30,
+    "doc_id": "6da0b131-0691-48b4-b27d-5ac48b586f6b",
+    "lang": "kn",
+    "text": "ಎಡಗೈಯ ಬಂದೂಕಿನಲ್ಲಿ ಬಿಲ್ಲಿ ದಿ ಚೈಲ್ಡ್ ಆಡುತ್ತಿದ್ದವರು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 31,
+    "doc_id": "c2860cb7-16dd-441f-8abb-17097be1ab6b",
+    "lang": "kn",
+    "text": "ಸಿಡ್ ಬ್ಯಾರೆಟ್ ಏಕೆ ಪಿಂಕ್ ಫ್ಲಾಯಿಡ್ಅನ್ನು ತೊರೆದರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 32,
+    "doc_id": "cc14d0d1-fb7d-4497-9024-582ab43a392b",
+    "lang": "kn",
+    "text": "ರೆಸ್ಟ್ ಎಪಿ ಎಂದರೇನು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 33,
+    "doc_id": "3d446f2c-2ffe-4396-820b-64888650e734",
+    "lang": "kn",
+    "text": "ಅಂಡರ್ ರೈಟಿಂಗ್ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 34,
+    "doc_id": "489b9e62-5bc6-4e98-b31e-8d86d2d53c1b",
+    "lang": "kn",
+    "text": "ಒಳ್ಳೆಯ ಕಾಫಿ ಅಂಗಡಿಯ ಕೆಲವು ಗುಣಲಕ್ಷಣಗಳ ಪಟ್ಟಿಯನ್ನು ನನಗೆ ನೀಡಿ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 35,
+    "doc_id": "9fb362ad-ffd2-4a4a-a475-beaa3c046aad",
+    "lang": "kn",
+    "text": "ಲಿಂಕ್ಡ್ಇನ್ ಏನು ಮಾಡುತ್ತದೆ ಎಂಬುದನ್ನು ದಯವಿಟ್ಟು ಸಂಕ್ಷಿಪ್ತವಾಗಿ ತಿಳಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 36,
+    "doc_id": "a8216ffc-dc81-4711-9e1e-71c86989d987",
+    "lang": "kn",
+    "text": "ಆಂಡ್ರೋಮೆಡಾವನ್ನು ಸಮುದ್ರದ ರಾಕ್ಷಸಿನಿಂದ ರಕ್ಷಿಸಿದವರು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 37,
+    "doc_id": "27dadc5f-ddb6-483d-bb76-47a402387223",
+    "lang": "kn",
+    "text": "ಸ್ಪಾರ್ಕ್ಗೆ ನಾನು ಹೇಗೆ ಕೊಡುಗೆ ನೀಡಬಹುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 38,
+    "doc_id": "dfa044c7-ee81-40c4-9766-1cb3ecfa73ce",
+    "lang": "kn",
+    "text": "\"ಲುಮಿಯೆರ್ಸ್\" ಎಂದರೆ ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 39,
+    "doc_id": "989886c5-136f-4319-8e5e-6525b6f8e17d",
+    "lang": "kn",
+    "text": "ಚಕ್ರವನ್ನು ಯಾವಾಗ ಕಂಡುಹಿಡಿಯಲಾಯಿತು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 40,
+    "doc_id": "6b7dc00f-2e9b-45b7-aa20-290e06a3d1e1",
+    "lang": "kn",
+    "text": "ಚಲನಚಿತ್ರದ ಆರಂಭದ ಬಗ್ಗೆ ಚರ್ಚಿಸುತ್ತಿರುವ ಇಬ್ಬರು ನಟರ ನಡುವಿನ ದೃಶ್ಯವನ್ನು ಬರೆಯಿರಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 41,
+    "doc_id": "e3d3a5f5-3a81-4ef8-a627-7adcc2a5776a",
+    "lang": "kn",
+    "text": "ಡೈನೋಸಾರ್ಗಳಿಗೆ ತುಟಿಗಳಿವೆಯೇ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 42,
+    "doc_id": "4eb9080d-1bea-421e-8cbd-65d1e0323bb7",
+    "lang": "kn",
+    "text": "ಲಿಲ್ಲಿ ಬೆಕ್ಕುಗಳಿಗೆ ಸುರಕ್ಷಿತವೇ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 43,
+    "doc_id": "6b7e722f-e5e4-41f1-b93c-a3827b792393",
+    "lang": "kn",
+    "text": "ಸೂರ್ಯನ ಬೆಳಕಿನ ಹಿಂಜರಿತ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 44,
+    "doc_id": "7379aa32-db6e-4611-8d66-d04d376dd009",
+    "lang": "kn",
+    "text": "ನೆದರ್ಲ್ಯಾಂಡ್ಸ್ನಲ್ಲಿ ಯಾವ ಕರೆನ್ಸಿ ಬಳಕೆಯಲ್ಲಿದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 45,
+    "doc_id": "46f79486-9171-49c3-84db-f676019c94ec",
+    "lang": "kn",
+    "text": "ವಿಶ್ವದ ಅತ್ಯುತ್ತಮ ದೂರದರ್ಶನ ಸರಣಿ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 46,
+    "doc_id": "68772155-d576-4bf3-a8e7-39a311d04005",
+    "lang": "kn",
+    "text": "ಸೂಜಿ ಮತ್ತು ಪಿನ್ಗಳ ಹಾಡನ್ನು ಧ್ವನಿಮುದ್ರಿಸಿದ ಮೊದಲಿಗರು ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 47,
+    "doc_id": "dda8e22b-b680-4d37-9516-a5a5af8ab190",
+    "lang": "kn",
+    "text": "ಬಂಡೆ ಹತ್ತುವಲ್ಲಿ ಬಳಸುವ ವಿವಿಧ ರೀತಿಯ ಸರಂಜಿಗಳ ಪಟ್ಟಿಯನ್ನು ನನಗೆ ಒದಗಿಸಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 48,
+    "doc_id": "06bc2a33-1f39-4568-afa4-f083ddff273a",
+    "lang": "kn",
+    "text": "ಆರೋಗ್ಯಕರ ಕೌಟುಂಬಿಕ ಸಂಬಂಧವನ್ನು ಉತ್ತೇಜಿಸಲು ಕೆಲವು ಕೌಟುಂಬಿಕ ನಿಯಮಗಳ ಬಗ್ಗೆ ಯೋಚಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 49,
+    "doc_id": "d46983df-4846-4747-9681-4e6f5b902dbd",
+    "lang": "kn",
+    "text": "ಸರಣಿಯಲ್ಲಿ ಐಸ್ ಮತ್ತು ಫೈರ್ನ ಹಾಡು, ಹೌಸ್ ಕಾರ್ಸ್ಟಾರ್ಕ್ನ ಸ್ಥಾಪಕ ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 50,
+    "doc_id": "9c8e2416-00d9-4d41-9752-07677549d676",
+    "lang": "kn",
+    "text": "ಸಮೃದ್ಧ ಗಾಳಿ ಎಂದರೇನು ಮತ್ತು ಡೈವರ್ಗಳು ಸಮೃದ್ಧ ಗಾಳಿಯಲ್ಲಿ ಏಕೆ ಧುಮುಕುತ್ತಾರೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 51,
+    "doc_id": "135e2f5e-5ef8-426d-81e4-7698c2787e8c",
+    "lang": "kn",
+    "text": "1943ರ ಅತ್ಯುತ್ತಮ ಚಲನಚಿತ್ರವಾಗಿ ಯಾವ ಚಲನಚಿತ್ರವು ಆಸ್ಕರ್ ಪ್ರಶಸ್ತಿಯನ್ನು ಗೆದ್ದುಕೊಂಡಿತು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 52,
+    "doc_id": "fa7f39ec-5cfb-40a8-9689-69190490e4a7",
+    "lang": "kn",
+    "text": "ಯಾವುದು ಹೆಚ್ಚು ತೂಕವಿರುತ್ತದೆ, ತಂಪಾದ ಅಥವಾ ಬಿಸಿ ನೀರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 53,
+    "doc_id": "28484908-6245-48e8-8a4b-6a0c6ebda76f",
+    "lang": "kn",
+    "text": "ನೀವು ಸಾಕುಪ್ರಾಣಿ ಬೆಕ್ಕು ಮತ್ತು ಸಾಕುಪ್ರಾಣಿ ಪಕ್ಷಿ ಎರಡನ್ನೂ ಏಕೆ ಹೊಂದಿರಬಾರದು ಎಂಬುದರ ಬಗ್ಗೆ ಒಂದು ಸಣ್ಣ ಪ್ಯಾರಾಗ್ರಾಫ್ ಬರೆಯಿರಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 54,
+    "doc_id": "65c3be41-85e0-4329-ab80-b79ae12d383f",
+    "lang": "kn",
+    "text": "ಕಾಮಿಕ್ ಕ್ಯಾಲ್ವಿನ್ ಮತ್ತು ಹಾಬ್ಸ್ನ ನಿಮ್ಮ ನೆಚ್ಚಿನ ಸ್ಟ್ರಿಪ್ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 55,
+    "doc_id": "b7c543bb-3f12-4010-84ca-f38e68deb240",
+    "lang": "kn",
+    "text": "ಫಾರ್ಮುಲಾ ಒನ್ ಕಾರನ್ನು ಇಷ್ಟು ವೇಗವಾಗಿ ಓಡಿಸಲು ಕಾರಣವೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 56,
+    "doc_id": "cd54ba36-f306-4b67-b978-eeb9e83b3d14",
+    "lang": "kn",
+    "text": "ಪಠ್ಯದಿಂದ ನೇರವಾಗಿ ಉಲ್ಲೇಖಿಸದೆ, ಪ್ರಮುಖ ಸುಣ್ಣದ ಪೈ ಇತಿಹಾಸದ ಸಾರಾಂಶವನ್ನು ನನಗೆ ನೀಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 57,
+    "doc_id": "075b87b4-9b95-41c1-bbaa-e766066f79ee",
+    "lang": "kn",
+    "text": "ಲ್ಯಾಪರ್ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 58,
+    "doc_id": "06d859ff-6533-4753-a353-8c95ae241fca",
+    "lang": "kn",
+    "text": "ಸೌಂದರ್ಯವು ವಸ್ತುನಿಷ್ಠವಾಗಿದೆಯೇ ಅಥವಾ ವ್ಯಕ್ತಿನಿಷ್ಠವಾಗಿದೆಯೇ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 59,
+    "doc_id": "ea4f9a2c-8c4c-4462-a7b5-0f6569f9520a",
+    "lang": "kn",
+    "text": "ಯಾವ ವಾದ್ಯವು ತಂತಿ ಅಥವಾ ತಾಳವಾದ್ಯವಾಗಿದೆ ಎಂಬುದನ್ನು ಗುರುತಿಸಿಃ ಕಪನ್ಲೋಗೋ, ಶಾಮಿಸೆನ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 60,
+    "doc_id": "e7078f7f-03a5-4f75-81e8-8f32b13879c0",
+    "lang": "kn",
+    "text": "ಆಲೂಗೆಡ್ಡೆ ಚಿಪ್ ಚೀಲಗಳು ತೆರೆದ ನಂತರ ಏಕೆ ಹಳತಾಗುತ್ತವೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 61,
+    "doc_id": "34e345fb-5a45-4c1b-95ef-c350b5eef8c4",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನವುಗಳಲ್ಲಿ ಪ್ರತಿಯೊಂದನ್ನು ಪ್ರಾಥಮಿಕ ಬಣ್ಣ ಅಥವಾ ದ್ವಿತೀಯ ಬಣ್ಣವೆಂದು ವರ್ಗೀಕರಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 62,
+    "doc_id": "56af45b1-1fec-4537-8cd6-c8b9355ed27b",
+    "lang": "kn",
+    "text": "ಬ್ರಿಟಿಷ್ ವರ್ಜಿನ್ ದ್ವೀಪಗಳು (ಬಿವಿಐ) ಎಲ್ಲಿವೆ ಮತ್ತು ಯಾವ ದ್ವೀಪಗಳು ಬಿವಿಐಯ ಭಾಗವಾಗಿವೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 63,
+    "doc_id": "648277b1-d7a2-40dc-b8b3-f7e53d2b32e0",
+    "lang": "kn",
+    "text": "\"ಹೊರಗಿನ ಸಂತಾನೋತ್ಪತ್ತಿ\" ಅಥವಾ \"ಒಳಗಿನ ಸಂತಾನೋತ್ಪತ್ತಿ\" ಸಂತತಿಗೆ ಹೆಚ್ಚು ಪ್ರಯೋಜನವನ್ನು ನೀಡುತ್ತದೆಯೇ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 64,
+    "doc_id": "b7c9bede-6e12-47ed-a2dd-ad65833009a1",
+    "lang": "kn",
+    "text": "ಮನುಷ್ಯರ ಭವಿಷ್ಯವೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 65,
+    "doc_id": "6372bda8-f309-4a42-94e4-5562cbc5aaa3",
+    "lang": "kn",
+    "text": "ವ್ಯಾಂಡರ್ಪಂಪ್ ನಿಯಮಗಳಿಂದ ಕೆಲವು ಧೈರ್ಯಶಾಲಿ ವ್ಯಕ್ತಿಗಳನ್ನು ಹೆಸರಿಸಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 66,
+    "doc_id": "457e8497-f539-4608-8655-ea917f8ed3c8",
+    "lang": "kn",
+    "text": "1960ರ ದಶಕದ ಕೆಲವು ಪ್ರಸಿದ್ಧ ರಾಕ್ ಬ್ಯಾಂಡ್ಗಳ ಹೆಸರುಗಳನ್ನು ತಿಳಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 67,
+    "doc_id": "3b0c937b-76ea-47e6-8af1-b59bcb879255",
+    "lang": "kn",
+    "text": "ಮುಹಮ್ಮದ್ ಇಜಾಜ್ ಶಫಿ ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 68,
+    "doc_id": "16f254b9-3af7-4422-ac9c-97fbbdde24e0",
+    "lang": "kn",
+    "text": "ದೂರವಾಣಿಯನ್ನು ಕಂಡುಹಿಡಿದವರು ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 69,
+    "doc_id": "8a2a3fd9-bf03-434d-be76-3d53bd65ebe9",
+    "lang": "kn",
+    "text": "ಆ ಸ್ಮಿತ್ಗಳು ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 70,
+    "doc_id": "12dda4ce-b2d8-444c-8318-fc0092b6c597",
+    "lang": "kn",
+    "text": "ನನ್ನ ಹೋಮ್ಬ್ರೂ ಬಿಯರ್ ಅನ್ನು ಹೆಚ್ಚು ಆಸಕ್ತಿದಾಯಕವಾಗಿಸಲು ನನಗೆ ಐದು ಮಾರ್ಗಗಳನ್ನು ನೀಡಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 71,
+    "doc_id": "a39471e2-c48b-4452-8ae0-e8bae257a44a",
+    "lang": "kn",
+    "text": "ಬ್ಯಾಡ್ ಬನ್ನಿ ಎಷ್ಟು ಗ್ರ್ಯಾಮಿ ಪ್ರಶಸ್ತಿಗಳನ್ನು ಗೆದ್ದಿದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 72,
+    "doc_id": "fbff0e02-1533-48d7-ae06-394d1588144a",
+    "lang": "kn",
+    "text": "ಮೊದಲ ಓದುವ ರೈಲು ನಿಲ್ದಾಣವನ್ನು ಯಾವಾಗ ತೆರೆಯಲಾಯಿತು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 73,
+    "doc_id": "da14a96e-38c0-4697-82da-6da091f6cb21",
+    "lang": "kn",
+    "text": "ಏನಿದು ಹಿಫಿ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 74,
+    "doc_id": "84c03e32-044e-4b21-8562-ac4797a321c1",
+    "lang": "kn",
+    "text": "ಕಂದು ಬಣ್ಣದ ಕಿವಿಯಿರುವ ನೆತ್ತಿ ಏನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 75,
+    "doc_id": "bed92592-52ea-443a-a501-ef7c1b05a36e",
+    "lang": "kn",
+    "text": "ಈ ರ್ಯಾಪರ್ಗಳು ಯಾರು? ಎಮಿನೇಮ್, ಮೈಕೆಲ್ ಜಾಕ್ಸನ್, ರಿಹಾನ್ನಾ, 50 ಸೆಂಟ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 76,
+    "doc_id": "aa62e971-77cc-41d3-bcff-318df11eac99",
+    "lang": "kn",
+    "text": "ಲೆವಿಸ್ ಹ್ಯಾಮಿಲ್ಟನ್ ತನ್ನ ಮೊದಲ ಎಫ್1 ಋತುವಿನಲ್ಲಿ ಚಾಂಪಿಯನ್ಶಿಪ್ ಗೆದ್ದಿದ್ದು ನಿಜವೇ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 77,
+    "doc_id": "f456531c-d654-472f-9fb9-5a215da42089",
+    "lang": "kn",
+    "text": "ಪತ್ರಗಳನ್ನು ಬರೆಯಲು ಕೆಲವು ರೀತಿಯ ಕಸೂತಿ ಹೊಲಿಗೆಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 78,
+    "doc_id": "8b98ec93-1027-4ee0-8b55-47296ef5102e",
+    "lang": "kn",
+    "text": "ರೋವಿಂಗ್ನಲ್ಲಿ ಸಾಮಾನ್ಯವಾದ ಗಾಯಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 79,
+    "doc_id": "a7406957-c2c1-4a2c-a9d9-ecd30588dd13",
+    "lang": "kn",
+    "text": "ಗಾಳಿಪಟ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 80,
+    "doc_id": "a8ea47db-c157-4138-afd2-36736af7ef17",
+    "lang": "kn",
+    "text": "ಕಾರು ಇಲ್ಲದೆ ಓಡಾಡಲು ಉತ್ತಮ ಮಾರ್ಗ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 81,
+    "doc_id": "7e026b9c-7037-4cc3-a110-6c3c73a3f0e2",
+    "lang": "kn",
+    "text": "ಯಾವ ಪ್ರಾಣಿ ಪ್ರಭೇದಗಳು ಜೀವಂತವಾಗಿವೆ ಅಥವಾ ಅಳಿವಿನಂಚಿನಲ್ಲಿವೆ ಎಂಬುದನ್ನು ಗುರುತಿಸಿಃ ಪ್ಯಾಲಿಯೋಫಿಸ್, ದೈತ್ಯ ಆಮೆ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 82,
+    "doc_id": "33d6c429-fef9-44c9-8fa0-f0730af8eb8d",
+    "lang": "kn",
+    "text": "ಕ್ಯಾಲಿಫೋರ್ನಿಯಾದ ಸಾಂತಾ ಕ್ರೂಜ್ ಏಕೆ ವಾಸಿಸಲು ಉತ್ತಮ ಸ್ಥಳವಾಗಿದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 83,
+    "doc_id": "eba430f9-58b4-410b-9697-92a8d801db8a",
+    "lang": "kn",
+    "text": "ನನ್ನ ವ್ಯವಸ್ಥಾಪಕರನ್ನು ನಿರ್ವಹಿಸಲು ನನಗೆ ಕೆಲವು ಉಪಾಯಗಳನ್ನು ನೀಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 84,
+    "doc_id": "16ff931f-2488-4d7a-829a-f4c93a8caa0c",
+    "lang": "kn",
+    "text": "ಬಾಕ್ಸರ್ ಜಾನ್ ಬಾಲ್ಡ್ವಿನ್ ಯಾರು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 85,
+    "doc_id": "a9fd2528-5aeb-4101-bf07-bcb4817016ac",
+    "lang": "kn",
+    "text": "ಯಾವ ವಾದ್ಯವು ತಂತಿ ಅಥವಾ ತಾಳವಾದ್ಯವಾಗಿದೆ ಎಂಬುದನ್ನು ಗುರುತಿಸಿಃ ಸಂಫೋರ್, ವಯೋಲಾ ತೋರಿಯಾ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 86,
+    "doc_id": "65d33cfb-c333-46a4-bc90-d9c5ace1fe92",
+    "lang": "kn",
+    "text": "ನಾವು ಒಂದು ಆಟದ ಮೂಲಕ ಮನೆಯೊಳಗೆ ಕಂಡುಬರುವ ವಸ್ತುಗಳನ್ನು ಗುರುತಿಸಬೇಕಾದರೆ, ಇವುಗಳಲ್ಲಿ ಯಾವುದನ್ನು ನಾವು ಕರೆಯುತ್ತೇವೆಃ ಕಾರು, ಕುರ್ಚಿ, ಟೇಬಲ್, ಪಾರ್ಕ್, ಕ್ಲೌಡ್, ಮೈಕ್ರೋವೇವ್.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 87,
+    "doc_id": "57e3486b-1918-41e6-a0cf-ec2c767a88f9",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನವುಗಳನ್ನು ಗಾಢ ಬಣ್ಣದ ಬಿಯರ್ಗಳು ಅಥವಾ ತಿಳಿ ಬಣ್ಣದ ಬಿಯರ್ಗಳು ಎಂದು ವರ್ಗೀಕರಿಸಿಃ ಪೋರ್ಟರ್, ಪಿಲ್ಸ್ನರ್, ಸ್ಟೌಟ್, ಅಂಬರ್, ಲಾಗರ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 88,
+    "doc_id": "cc286acb-4a35-4b0d-a271-b062e300bc96",
+    "lang": "kn",
+    "text": "ನನಗೆ ವಿಶ್ವದ 5 ಅತಿ ಎತ್ತರದ ಪರ್ವತಗಳ ಪಟ್ಟಿ ಮತ್ತು ಅವುಗಳ ಎತ್ತರವನ್ನು ಮೀಟರ್ಗಳಲ್ಲಿ ನೀಡಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 89,
+    "doc_id": "fffaf8c7-bebb-49a3-b42f-b557396efea8",
+    "lang": "kn",
+    "text": "ಆಪಲ್ ಯಾವ ಉತ್ಪನ್ನಗಳನ್ನು ಮಾರಾಟ ಮಾಡುತ್ತದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 90,
+    "doc_id": "42ad79b6-a2a9-47b5-9cd8-0f268b8c8473",
+    "lang": "kn",
+    "text": "ತೈಲ ಎಂದರೇನು ಎಂಬುದನ್ನು ದಯವಿಟ್ಟು ವಿವರಿಸಿ ಮತ್ತು ಅದರ ಅನ್ವಯಗಳ ಪಟ್ಟಿಯನ್ನು ನನಗೆ ನೀಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 91,
+    "doc_id": "86f33389-a226-4124-8de9-3ad8d787e28e",
+    "lang": "kn",
+    "text": "ಸಿಯಾಟಲ್ನಲ್ಲಿ 6 ವಿವಿಧ ರೀತಿಯ ಮಳೆಗಳನ್ನು ಪಟ್ಟಿ ಮಾಡಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 92,
+    "doc_id": "43feb24f-6f86-4d17-8959-27a95175969e",
+    "lang": "kn",
+    "text": "ಇನ್ವೆಸ್ಟ್ಮೆಂಟ್ ಬ್ಯಾಂಕಿಂಗ್ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 93,
+    "doc_id": "2eea48ae-691d-43ef-9f28-75f0cf9d3b5d",
+    "lang": "kn",
+    "text": "ನಾನು ಗ್ರೇಸ್ಟೋನ್ ಇಂಕ್ ಎಂಬ ಹೊಸ ಕಂಪನಿಯನ್ನು ಪ್ರಾರಂಭಿಸಿದೆ. ನಾವೇನು ಮಾಡೋಣ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 94,
+    "doc_id": "5354f002-db6d-4c4b-805d-fb8be9508123",
+    "lang": "kn",
+    "text": "ಈ ಆಹಾರಗಳು ಈಡಬ್ಲ್ಯೂಜಿಯ ಡರ್ಟಿ ಡಜನ್ ಪಟ್ಟಿಯಲ್ಲಿ ಇವೆಯೇ ಅಥವಾ ಇಲ್ಲವೇ ಎಂದು ನನಗೆ ತಿಳಿಸಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 95,
+    "doc_id": "090bb89e-57d6-41f0-88ee-536b94b37830",
+    "lang": "kn",
+    "text": "ಸಂಗೀತವನ್ನು ರಚಿಸಲು ಸಂಗೀತ ಸಿದ್ಧಾಂತದ ಜ್ಞಾನ ಎಷ್ಟು ಬೇಕು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 96,
+    "doc_id": "458d8291-6546-4077-bdb1-d1b6eee6f7fc",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನ ಪ್ರತಿಯೊಂದು ವಾದ್ಯಗಳನ್ನು ಸ್ಟ್ರಿಂಗ್ ಅಥವಾ ಕೀಬೋರ್ಡ್ ಎಂದು ವರ್ಗೀಕರಿಸಿಃ ಗಿಟಾರ್, ಪಿಟೀಲು, ಪಿಯಾನೋ, ಹಾರ್ಮೋನಿಯಂ, ಸೆಲ್ಲೋ, ಅಕಾರ್ಡಿಯನ್, ಬಾಂಜೋ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 97,
+    "doc_id": "15c504ab-45fd-46e4-a712-0bc8e871817d",
+    "lang": "kn",
+    "text": "ಮಾರಿಚ್ ಅಡ್ವಾನ್ಸ್ಡ್ ಟಾರ್ಪಿಡೊ ಡಿಫೆನ್ಸ್ ಸಿಸ್ಟಮ್ (ಎಟಿಎಸ್) ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 98,
+    "doc_id": "07869b35-5af7-4b8d-87fc-27e02378687d",
+    "lang": "kn",
+    "text": "ಅಮೆರಿಕ ಖಂಡದ ಅತಿ ಎತ್ತರದ ಪರ್ವತ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 99,
+    "doc_id": "7091ad1d-9677-497a-94b2-16f874260dfa",
+    "lang": "kn",
+    "text": "ಶೋಜಿ ಹಶಿಮೊಟೊ ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 100,
+    "doc_id": "6524775c-74e7-43af-a0b1-13f548a08e20",
+    "lang": "kn",
+    "text": "1980ರ ದಶಕದ ಅತ್ಯುತ್ತಮ ಹಾಸ್ಯ ಚಲನಚಿತ್ರಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 101,
+    "doc_id": "c5246b34-c894-4698-ac21-8d5e3e60b9fb",
+    "lang": "kn",
+    "text": "ಗಾಲ್ಫ್ನಲ್ಲಿ ಅಮೆರಿಕನ್ನರು ಆಲ್ಬಾಟ್ರಾಸ್ ಅನ್ನು ಏನು ಕರೆಯುತ್ತಾರೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 102,
+    "doc_id": "885dc4c0-2d01-40c3-9cc6-3e73886253a6",
+    "lang": "kn",
+    "text": "ಪೂರ್ಣ ಇಂಗ್ಲಿಷ್ ಬೆಳಗಿನ ಉಪಾಹಾರದ ಸಾಮಾನ್ಯ ಪದಾರ್ಥಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 103,
+    "doc_id": "60aa54e4-9263-47fc-b319-d5a73008f9e9",
+    "lang": "kn",
+    "text": "ನ್ಯೂಜೆರ್ಸಿಯ ವೆಸ್ಟ್ಫೀಲ್ಡಿನಿಂದ ಮೇ ತಿಂಗಳ ದೀರ್ಘ ವಾರಾಂತ್ಯದಲ್ಲಿ ಮೂರು ದಿನಗಳ ರಸ್ತೆ ಪ್ರವಾಸಕ್ಕೆ ಯೋಜಿಸಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 104,
+    "doc_id": "abf55974-eb8b-433a-86e6-84f313ed2988",
+    "lang": "kn",
+    "text": "ಹಸ್ತಚಾಲಿತ ಪ್ರಸರಣದೊಂದಿಗೆ ನೀವು ಕಾರನ್ನು ಹೇಗೆ ನಿರ್ವಹಿಸುತ್ತೀರಿ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 105,
+    "doc_id": "aeb8b7ee-f4b5-43f6-9fe9-e33120e86c2a",
+    "lang": "kn",
+    "text": "ಸ್ಟ್ರಕ್ಚರಲ್ ಬಯೋಇನ್ಫರ್ಮ್ಯಾಟಿಕ್ಸ್ ಪ್ರೋಟೀನ್ ಡೇಟಾ ಬ್ಯಾಂಕ್ (ಆರ್. ಸಿ. ಎಸ್. ಬಿ. ಪಿ. ಡಿ. ಬಿ) ಗಾಗಿ ಸಂಶೋಧನಾ ಸಹಯೋಗ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 106,
+    "doc_id": "dc3d5abb-7baa-4156-ab3c-f6f5e47e5d1c",
+    "lang": "kn",
+    "text": "ಖಾಲಿ ಲಾ ಕ್ರೋಯಿಕ್ಸ್ ಕ್ಯಾನ್ಗೆ 5 ಸಂಭಾವ್ಯ ಉಪಯೋಗಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 107,
+    "doc_id": "3fccfd09-5a6b-47d9-852b-78064f97350b",
+    "lang": "kn",
+    "text": "\"ಕೌಟುಂಬಿಕ ವಿಷಯಗಳು\" ಎಂಬ ದೂರದರ್ಶನ ಕಾರ್ಯಕ್ರಮದಲ್ಲಿ ವಿನ್ಸ್ಲೋ ಅವರ ಪಕ್ಕದ ಮನೆಯ ನೆರೆಹೊರೆಯವರ ಹೆಸರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 108,
+    "doc_id": "2ccfc7d4-0619-47cd-ba1d-d0f5a462653a",
+    "lang": "kn",
+    "text": "ಜಾರ್ಜಿಯಾ ರಾಜ್ಯದಲ್ಲಿ ಏಕೆ ಅನೇಕ ಹಾಲಿವುಡ್ ಚಲನಚಿತ್ರಗಳನ್ನು ತಯಾರಿಸಲಾಗುತ್ತದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 109,
+    "doc_id": "26dd2947-6696-4032-8321-5a05c2b79595",
+    "lang": "kn",
+    "text": "ಎಷ್ಟು ವ್ಯವಸ್ಥಾಪಕರು ಶಸ್ತ್ರಾಸ್ತ್ರಗಳನ್ನು ಹೊಂದಿದ್ದಾರೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 110,
+    "doc_id": "10402787-72c2-420a-b897-bf5a0fed6957",
+    "lang": "kn",
+    "text": "ಎಸ್. ವಿ. ಎಂ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 111,
+    "doc_id": "2c77132a-58ba-46b7-8668-ff6aad408032",
+    "lang": "kn",
+    "text": "ಜಪಾನ್ನ ಪ್ರಸ್ತುತ ರಾಜಧಾನಿ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 112,
+    "doc_id": "c2ebb9f9-f130-40ce-ba5d-0c9d8918543b",
+    "lang": "kn",
+    "text": "ಪ್ರತಿಯೊಬ್ಬ ಮನೆ ಮಾಲೀಕರ ಬಳಿ ಇರಬೇಕಾದ ಕೆಲವು ಉಪಕರಣಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 113,
+    "doc_id": "f9654709-7a5f-494b-af9a-1a69e23c9ba7",
+    "lang": "kn",
+    "text": "ಸೇಬು ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 114,
+    "doc_id": "a1ccee47-4297-42b2-81a7-e152cc49093c",
+    "lang": "kn",
+    "text": "ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಕಾಡ್ಗಿಚ್ಚು ಕುರಿತು ಒಂದು ಸಣ್ಣ ಪ್ರಬಂಧವನ್ನು ಬರೆಯಿರಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 115,
+    "doc_id": "637bb6c5-4a37-48f5-9794-757c848f76f7",
+    "lang": "kn",
+    "text": "2017ರ ಆಗ್ನೇಯ ಕಾನ್ಫರೆನ್ಸ್ ಫುಟ್ಬಾಲ್ ಋತುವಿನ ಬಗ್ಗೆ ನನಗೆ ತಿಳಿಸಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 116,
+    "doc_id": "17e05554-ccec-4696-9a81-901e342f3224",
+    "lang": "kn",
+    "text": "2021 ಎಂಎಲ್ಎಸ್ ಋತುವಿನಲ್ಲಿ ಆಸ್ಟಿನ್ ಎಫ್ಸಿ ಅವರ ತವರು ಪಂದ್ಯದಲ್ಲಿ ಮೊದಲ ಗೆಲುವು ಯಾರು ಗಳಿಸಿದರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 117,
+    "doc_id": "2f6c8d47-b2f4-4fe3-b0c5-2dd3f6afc0c9",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನವುಗಳಲ್ಲಿ ಪ್ರತಿಯೊಂದನ್ನು ಪಕ್ಷಿ, ಪ್ರಾಣಿ, ಸರೀಸೃಪ ಅಥವಾ ಕೀಟ ಎಂದು ವರ್ಗೀಕರಿಸಿಃ ಹುಲಿ, ಹೆರಾನ್, ಹದ್ದು, ಅಲಿಗೇಟರ್, ಹಾವು, ಜೇಡ, ಇರುವೆ, ನಾಯಿ, ಬೆಕ್ಕು, ಖಡ್ಗಮೃಗ, ಕಿಂಗ್ಫಿಷರ್, ಊಸರವಳ್ಳಿ, ಹಾರ್ನೆಟ್, ಚಿಟ್ಟೆ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 118,
+    "doc_id": "9366e69e-ce93-46cb-806f-ed266466ef99",
+    "lang": "kn",
+    "text": "ಒಂದು ದಿನದ ಚಾರಣ ಪ್ರವಾಸದಲ್ಲಿ ನೀವು ನಿಮ್ಮೊಂದಿಗೆ ತರಬೇಕಾದ ಕೆಲವು ವಿಭಿನ್ನ ವಸ್ತುಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 119,
+    "doc_id": "0159e945-76d9-4ebb-889c-0b419061ebc9",
+    "lang": "kn",
+    "text": "ಸಾಸಿವೆ ಬೀಜವು ಮೊಳಕೆಯೊಡೆಯಲು ಎಷ್ಟು ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 120,
+    "doc_id": "61ba045c-3a1d-4175-8950-aba1caf516aa",
+    "lang": "kn",
+    "text": "ಯಾವ ಜಾತಿಯ ಮೀನು? ಸಮುದ್ರದ ಡ್ರ್ಯಾಗನ್ ಅಥವಾ ಕೆಂಪು ಗಡ್ಡ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 121,
+    "doc_id": "255e7b5e-ae9d-46e7-a375-1d122c7e5746",
+    "lang": "kn",
+    "text": "ಈ ಪ್ರತಿಯೊಂದು ಮನೆಯ ವಸ್ತುಗಳು ಎಲ್ಲಿಗೆ ಸೇರಿವೆ ಎಂಬುದನ್ನು ವರ್ಗೀಕರಿಸಿಃ ಹಾಸಿಗೆ, ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ ಹಾಸಿಗೆಯ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 122,
+    "doc_id": "59e49fee-188f-449e-b229-c54bd94e3d31",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನ ಉಪನಗರಗಳನ್ನು ಬ್ರಿಸ್ಬೇನ್ ನದಿಯ ಗಡಿಯಲ್ಲದ ಮತ್ತು ಗಡಿಯಲ್ಲದ ಪ್ರದೇಶಗಳಾಗಿ ಬೇರ್ಪಡಿಸಿಃ ಒಳಾಂಗಣ ಪ್ರದೇಶ, ಬುಲಿಂಬಾ, ಸೇಂಟ್ ಲೂಸಿಯಾ, ನ್ಯೂಸ್ಟೆಡ್, ವಿಲ್ಸ್ಟನ್, ಪಶ್ಚಿಮ ತುದಿ, ಟುವಾಂಗ್, ಬೋವೆನ್ ಬೆಟ್ಟಗಳು ಮತ್ತು ವೂಲೂಂಗಬ್ಬಾ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 123,
+    "doc_id": "c8401d0e-78ed-4372-ab9c-5e89c261c88e",
+    "lang": "kn",
+    "text": "ಏರ್ಪಾಡ್ಗಳು ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 124,
+    "doc_id": "3a6e0294-e2cc-446f-b8b6-99340a5bb571",
+    "lang": "kn",
+    "text": "ಸಾಕುಪ್ರಾಣಿಗಳು ಮತ್ತು ಜಾನುವಾರುಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸವೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 125,
+    "doc_id": "977116a2-1d87-47ee-895e-140a9dbfc990",
+    "lang": "kn",
+    "text": "ಹೂದಾನಿಗೆ ತಾಜಾ ಹೂವುಗಳ ಪುಷ್ಪಗುಚ್ಛವನ್ನು ನಾನು ಹೇಗೆ ಹಾಕುವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 126,
+    "doc_id": "93ea8ead-508f-4d61-93f9-b32ae4ab37fc",
+    "lang": "kn",
+    "text": "ಸ್ಯಾನ್ ಫ್ರಾನ್ಸಿಸ್ಕೋದ ಉಚಿತ ಮಧ್ಯಾಹ್ನ ನಾನು ಏನು ಮಾಡಬೇಕು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 127,
+    "doc_id": "e2388c23-6b89-466c-bdcb-cf5b27c5438b",
+    "lang": "kn",
+    "text": "ಯಾವ ವಾದ್ಯವು ತಂತಿ ಅಥವಾ ಮರದಿಂದ ಬೀಸುವ ಗಾಳಿ ಎಂಬುದನ್ನು ಗುರುತಿಸಿಃ ಜಾಂಜಿ, ಜೆಮ್ಶೋರ್ನ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 128,
+    "doc_id": "2410c81b-d283-4976-a4d9-42b9828b7a8f",
+    "lang": "kn",
+    "text": "ಯಾವ ಪ್ರಾಣಿ ಪ್ರಭೇದಗಳು ಜೀವಂತವಾಗಿವೆ ಅಥವಾ ಅಳಿವಿನಂಚಿನಲ್ಲಿವೆ ಎಂಬುದನ್ನು ಗುರುತಿಸಿಃ ಪ್ಲಿಯೋಸಾರ್, ಮೆರೈನ್ ಇಗ್ವಾನಾ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 129,
+    "doc_id": "70c95091-593e-442f-aa5a-c5cd3eed8060",
+    "lang": "kn",
+    "text": "ರೋಸ್ಮರಿ ಎಂಬ ಮೂಲಿಕೆಯ ಹೆಸರಿನ ಮೂಲ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 130,
+    "doc_id": "47dd4d77-3457-4f7b-a5ca-92f086ee3303",
+    "lang": "kn",
+    "text": "ಇಸಾಕ್ ಅಸಿಮೋವ್ ಅಥವಾ ಜೂಲ್ಸ್ ವೆರ್ನೆ ಈ ಕೆಳಗಿನವುಗಳಲ್ಲಿ ಪ್ರತಿಯೊಂದನ್ನು ಶೀರ್ಷಿಕೆ ಎಂದು ವರ್ಗೀಕರಿಸಿಃ ಆಕಾಶದಲ್ಲಿ ಕಲ್ಲುಗಲ್ಲು, ಧೂಳಿನಂತಹ ನಕ್ಷತ್ರಗಳು, ಅಡಿಪಾಯ, ಮುಂಜಾನೆಯ ರೋಬೋಟ್ಗಳು, ನಗ್ನ ಸೂರ್ಯ, ಎಂಭತ್ತು ದಿನಗಳಲ್ಲಿ ಪ್ರಪಂಚದಾದ್ಯಂತ, ಭೂಮಿಯಿಂದ ಚಂದ್ರನವರೆಗೆ, ಮಾರ್ಟಿನ್ ಪಾಜ್, ಭೂಮಿಯ ಮಧ್ಯಭಾಗಕ್ಕೆ ಪ್ರಯಾಣ, ಗಾಳಿಯಲ್ಲಿ ನಾಟಕ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 131,
+    "doc_id": "b101c6c1-964e-45bc-8cb9-9f104f024cd8",
+    "lang": "kn",
+    "text": "ಏನಿದು ಡಿಎನ್ಎ ಟಿಪ್ಪಣಿ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 132,
+    "doc_id": "4c81ba0c-ddd0-4588-bb23-c08dd7366604",
+    "lang": "kn",
+    "text": "ಜೈಹೇರಿ ಐ ಟಾರ್ಗ್ಯಾರಿನ್ ಅವರ ಮಕ್ಕಳು ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 133,
+    "doc_id": "b4b31857-2e3b-4957-b898-0c8e24dd5994",
+    "lang": "kn",
+    "text": "ಎಸ್. ಕ್ಯೂ. ಎಲ್. ನಲ್ಲಿ, ಕಾಲಮ್ನ ಸ್ಥಿತಿಯ ಆಧಾರದ ಮೇಲೆ ಟೇಬಲ್ ಸಾಲುಗಳನ್ನು ನಾನು ಹೇಗೆ ಫಿಲ್ಟರ್ ಮಾಡಬಹುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 134,
+    "doc_id": "4c104a7e-e007-4353-b9fb-9b9755072b0d",
+    "lang": "kn",
+    "text": "ಬೋಸ್ಟನ್ ರೆಡ್ ಸೋಕ್ಸ್ನ ಇತಿಹಾಸದಲ್ಲಿ ಹತ್ತು ಅತ್ಯುತ್ತಮ ಬೇಸ್ಬಾಲ್ ಆಟಗಾರರು ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 135,
+    "doc_id": "bbb24ffa-4b30-4a93-9979-8b247467734b",
+    "lang": "kn",
+    "text": "ಜಗತ್ತು ಸುತ್ತಲು ಕಾರಣವೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 136,
+    "doc_id": "772c3b0f-37df-480e-9902-147646e05100",
+    "lang": "kn",
+    "text": "\"ಬೈಕ್-ಶೆಡಿಂಗ್\" ಎಂಬ ಪದವನ್ನು ಯಾರು ಮತ್ತು ಯಾವಾಗ ಸೃಷ್ಟಿಸಿದರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 137,
+    "doc_id": "fee1c64e-b1ec-47c7-b902-4986aa577347",
+    "lang": "kn",
+    "text": "ಫಾರ್ಮುಲಾ 1 ರ ಅತ್ಯುತ್ತಮ ಚಾಲಕ ಯಾರು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 138,
+    "doc_id": "5db59ee4-f46a-42e3-869f-0f8b3c82917c",
+    "lang": "kn",
+    "text": "ಹಣಕಾಸು ಕ್ಷೇತ್ರದಲ್ಲಿ ಷೇರು ಬಂಡವಾಳ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 139,
+    "doc_id": "36e442c4-e02b-41d2-88c8-e731e3e9cc6f",
+    "lang": "kn",
+    "text": "ನನಗೆ ಕೆಲವು ತಾಯಿಯ ದಿನದ ಉಡುಗೊರೆ ಕಲ್ಪನೆಗಳನ್ನು ನೀಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 140,
+    "doc_id": "717154a5-3079-47dd-8df4-fc7e1853033d",
+    "lang": "kn",
+    "text": "ಓಟಗಾರನು ಹಿಟ್ ಆಗದೆ ಬೇಸ್ಬಾಲ್ನಲ್ಲಿ ಬೇಸ್ ಅನ್ನು ಮುನ್ನಡೆಸಬಹುದಾದ ಮಾರ್ಗಗಳ ಪಟ್ಟಿಯನ್ನು ನನಗೆ ನೀಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 141,
+    "doc_id": "1c6f36c8-2e67-4a8b-b1d4-5f04e109725a",
+    "lang": "kn",
+    "text": "ಆರ್. ವಿ. ಎಸ್. ಗಳ ಪ್ರಕಾರಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 142,
+    "doc_id": "ff85b395-7e7b-44c6-9912-66516455e117",
+    "lang": "kn",
+    "text": "ದುರ್ಗಾ ದೇವಿಯ ಶಸ್ತ್ರಾಸ್ತ್ರಗಳನ್ನು ಅಲ್ಪವಿರಾಮದಲ್ಲಿ ಬೇರ್ಪಡಿಸಿದ ರೀತಿಯಲ್ಲಿ ಪಟ್ಟಿ ಮಾಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 143,
+    "doc_id": "6f96bfdc-b8c5-4ff1-811a-f7f71ea2efeb",
+    "lang": "kn",
+    "text": "ಯಾವ ಆಕಾರಗಳು ನೇರ ರೇಖೆಗಳಿಂದ ಮಾಡಲ್ಪಟ್ಟಿವೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 144,
+    "doc_id": "b1ec8bba-e0ee-4035-be49-f34f190ccb38",
+    "lang": "kn",
+    "text": "ಉಳಿದವುಗಳಿಗಿಂತ ಭಿನ್ನವಾದ ಪದವನ್ನು ಆಯ್ಕೆ ಮಾಡಿಃ ಹ್ಯಾಂಗರ್, ಪ್ಲಾಟ್ಫಾರ್ಮ್, ಡಾಕ್, ಪಾರ್ಕ್, ಬಸ್ ಸ್ಟ್ಯಾಂಡ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 145,
+    "doc_id": "1b53fcad-3e4b-4c77-9c7a-a52eec3d6005",
+    "lang": "kn",
+    "text": "ಸ್ಮಿತ್ಸ್ ಒಳ್ಳೆಯ ಬ್ಯಾಂಡ್ ಆಗಿದೆಯೇ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 146,
+    "doc_id": "745456d2-ff0c-49fc-a261-4a974b5b2a86",
+    "lang": "kn",
+    "text": "ಇ. ವಿ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 147,
+    "doc_id": "76c18895-dd12-455b-9fe6-f92833c1bf6e",
+    "lang": "kn",
+    "text": "10 ಬಣ್ಣಗಳ ಹೆಸರು",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 148,
+    "doc_id": "1d253d05-e840-4e97-80b8-eba52e3e2a27",
+    "lang": "kn",
+    "text": "ಕ್ರಿಕೆಟ್ ಆಟ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 149,
+    "doc_id": "4f663b13-cbd2-4a2b-8244-834179faa342",
+    "lang": "kn",
+    "text": "ಕ್ಯಾಲಿಫೋರ್ನಿಯಾದಲ್ಲಿ ಎಷ್ಟು ಅಮೆರಿಕನ್ ವೈನ್ ಅನ್ನು ಉತ್ಪಾದಿಸಲಾಗುತ್ತದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 150,
+    "doc_id": "808453f1-c4d7-4174-8a9f-4f692538219c",
+    "lang": "kn",
+    "text": "ಗಾಲ್ಫ್ ಆಟಗಾರನಾಗಿ, ನಾನು ನನ್ನ ಸ್ಲೈಸ್ ಅನ್ನು ಹೇಗೆ ಸರಿಪಡಿಸಬಹುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 151,
+    "doc_id": "a0746a81-ec9a-4620-853e-d7626d780987",
+    "lang": "kn",
+    "text": "ಹ್ಯಾಕಥಾನ್ಗಳಲ್ಲಿ ಯಾರು ಭಾಗವಹಿಸುತ್ತಾರೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 152,
+    "doc_id": "63703e27-6707-48af-9a95-3f80f24d4265",
+    "lang": "kn",
+    "text": "ಟ್ವಿಟರ್ನಲ್ಲಿ ಯಾವ ಸಮುದಾಯದ ಬಳಕೆದಾರರು ತಿಂಗಳಿಗೆ ಅತಿ ಹೆಚ್ಚು 8 ಡಾಲರ್ ಮೌಲ್ಯಮಾಪನವನ್ನು ಹೊಂದಿದ್ದಾರೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 153,
+    "doc_id": "8887bd92-3251-48af-93f9-635028abf324",
+    "lang": "kn",
+    "text": "ಈ ಜನರು ಡಿಜೆ ಅಥವಾ ಗಾಯಕರೋ ಎಂದು ನನಗೆ ತಿಳಿಸಿಃ ಡೇವಿಡ್ ಗೆಟ್ಟಾ, ಅವಿಸಿ, ರಿಹಾನ್ನಾ, ಬೆಯೋನ್ಸ್, ಮಾರ್ಟಿನ್ ಗ್ಯಾರಿಕ್ಸ್, ಕ್ಯಾಲ್ವಿನ್ ಹ್ಯಾರಿಸ್, ಟೇಲರ್ ಸ್ವಿಫ್ಟ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 154,
+    "doc_id": "f81c8479-1b0e-47c5-90f0-5111431af38c",
+    "lang": "kn",
+    "text": "ಬ್ರೆಜಿಲ್ನ ವಿಶಿಷ್ಟ ಖಾದ್ಯ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 155,
+    "doc_id": "d3537a2c-5879-4505-842b-40db4fb01585",
+    "lang": "kn",
+    "text": "ನನ್ನ ಹಣವನ್ನು ನಾನು ಹೇಗೆ ಹೂಡಿಕೆ ಮಾಡಬೇಕು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 156,
+    "doc_id": "8aa1854b-9940-4e60-83bc-1ff2c6f121ac",
+    "lang": "kn",
+    "text": "ಕಾಂಗೋಸ್ಟೋ ಗ್ರಾಮ ಎಲ್ಲಿದೆ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 157,
+    "doc_id": "f6624322-2877-4be8-b251-f501a644e34b",
+    "lang": "kn",
+    "text": "ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಮೂಲದ ಮೂರು ಅತ್ಯುತ್ತಮ ವೃತ್ತಿಪರ ಕ್ರೀಡಾ ತಂಡಗಳನ್ನು ಹೆಸರಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 158,
+    "doc_id": "a056426b-20f9-430f-aa3f-427e68eb254c",
+    "lang": "kn",
+    "text": "ಮಾರ್ಕೆಟಿಂಗ್ ಆಟೊಮೇಷನ್ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 159,
+    "doc_id": "d814ae8e-73dc-4f1d-a836-f02fb0730109",
+    "lang": "kn",
+    "text": "ನಿಮ್ಮ ಮನೆಯ ಮೌಲ್ಯವನ್ನು ಸುಧಾರಿಸಲು ಕೆಲವು ಮಾರ್ಗಗಳು ಯಾವುವು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 160,
+    "doc_id": "05d5b2ff-7f19-42e4-8614-11e3e066a4ed",
+    "lang": "kn",
+    "text": "ವ್ಯಂಗ್ಯಚಿತ್ರ ಚಲನಚಿತ್ರ ಕಾರುಗಳನ್ನು ಆಧರಿಸಿದ ಚಲನಚಿತ್ರದ ಕಲ್ಪನೆಯನ್ನು ನನಗೆ ತಿಳಿಸಿ ಆದರೆ ಸ್ವಯಂ ಚಾಲನಾ ಕಾರುಗಳನ್ನು ಸೇರಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 161,
+    "doc_id": "3857f293-99a4-43f5-a3b1-d80ebda4e9ce",
+    "lang": "kn",
+    "text": "ಡಚ್ ಭಾಷೆಯನ್ನು ತಮ್ಮ ಮೊದಲ ಭಾಷೆಯಾಗಿ ಮಾತನಾಡುತ್ತಿದ್ದ ಅಮೆರಿಕದ ಯಾವ ಅಧ್ಯಕ್ಷರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 162,
+    "doc_id": "be48f69b-c5fe-4f9d-8dd1-41bf4086d129",
+    "lang": "kn",
+    "text": "ಎಷ್ಟು ಗ್ರಹಗಳಿವೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 163,
+    "doc_id": "8001ce98-5852-4083-807a-c94993404110",
+    "lang": "kn",
+    "text": "ಹೊಸ ವ್ಯವಹಾರಕ್ಕಾಗಿ 3 ಉಪಾಯಗಳನ್ನು ಮತ್ತು ನಾನು ಅದನ್ನು ಹೇಗೆ ಪ್ರಾರಂಭಿಸಬಹುದು ಎಂಬುದನ್ನು ತಿಳಿಸಲು ನನಗೆ ಸಹಾಯ ಮಾಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 164,
+    "doc_id": "929e896d-8132-4103-a036-7e99ab0d0914",
+    "lang": "kn",
+    "text": "ಮರಳಿನ ಸಮಾಧಿಯನ್ನು ಹಿಂದಿನಿಂದ ಇಂಗ್ಲಿಷ್ಗೆ ಅನುವಾದಿಸಲಾಗಿದೆ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 165,
+    "doc_id": "9e8189cb-4c1c-4fbb-a829-fa56501bb219",
+    "lang": "kn",
+    "text": "ಸಮಾಜದಲ್ಲಿ ಯಾವುದು ಹೆಚ್ಚು ಮುಖ್ಯ, ಸ್ವಾತಂತ್ರ್ಯ ಅಥವಾ ಸುರಕ್ಷತೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 166,
+    "doc_id": "df7e96d0-6267-4a10-af48-a7d9d9f0b324",
+    "lang": "kn",
+    "text": "ಎರಡು ವರ್ಷದ ಹುಡುಗರಿಗೆ ಯಾವ ಚಟುವಟಿಕೆಗಳು ಒಳ್ಳೆಯದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 167,
+    "doc_id": "d69ea1ae-157f-470c-9382-432b0987aca9",
+    "lang": "kn",
+    "text": "ಅಜೂರ್ ಸಿನಾಪ್ಸ್ ಎಷ್ಟು ಗಣನೆಯ ಸೇವೆಗಳನ್ನು ಹೊಂದಿದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 168,
+    "doc_id": "2d8e5158-7fd8-420e-afde-052b89c0d1de",
+    "lang": "kn",
+    "text": "ಉಪವಾಸದ ಅರ್ಥವೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 169,
+    "doc_id": "d036bdd2-49fc-4665-9691-c049db024778",
+    "lang": "kn",
+    "text": "ಲೆವಿಸ್ ಹ್ಯಾಮಿಲ್ಟನ್ ಎಷ್ಟು ಬಾರಿ ಎಫ್1 ಚಾಂಪಿಯನ್ಶಿಪ್ ಗೆದ್ದಿದ್ದಾರೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 170,
+    "doc_id": "be03712b-ed30-4503-a574-db620aef106d",
+    "lang": "kn",
+    "text": "ನೀವು ಸುಡುವ ವಸ್ತುಗಳನ್ನು ಬೆಂಕಿಯ ಮೂಲ ಅಥವಾ ವಿಪರೀತ ಶಾಖಕ್ಕೆ ಹತ್ತಿರಕ್ಕೆ ತಂದಾಗ ಏನಾಗುತ್ತದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 171,
+    "doc_id": "d1f8b325-7858-4b7a-9b97-6b3fa8415f35",
+    "lang": "kn",
+    "text": "ನನಗೆ ಕೊನೆಯ ಐದು ಯುರೋಪಿಯನ್ ಗೋಲ್ಡನ್ ಬೂಟ್ಸ್ ವಿಜೇತರ ಪಟ್ಟಿಯನ್ನು ನೀಡಿ ಮತ್ತು ಅವರು ಎಷ್ಟು ಗೋಲುಗಳನ್ನು ಗಳಿಸಿದ್ದಾರೆಂದು ನನಗೆ ತಿಳಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 172,
+    "doc_id": "cc476a68-4e10-4844-b0a0-6ee784876d91",
+    "lang": "kn",
+    "text": "ಯಾವ ವಾದ್ಯವು ತಂತಿ ಅಥವಾ ತಾಳವಾದ್ಯವಾಗಿದೆ ಎಂಬುದನ್ನು ಗುರುತಿಸಿಃ ಡೆನ್-ಡೆನ್ ಡೈಕೋ, ಲ್ಯೂಕ್ ಹ್ಯೂಯೆನ್ ಕ್ಯಾಮ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 173,
+    "doc_id": "e50371f6-8a83-45e0-a917-044540c52492",
+    "lang": "kn",
+    "text": "ಪ್ರೌಢಶಾಲಾ ವಿದ್ಯಾರ್ಥಿ ತಮ್ಮ ಬೆನ್ನುಹೊರೆಯಲ್ಲಿ ಇಡಲು ಇವು ಉಪಯುಕ್ತವಾಗುತ್ತವೆಯೇ ಅಥವಾ ಉಪಯುಕ್ತವಾಗುವುದಿಲ್ಲವೇ ಎಂಬುದನ್ನು ಆಯ್ಕೆ ಮಾಡಿ. ನೋಟ್ಬುಕ್ಗಳು, ಪಠ್ಯಪುಸ್ತಕಗಳು, ಮೇಜಿನ ದೀಪ, ಪೆನ್ಸಿಲ್ ಚೀಲ, ಬೀಚ್ ಬಾಲ್, ದಿಂಬು, ಲ್ಯಾಪ್ಟಾಪ್.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 174,
+    "doc_id": "1e332767-02f0-45b2-bcc2-b48b4ef95079",
+    "lang": "kn",
+    "text": "ಮಿಸ್ಸಿಸ್ಸಿಪ್ಪಿ ನದಿಯ ಅತಿದೊಡ್ಡ ನಗರ ಯಾವುದು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 175,
+    "doc_id": "7d5c6777-f1fe-4d1c-992f-6bcf1101f71c",
+    "lang": "kn",
+    "text": "ಡೆನ್ವರ್ ನಗರ ಹೇಗಿರುತ್ತದೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 176,
+    "doc_id": "156e1db0-0e35-48cd-b23a-ebef8df14f80",
+    "lang": "kn",
+    "text": "ಒದಗಿಸಲಾದ ಪಠ್ಯದಲ್ಲಿ ಉಲ್ಲೇಖಿಸಲಾದ ಎಲ್ಲಾ ಸಂಖ್ಯೆಗಳ ಪಟ್ಟಿಯನ್ನು ಮತ್ತು ಅವು ಏನನ್ನು ಪ್ರತಿನಿಧಿಸುತ್ತವೆ ಎಂಬುದನ್ನು ಒದಗಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 177,
+    "doc_id": "2ad99e0e-77ef-4345-bc61-c9de41e4654b",
+    "lang": "kn",
+    "text": "ನ್ಯೂಯಾರ್ಕ್ ದೈತ್ಯ ವಿಮಾನಗಳು ಮತ್ತು ನ್ಯೂಯಾರ್ಕ್ ಜೆಟ್ ವಿಮಾನಗಳ ನಡುವಿನ ವ್ಯತ್ಯಾಸವೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 178,
+    "doc_id": "82627a6e-7389-40e1-a99d-82f9d330925f",
+    "lang": "kn",
+    "text": "19ನೇ ಶತಮಾನದಲ್ಲಿ ಫರ್ಜ್ ಬೆಟ್ಟವು ಒಂದು ಸ್ಥಾಪಿತ ಸಮುದಾಯವಾಗಿತ್ತೇ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 179,
+    "doc_id": "ec838683-0d4a-46ee-b1c1-5458a75262f6",
+    "lang": "kn",
+    "text": "ನೀವು ಹರಿಕಾರರಾಗಿದ್ದಾಗ ಹೊಸ ಗಾಲ್ಫ್ ಕ್ಲಬ್ಗಳನ್ನು ಖರೀದಿಸಬೇಕೇ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 180,
+    "doc_id": "8beab924-e544-44db-adb7-0f8375a01fba",
+    "lang": "kn",
+    "text": "ನಾನು ಫ್ಯಾಬ್ರಿಕ್ ಸಾಫ್ಟನರ್ ಅನ್ನು ಏಕೆ ಬಳಸಬೇಕು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 181,
+    "doc_id": "8c00af34-a0e4-469c-8545-7b02e9975b38",
+    "lang": "kn",
+    "text": "ಟಾಟಾ ಸನ್ಸ್ನ ಮಾಜಿ ಅಧ್ಯಕ್ಷರು ಎಲ್ಲಿಂದ ಬರುತ್ತಿದ್ದ ಮಾರ್ಗಮಧ್ಯದಲ್ಲಿ ರಸ್ತೆ ಅಪಘಾತದಲ್ಲಿ ನಿಧನರಾದರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 182,
+    "doc_id": "8e30d42a-afac-4860-bb6f-8bcbc171c126",
+    "lang": "kn",
+    "text": "ದಯವಿಟ್ಟು ಈ ಕೆಳಗಿನ ಪ್ರತಿಯೊಂದು ಪ್ರಾಣಿಗಳನ್ನು ಸಸ್ತನಿ, ಉಭಯಚರ ಅಥವಾ ಮೀನು ಎಂದು ವರ್ಗೀಕರಿಸಿಃ ಎಲ್ಕ್, ಕಪ್ಪೆ, ನಾಯಿ, ಬೆಕ್ಕು, ನ್ಯೂಟ್ ಮತ್ತು ಮಾನವ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 183,
+    "doc_id": "f549bed6-c77a-4da2-8c75-06bdb8259871",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನ ಸಂಖ್ಯೆಗಳನ್ನು 'ಅವಿಭಾಜ್ಯ' ಅಥವಾ 'ಸಂಯುಕ್ತ' ಎಂದು ವರ್ಗೀಕರಿಸಿ-2,3,4,5,6,7,8,9,10,11,12,13,14,15,16.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 184,
+    "doc_id": "d99371b7-40a0-4ea3-a61a-e82ae34ef3f6",
+    "lang": "kn",
+    "text": "ಈ ಅವಧಿಯಲ್ಲಿ ಅಲ್ಬೇನಿಯಾ ಪ್ರದೇಶದ ಆಡಳಿತಗಾರರನ್ನು ಸಂಕ್ಷಿಪ್ತವಾಗಿ ವಿವರಿಸಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 185,
+    "doc_id": "2f4a643f-3b47-4adb-8f18-f7599b82a1ba",
+    "lang": "kn",
+    "text": "ಸರಳವಾಗಿ ಹೇಳುವುದಾದರೆ ಕ್ಲೌಡ್ ಕಂಪ್ಯೂಟಿಂಗ್ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 186,
+    "doc_id": "1fde4eb8-5102-4a01-a585-662339f1236e",
+    "lang": "kn",
+    "text": "ಒಂದು ವರ್ಷ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 187,
+    "doc_id": "c0954b7b-5cb2-4826-93c6-957c5715679e",
+    "lang": "kn",
+    "text": "ನ್ಯೂ ಇಂಗ್ಲೆಂಡ್ನಲ್ಲಿ ಹೆಚ್ಚಿನ ಮೀನು ಹಿಡಿಯುವವರು ಯಾವ ರೀತಿಯ ಕ್ರೀಡಾ ಮೀನುಗಳನ್ನು ಗುರಿಯಾಗಿಸಿಕೊಳ್ಳುತ್ತಾರೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 188,
+    "doc_id": "acccb766-6752-4f68-9d51-9dd502b8dd5a",
+    "lang": "kn",
+    "text": "ಬೇಸಿಗೆಯಲ್ಲಿ ನನ್ನ ಮನೆಯನ್ನು ತಂಪಾಗಿಡಲು ನನಗೆ ಕೆಲವು ಮಾರ್ಗಗಳನ್ನು ನೀಡಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 189,
+    "doc_id": "e1e5f942-df28-4073-ad72-03ec5b25f3f3",
+    "lang": "kn",
+    "text": "ವೈನ್ ಎಂದರೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 190,
+    "doc_id": "a01c6bc4-1a0e-4c6b-8450-24ea8dd29a4e",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನ ಪದಾರ್ಥಗಳು ಕ್ಯಾಂಡಿ ಬಾರ್ಗಳು ಅಥವಾ ಗಮ್ಗಳಾಗಿವೆಃ ತ್ರಿಶೂಲ, ಟ್ವಿಕ್ಸ್, ಹುಬ್ಬಾ ಬಬ್ಬಾ, ಸ್ನಿಕರ್ಸ್, ಮೂರು ಮಸ್ಕಟೀರ್ಗಳು ಮತ್ತು ರಿಗ್ಲಿಗಳು.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 191,
+    "doc_id": "daf84841-9ee0-4752-9589-618d68af3add",
+    "lang": "kn",
+    "text": "ಕುಷಾಣ ಸಾಮ್ರಾಜ್ಯ ಮತ್ತು ಇರಾನ್ನ ಸಸ್ಸಾನಿಡ್ ಸಾಮ್ರಾಜ್ಯದ ನಡುವಿನ ಸಂಬಂಧವೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 192,
+    "doc_id": "ad0a1af2-1f5d-480c-ad66-c4dcf34d66b9",
+    "lang": "kn",
+    "text": "ಕ್ರಿಪ್ಟೋಗಳಿಗೆ ಸವಾಲನ್ನು ಒಡ್ಡುವ ವಸ್ತುಗಳ ಪಟ್ಟಿಯನ್ನು ನನಗೆ ನೀಡಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 193,
+    "doc_id": "a9a1ce83-0509-4c09-9f08-69935bbceebf",
+    "lang": "kn",
+    "text": "ಜೀವನದ ಅರ್ಥವೇನು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 194,
+    "doc_id": "97075ff1-1598-40aa-8799-d617a84ff6f5",
+    "lang": "kn",
+    "text": "ಈ ಕೆಳಗಿನ ಅಕ್ಷರಗಳನ್ನು ಮಾರ್ವೆಲ್ ಕಾಮಿಕ್ಸ್ ಅಥವಾ ಡಿ ರಚಿಸಿದೆಯೇ ಎಂಬುದರ ಆಧಾರದ ಮೇಲೆ ವರ್ಗೀಕರಿಸಿ.ಸಿ. ಕಾಮಿಕ್ಸ್\n ಸ್ಪೈಡರ್ ಮ್ಯಾನ್, ಐರನ್ ಮ್ಯಾನ್, ಕ್ಯಾಪ್ಟನ್ ಅಮೇರಿಕಾ, ಥೋರ್, ಡಾಕ್ಟರ್ ಸ್ಟ್ರೇಂಜ್, ಸೂಪರ್ಮ್ಯಾನ್, ಬ್ಯಾಟ್ಮ್ಯಾನ್, ವಂಡರ್ ವುಮೆನ್, ಫ್ಲ್ಯಾಶ್, ಆಕ್ವಾಮನ್",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 195,
+    "doc_id": "421a9253-0042-4cb7-9518-5c42c36ed803",
+    "lang": "kn",
+    "text": "ನಾವು ಅಕ್ವೇರಿಯಂಗಳಂತೆಯೇ ಏಕೆ ಇದ್ದೇವೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 196,
+    "doc_id": "43e14791-2c91-497b-9c35-454e67ad5e80",
+    "lang": "kn",
+    "text": "ಬಿ ಅಕ್ಷರದಿಂದ ಪ್ರಾರಂಭವಾಗುವ ದೇಶಗಳ ಬುಲೆಟ್ ಪಟ್ಟಿಯನ್ನು ನನಗೆ ನೀಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 197,
+    "doc_id": "675e3300-bacf-4bff-b716-4f60f4490636",
+    "lang": "kn",
+    "text": "ಎಲ್ಎಲ್ಎಂಎಸ್ ಮತ್ತು ಚಾಟ್ಜಿಪ್ಟಿಯಂತಹ ಹೊಸ ತಂತ್ರಜ್ಞಾನಗಳು ಭವಿಷ್ಯದಲ್ಲಿ ಅಪ್ಲಿಕೇಶನ್ ಪ್ರೋಗ್ರಾಮಿಂಗ್ ಇಂಟರ್ಫೇಸ್ಗಳನ್ನು (ಎಪಿಐಎಸ್) ಹೇಗೆ ಕ್ರಾಂತಿಗೊಳಿಸಬಹುದು ಎಂಬುದನ್ನು ವಿವರಿಸಿ. ಈ ಅಪಿಸ್ಗಳು ಹೇಗೆ ಕಾರ್ಯನಿರ್ವಹಿಸಬಹುದು ಎಂಬುದಕ್ಕೆ ಒಂದು ಉದಾಹರಣೆಯನ್ನು ನೀಡಿ.",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 198,
+    "doc_id": "87f73ec8-330c-4de5-ae37-be4ae566e49f",
+    "lang": "kn",
+    "text": "ಇತಿಹಾಸದಲ್ಲಿ ಅತ್ಯಂತ ಯಶಸ್ವಿ ಗಾಲ್ಫ್ ಆಟಗಾರರು ಯಾರು?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 199,
+    "doc_id": "a92dba18-2ac4-4ec8-8112-2c8d43872063",
+    "lang": "kn",
+    "text": "ಇದು ಪಕ್ಷಿ ಅಥವಾ ಮೀನುಃ ಕೆಂಪು-ಗಂಟಲು ಮುಳುಗುವವನು, ರೆಡ್ಲಿಪ್ ಬ್ಲೆನ್ನಿ",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  },
+  {
+    "itemnum": 200,
+    "doc_id": "bf7e5d36-2960-4f4b-8143-290b4084af62",
+    "lang": "kn",
+    "text": "ಯಾವ ರೀತಿಯ ಮೀನುಗಳು ಕಡಿಮೆ ಮಟ್ಟದ ಪಾದರಸವನ್ನು ಹೊಂದಿರುತ್ತವೆ?",
+    "source": "ai4bharat/indic-align/Dolly_T",
+    "harm_category": "benign"
+  }
+]

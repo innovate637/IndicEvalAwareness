@@ -1,0 +1,38 @@
+{
+  "gate": "G0.5",
+  "ratios": {
+    "gemma3-27b-it/deploy/hi": 1.0,
+    "gemma3-27b-it/deploy/bn": 1.0,
+    "gemma3-27b-it/deploy/ta": 1.57,
+    "gemma3-27b-it/deploy/te": 1.57,
+    "gemma3-27b-it/deploy/kn": 1.29,
+    "gemma3-27b-it/monitor_log/hi": 1.25,
+    "gemma3-27b-it/monitor_log/bn": 1.17,
+    "gemma3-27b-it/monitor_log/ta": 1.54,
+    "gemma3-27b-it/monitor_log/te": 1.83,
+    "gemma3-27b-it/monitor_log/kn": 1.75,
+    "gemma3-27b-it/eval_log/hi": 1.17,
+    "gemma3-27b-it/eval_log/bn": 1.13,
+    "gemma3-27b-it/eval_log/ta": 1.6,
+    "gemma3-27b-it/eval_log/te": 1.97,
+    "gemma3-27b-it/eval_log/kn": 1.63,
+    "gemma3-27b-it/eval_explicit/hi": 1.47,
+    "gemma3-27b-it/eval_explicit/bn": 1.22,
+    "gemma3-27b-it/eval_explicit/ta": 1.67,
+    "gemma3-27b-it/eval_explicit/te": 2.04,
+    "gemma3-27b-it/eval_explicit/kn": 2.16,
+    "gemma3-27b-it/eval_metadata/hi": 1.0,
+    "gemma3-27b-it/eval_metadata/bn": 1.0,
+    "gemma3-27b-it/eval_metadata/ta": 1.12,
+    "gemma3-27b-it/eval_metadata/te": 1.12,
+    "gemma3-27b-it/eval_metadata/kn": 1.06
+  },
+  "violations": [],
+  "models_used": [
+    "gemma3-27b-it"
+  ],
+  "n_ratios": 25,
+  "complete_gate": false,
+  "note": "PARTIAL: 1 of 6 tokenizers. The plan requires all 6 (150 ratios). Not a G0.5 sign-off.",
+  "pass": true
+}

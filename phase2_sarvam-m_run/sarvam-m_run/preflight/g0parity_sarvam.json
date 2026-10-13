@@ -1,0 +1,41 @@
+{
+  "gate": "G0.5",
+  "ratios": {
+    "sarvam-m/deploy/hi": 1.57,
+    "sarvam-m/deploy/bn": 1.57,
+    "sarvam-m/deploy/ta": 2.43,
+    "sarvam-m/deploy/te": 1.86,
+    "sarvam-m/deploy/kn": 1.86,
+    "sarvam-m/monitor_log/hi": 1.96,
+    "sarvam-m/monitor_log/bn": 2.38,
+    "sarvam-m/monitor_log/ta": 2.25,
+    "sarvam-m/monitor_log/te": 2.33,
+    "sarvam-m/monitor_log/kn": 2.42,
+    "sarvam-m/eval_log/hi": 1.93,
+    "sarvam-m/eval_log/bn": 2.2,
+    "sarvam-m/eval_log/ta": 2.37,
+    "sarvam-m/eval_log/te": 2.5,
+    "sarvam-m/eval_log/kn": 2.2,
+    "sarvam-m/eval_explicit/hi": 2.39,
+    "sarvam-m/eval_explicit/bn": 2.5,
+    "sarvam-m/eval_explicit/ta": 2.5,
+    "sarvam-m/eval_explicit/te": 2.59,
+    "sarvam-m/eval_explicit/kn": 2.77,
+    "sarvam-m/eval_metadata/hi": 1.14,
+    "sarvam-m/eval_metadata/bn": 1.14,
+    "sarvam-m/eval_metadata/ta": 1.36,
+    "sarvam-m/eval_metadata/te": 1.21,
+    "sarvam-m/eval_metadata/kn": 1.21
+  },
+  "violations": [
+    "sarvam-m/eval_explicit/te=2.59",
+    "sarvam-m/eval_explicit/kn=2.77"
+  ],
+  "models_used": [
+    "sarvam-m"
+  ],
+  "n_ratios": 25,
+  "complete_gate": false,
+  "note": "PARTIAL: 1 of 6 tokenizers. The plan requires all 6 (150 ratios). Not a G0.5 sign-off.",
+  "pass": false
+}

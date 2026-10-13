@@ -1,0 +1,85 @@
+{
+  "gate": "G0.context_fit",
+  "cells": {
+    "gemma3-27b-it/en": {
+      "max_prompt_tokens": 288,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 512,
+      "required": 800,
+      "max_model_len": 4096,
+      "headroom": 3296,
+      "pass": true
+    },
+    "gemma3-27b-it/hi": {
+      "max_prompt_tokens": 441,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 672,
+      "required": 1113,
+      "max_model_len": 4096,
+      "headroom": 2983,
+      "pass": true
+    },
+    "gemma3-27b-it/bn": {
+      "max_prompt_tokens": 369,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 640,
+      "required": 1009,
+      "max_model_len": 4096,
+      "headroom": 3087,
+      "pass": true
+    },
+    "gemma3-27b-it/ta": {
+      "max_prompt_tokens": 503,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 672,
+      "required": 1175,
+      "max_model_len": 4096,
+      "headroom": 2921,
+      "pass": true
+    },
+    "gemma3-27b-it/te": {
+      "max_prompt_tokens": 565,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 928,
+      "required": 1493,
+      "max_model_len": 4096,
+      "headroom": 2603,
+      "pass": true
+    },
+    "gemma3-27b-it/kn": {
+      "max_prompt_tokens": 584,
+      "worst_at": [
+        "harmful",
+        "eval_explicit",
+        57
+      ],
+      "max_tokens": 928,
+      "required": 1512,
+      "max_model_len": 4096,
+      "headroom": 2584,
+      "pass": true
+    }
+  },
+  "pass": true,
+  "problems": []
+}
