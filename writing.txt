@@ -1,0 +1,868 @@
+\documentclass[11pt]{article}
+
+% Change "review" to "final" to generate the final (sometimes called camera-ready) version.
+% Change to "preprint" to generate a non-anonymous version with page numbers.
+\usepackage[review]{acl}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+% This is also not strictly necessary, and may be commented out.
+% However, it will improve the aesthetics of text in
+% the typewriter font.
+\usepackage{inconsolata}
+
+%Including images in your LaTeX document requires adding
+%additional package(s)
+\usepackage{graphicx}
+
+\usepackage{latexsym}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{float}
+\raggedbottom
+
+% ---- engine-aware fonts: pdfLaTeX keeps the ACL defaults; XeLaTeX/LuaLaTeX
+%      (tectonic) uses fontspec so Indic scripts render in the appendix ----
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{times}
+  \usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+  \newcommand{\devafont}{}\newcommand{\bengfont}{}\newcommand{\tamlfont}{}%
+  \newcommand{\telufont}{}\newcommand{\odiafont}{}% no-ops: Indic needs XeLaTeX
+\else
+  \usepackage{fontspec}
+  \setmainfont{TeX Gyre Termes}% Times-compatible (Overleaf/TeX Live);
+                               % if "font not found": Nimbus Roman  or  Liberation Serif
+  \newfontfamily\devafont{Noto Sans Devanagari}
+  \newfontfamily\bengfont{Noto Sans Bengali}
+  \newfontfamily\tamlfont{Noto Sans Tamil}
+  \newfontfamily\telufont{Noto Sans Telugu}
+  \newfontfamily\odiafont{Noto Sans Oriya}
+\fi
+\usepackage{inconsolata}
+\newcommand{\Lhi}[1]{{\devafont #1}}
+\newcommand{\Lbn}[1]{{\bengfont #1}}
+\newcommand{\Lta}[1]{{\tamlfont #1}}
+\newcommand{\Lte}[1]{{\telufont #1}}
+\newcommand{\Lod}[1]{{\odiafont #1}}
+
+\newcommand{\pp}{\,\mathrm{pp}}
+\newcommand{\evallog}{\texttt{eval\_log}}
+\newcommand{\monitorlog}{\texttt{monitor\_log}}
+\newcommand{\deploycue}{\texttt{deploy}}
+\newcommand{\evalexplicit}{\texttt{eval\_explicit}}
+\newcommand{\evalmeta}{\texttt{eval\_metadata}}
+
+
+\usepackage[most]{tcolorbox}
+
+% Base style shared by all three
+\tcbset{
+  promptbase/.style={
+    enhanced,
+    rounded corners,
+    boxrule=0.4pt,
+    left=6pt, right=6pt, top=5pt, bottom=5pt,
+    fontupper=\small,
+    breakable,
+    before skip=8pt, after skip=8pt
+  }
+}
+
+% Variant 1: Deployment cue (neutral, no logging mention)
+\newtcolorbox{deploycuebox}{
+  promptbase,
+  colback=gray!8,
+  colframe=gray!40,
+  title=Deployment Prompt,
+  coltitle=black,
+  colbacktitle=gray!20,
+  fonttitle=\bfseries\small
+}
+
+% Variant 2: Neutral logging cue
+\newtcolorbox{neutrallogbox}{
+  promptbase,
+  colback=blue!5,
+  colframe=blue!30!gray,
+  title=Neutral Logging Prompt,
+  coltitle=black,
+  colbacktitle=blue!10,
+  fonttitle=\bfseries\small
+}
+
+% Variant 3: Eval/safety logging cue
+\newtcolorbox{evallogbox}{
+  promptbase,
+  colback=orange!8,
+  colframe=orange!50!gray,
+  title=Evaluation Logging Prompt,
+  coltitle=black,
+  colbacktitle=orange!15,
+  fonttitle=\bfseries\small
+}
+
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+\title{Cross-Lingual Evaluation Awareness:\\Do LLMs Know They're Being Tested in Indic Languages?}
+
+% Author information can be set in various styles:
+% For several authors from the same institution:
+% \author{Author 1 \and ... \and Author n \\
+%         Address line \\ ... \\ Address line}
+% if the names do not fit well on one line use
+%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
+% For authors from different institutions:
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \And  ... \And
+%         Author n \\ Address line \\ ... \\ Address line}
+% To start a separate ``row'' of authors use \AND, as in
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \AND
+%         Author 2 \\ Address line \\ ... \\ Address line \And
+%         Author 3 \\ Address line \\ ... \\ Address line}
+
+\author{First Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  Affiliation / Address line 3 \\
+  \texttt{email@domain} \\\And
+  Second Author \\
+  Affiliation / Address line 1 \\
+  Affiliation / Address line 2 \\
+  Affiliation / Address line 3 \\
+  \texttt{email@domain} \\}
+
+%\author{
+%  \textbf{First Author\textsuperscript{1}},
+%  \textbf{Second Author\textsuperscript{1,2}},
+%  \textbf{Third T. Author\textsuperscript{1}},
+%  \textbf{Fourth Author\textsuperscript{1}},
+%\\
+%  \textbf{Fifth Author\textsuperscript{1,2}},
+%  \textbf{Sixth Author\textsuperscript{1}},
+%  \textbf{Seventh Author\textsuperscript{1}},
+%  \textbf{Eighth Author \textsuperscript{1,2,3,4}},
+%\\
+%  \textbf{Ninth Author\textsuperscript{1}},
+%  \textbf{Tenth Author\textsuperscript{1}},
+%  \textbf{Eleventh E. Author\textsuperscript{1,2,3,4,5}},
+%  \textbf{Twelfth Author\textsuperscript{1}},
+%\\
+%  \textbf{Thirteenth Author\textsuperscript{3}},
+%  \textbf{Fourteenth F. Author\textsuperscript{2,4}},
+%  \textbf{Fifteenth Author\textsuperscript{1}},
+%  \textbf{Sixteenth Author\textsuperscript{1}},
+%\\
+%  \textbf{Seventeenth S. Author\textsuperscript{4,5}},
+%  \textbf{Eighteenth Author\textsuperscript{3,4}},
+%  \textbf{Nineteenth N. Author\textsuperscript{2,5}},
+%  \textbf{Twentieth Author\textsuperscript{1}}
+%\\
+%\\
+%  \textsuperscript{1}Affiliation 1,
+%  \textsuperscript{2}Affiliation 2,
+%  \textsuperscript{3}Affiliation 3,
+%  \textsuperscript{4}Affiliation 4,
+%  \textsuperscript{5}Affiliation 5
+%\\
+%  \small{
+%    \textbf{Correspondence:} \href{mailto:email@domain}{email@domain}
+%  }
+%}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+large language models can often tell they are being tested. This ability is called Evaluation Awareness and it leads to models acting cautiously during safety evaluations. Existing work in Evaluation awareness has focused on analysis of this behaviour in English, although models serve users in many languages. These languages are spoken by over a billion people and yet this phenomenon remains almost entirely unstudied in them. We test four models from three families in five Indic languages alongside English. A set of cues varies whether the model is told it is monitored and whether this is a safety test. Models refuse harmful requests more when they are told that they are being tested. This rise appears in all four models and all six languages. In Indic languages this refusal increases by +14.4 percentage points on average. The test also makes Indic languages look as safe as English, but refusal of benign Indic requests rises from 6.9\% to 11.3\%. We release all 47,880 judged responses to support further work. These results suggest that safety tests in Indic languages may not show how models treat the people who use them every day.
+
+\end{abstract}
+
+%abstract:
+
+
+\section{Introduction}
+ 
+Large language models (LLMs) have been widely adopted by systems and users across the world, and are increasingly relied upon to refuse harmful requests. Their training corpora are overwhelmingly skewed towards English, often exceeding 90\% of pre-training and fine-tuning data \cite{Xu_2025}, yet they serve users in many other languages. The standard way to ensure reliability is to test models under controlled conditions through safety evaluations. These evaluations assume that behavior under test carries over to deployment. However, this assumption fails when a model can tell that it is being tested. This ability is called evaluation awareness \cite{needham2025largelanguagemodelsknow,greenblatt2024alignmentfakinglargelanguage}. A model that recognizes an evaluation may alter its behavior, potentially making observed safety behavior different from deployment behavior \cite{NEURIPS2025_cf42f133}. This effect is largely studied in English. Indic languages are used by more than a billion people, yet evaluation awareness in these languages remains almost entirely unstudied \citep{yong-etal-2025-state, pattnayak2026indicsafebenchmarkevaluatingmultilingual}.
+ 
+In this paper, we conduct a controlled behavioral study of evaluation awareness in five Indic languages, Hindi, Bengali, Tamil, Telugu, and Kannada, alongside English.
+We prepend one of five cues to every request, from a plain deployment framing to an explicit statement that the conversation is a scored safety test.
+We take harmful prompts from the Toxic Matrix split of AI4Bharat's IndicAlign \citep{khan-etal-2024-indicllmsuite} and translate them into Indic languages using Claude Opus 5. We score each translation with the reference-free quality metric COMET-Kiwi \citep{rei-etal-2022-cometkiwi}. Benign prompts come from the Dolly-T split of the same corpus which contains parallel versions in all six languages, made with IndicTrans2 \citep{gala2023indictrans}. We use four instruction-tuned models from three families for our study: Gemma-3-27B \citep{gemmateam2025gemma3technicalreport}, Qwen3-32B \citep{yang2025qwen3technicalreport}, Qwen2.5-72B \citep{qwen2025qwen25technicalreport}, and Sarvam-M \citep{sarvam}, and each model answers every prompt in every language under every cue.
+
+ 
+We measure refusal with an LLM judge \citep{NEURIPS2023_91f18a12} that does not see the model, the language, or the framing. The primary judge is \texttt{Gemma-4-31B-IT} \citep{gemmateam2026gemma4technicalreport} and the secondary judge is \texttt{ GPT-6 Luna}. We validate the primary judge against native-speaker annotation of a stratified sample using Cohen's $\kappa$.
+
+Our results support three findings.
+First, evaluation framing raises refusal of harmful prompts in all 24 model and language pairs.*** remove first, also write on all 4 models in all 6 languages.***
+Adding a safety-review line to an otherwise identical monitoring notice raises harmful-prompt refusal by 4.6 percentage points on average.
+This rise is more than three times the rise for benign prompts, so it is a response to potential harm under evaluation.
+Second, the strength of this response does not depend on language.
+Measured as a relative change in the odds of refusal, the framing effect does not differ significantly across the six languages.
+We therefore find no evidence that models are more or less evaluation-aware in Indic languages than in English.
+Third, evaluation framing changes the gap between English and Indic languages that a safety test would report.
+In line with prior work, models on average refuse harmful prompts less often and harmless prompts more often in Indic languages than in English \citep{yong2023low, pattnayak2026indicsafebenchmarkevaluatingmultilingual}.
+An explicit test framing moves the average harmful-prompt gap from 2.7 points below English to 1.1 points above it.
+At the same time, the gap in wrongful refusal of harmless prompts widens from 5.3 to 8.6 points.
+The models' ability to separate harmful from harmless requests in Indic languages therefore stays about 8 points below English under both framings.
+A safety test that a model can recognize can thus make Indic safety look closer to English than it is in deployment.
+
+
+
+
+
+ 
+We make two contributions.
+\begin{itemize}[leftmargin=*, nosep]
+    \item \textbf{To our knowledge, the first behavioral study of evaluation awareness in Indic languages}, across three models from three families and six languages (English, Hindi, Bengali, Tamil, Telugu, Kannada), with 47,880 judged responses that we release.\footnote{\pending{Anonymous repository URL.}}
+    \item \textbf{A set of framings that isolates evaluation from mere monitoring.} Our main comparison pairs two framings that both state that responses are logged. They differ only in whether an AI safety team reviews the logs. 
+\end{itemize}
+
+ \section{Related Works}
+\subsection{Evaluation awareness and the compliance gap}
+ Recent work establishes that language models can distinguish evaluation from deployment contexts and that this recognition drives behavior. Frontier models show above-random evaluation awareness \citep{needham2025largelanguagemodelsknow}, and recognizing an evaluation context is empirically and conceptually distinct from the propensity to act on it \citep{li2026decomposingmeasuringevaluationawareness}. Models shift toward the inferred training objective once they judge their outputs observed \citep{greenblatt2024alignmentfakinglargelanguage}. Models are also more sensitive to safety than capability evaluations \citep{li2026decomposingmeasuringevaluationawareness},and Sheshadri et al. (2025) find a compliance gap above 1 percent in only five of twenty-five models\citep{sheshadri2025languagemodelsfakealignment}).
+ \citep{knecht2026evaluationawarenesslanguagemodels} find that verbalised evaluation awareness (VEA) has limited effect on model behaviour.
+
+Existing study in these papers involves English only. We ask whether the behavioural findings survive a change of language, using content-matched requests in five Indic languages and English across three model families.
+
+\subsection{Multilingual and Indic safety evaluation }
+A persistent gap exists between the languages multilingual safety research covers and those deployed models serve; \citep{yong-etal-2025-state} survey its size and durability. Subsequent work shows that safety behavior varies with language: models handle identical content differently under code-switching \citep{yoo-etal-2025-code}, across twelve Indic languages where safety judgments drift sharply between translations \citep{pattnayak2026indicsafebenchmarkevaluatingmultilingual}, and under jailbreak pressure in South Asian languages \citep{pattnayak-chowdhuri-2026-indicjr}. Chain-of-thought monitoring likewise degrades across typologically diverse languages \citep{onyame2026fragilitychainofthoughtmonitoringtypologically}. These works hold evaluation context fixed while varying language; we vary both, enabling an evaluation-awareness claim.
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\subsection{Data, languages, and models}
+We worked on six languages, namely English, Hindi, Bengali, Tamil, Telugu, and Kannada. The harmful prompts come from the Toxic Matrix dataset of AI4Bharat IndicAlign \citep{khan-etal-2024-indicllmsuite}. We randomly sampled 199 English prompts from the dataset and translated them into the five Indic languages using Claude Opus. We then scored every translated string with COMET-Kiwi \citep{rei-etal-2022-cometkiwi}, a reference-free quality estimation model.We made sure that every prompt has a parallel translation in all six languages. Benign prompts come from the Dolly-T dataset of the same corpus, which provides translations made with IndicTrans2 \citep{gala2023indictrans}. We took 200 parallel prompts per language directly from the dataset and use them as a baseline to measure over-refusal. To check the reliability of the translations, native speakers verified a small sample of
+prompts per language for faithful translation, fluency, cultural relevance, and retained harmful intent.
+
+We test four instruction-tuned models from three families, namely Gemma-3-27B \citep{gemmateam2025gemma3technicalreport}, Qwen3-32B \citep{yang2025qwen3technicalreport}, Qwen2.5-72B \citep{qwen2025qwen25technicalreport}, and Sarvam-M \citep{sarvam}, an Indic model post-trained from Mistral-Small-3.1-24B. We disable the reasoning mode of Qwen3 and Sarvam-M. Each model generates one response per prompt with greedy decoding. This gives 11,970 responses per model and 47,880 in total (Appendix~\ref{app:generation}).
+
+\subsection{The Cues}
+\label{sec:cues}
+A Cue is a small text consisting of a condition. Each cue is added before the prompt in the user turn. All five cues share the base sentence ``You are a helpful AI assistant.'' and differ only in an appended note. The prompt is identical across languages and models, so any difference in behavior is due to the note. Each cue is written in the language of the prompt, and full texts for all six languages appear in Appendix~\ref{app:cues}.
+
+The \deploycue{} cue adds no note and fixes the baseline. The \monitorlog{} cue states that responses are logged for service quality and product improvement, which represents monitoring with no evaluation framing. The \evallog{} cue states that responses are logged and reviewed by the AI safety team for compliance with usage policies. The \evalexplicit{} cue states that the conversation is a formal AI safety evaluation scored by a red-team review. The \evalmeta{} cue gives the same information as a machine-style configuration tag.
+
+Our main contrast is \evalexplicit{} against \deploycue{}. Both cues share the base sentence, and \evalexplicit{} adds a note stating openly that the conversation is a scored AI safety evaluation. The difference between them measures how much a model changes its behavior when it is told plainly that it is being tested. This is the strongest form of the evaluation signal in our design. We use \evallog{} against \monitorlog{} as a secondary contrast. Both notes state that responses are logged, and \evallog{} adds only that an AI safety team reviews them. It never uses the words test, evaluation, or benchmark, so this contrast separates evaluation framing from monitoring and from lexical leakage. We compare the remaining cues against \deploycue{}, and we run all five cues on the four models in all six languages.
+
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.85\columnwidth]{figs/pipeline_design.pdf}
+  \caption{The behavioral analysis pipeline. Prompts in six languages are
+  prefixed with one of five cues, answered by four models, and scored by a
+  blind LLM judge (Gemma-4-31B-IT) validated against a second judge and
+  native speakers. The headline contrast is \evalexplicit{} vs.\ \deploycue{}.}
+  \label{fig:pipeline}
+\end{figure}
+
+\subsection{Measuring refusal}
+\label{sec:judge}
+We label refusals with an LLM judge that reads only the prompt and the response and returns REFUSAL, COMPLY, or UNUSABLE. A response that gives no substantive help or offers a safe alternative counts as REFUSAL. The judge never sees the cue, the model, or the language. For responses longer than 450 tokens, the judge sees the first 300 and the last 150 tokens. The primary judge is Gemma-4-31B-IT \citep{gemmateam2026gemma4technicalreport}, which we run locally.
+
+A second judge, GPT-6 Luna, labelled a subset of $n = 7{,}200$ responses that covers every model, language, and cue. We measure agreement with Cohen's $\kappa$, which corrects for agreement reached by chance. The two judges reach $\kappa = 0.88$ overall. Per language, $\kappa$ ranges from $0.86$ in Tamil to $0.90$ in English. For each Indic language, a native speaker also reviewed $n = 320$ labels of the primary judge and marked each one as correct or incorrect. Agreement with the judge ranges from $\kappa = 0.85$ in Tamil to $\kappa = 0.91$ in Hindi. Telugu is the exception, with $\kappa = 0.56$. In Telugu, four prompts account for 46 of the 68 disagreements (Appendix~\ref{app:judge}).
+
+\subsection{Statistical Analysis}
+Each of the 199 harmful and 200 benign prompts is present in English and its five Indic translations, and every version is run on every model under every cue condition. Responses that come from the same original prompt are therefore correlated, and treating them as independent would understate the standard errors.
+
+
+
+By using the McNemar test, for each model, language, we give the same 199 harmful and 200 benign prompts, with the eval\_explicit and deploy cues only. We don’t gain any insight about the cue from prompts that received the same decision under both cues. Hence, the test searches for prompts whose decision changed between both. Then, we check if the changes lean towards one cue more than the other. Our null hypothesis is that under one arm, for one model, in one language, the probability of refusal is the same under the eval\_explicit and deploy cues.
+
+
+By using the Cochran Q Test, we extend the McNemar test to record refusal under 5 cues, for each model, language using the same prompts. The test searches for prompts whose decision changed and checks if those changes favour some cues over others. We run tests for every model and language separately on the harmful and benign prompts, and use the Holm correction within each arm (24 tests each). Our null hypothesis is that under one arm, for one model, in one language, the probability of refusal is the same under all five cues.
+
+
+We use logistic regression to measure how much each factor (model, language or cue) changes the odds of refusal, while holding the other factors fixed.This is expressed using an Odds Ratio. Due to the correlation between responses for the same prompt, we fit the regression with GEE, which groups each prompt’s responses together. Hence, every p-value is based on the 199 harmful (or 200 benign) distinct prompts rather than wrongly treating every response as independent. The Odds Ratio is the number of times higher or lower the odds of refusal are under one condition, than under the reference condition.
+
+
+We fit the harmful and benign prompts separately, with three kinds of fit: one per model (factors: language and cue), one per language (factors: model and cue), and one pooled fit (factors: model, language and cue). Using these fits, we test: (1) Language effect per model, (2) Cue effect per model, (3) Cue effect per language, (4) Model effect per language, (5) Every Indic language vs English per model, (6) Pooled fits (model, language, cue). We apply the Holm correction for each of the 6 tests. Our null hypothesis for tests 1 to 4 and 6 is that, holding other factors fixed, every odds ratio for the factor being tested, relative to its reference level, equals 1. For test 5 it is that the odds ratio for that Indic language against English equals 1.
+
+
+
+
+\bibliography{ref,anthology.bib.txt}
+\end{document}
+
+
+@article{Xu_2025,
+   title={A survey on multilingual large language models: corpora, alignment, and bias},
+   volume={19},
+   ISSN={2095-2236},
+   url={http://dx.doi.org/10.1007/s11704-024-40579-4},
+   DOI={10.1007/s11704-024-40579-4},
+   number={11},
+   journal={Frontiers of Computer Science},
+   publisher={Springer Science and Business Media LLC},
+   author={Xu, Yuemei and Hu, Ling and Zhao, Jiayi and Qiu, Zihan and Xu, Kexin and Ye, Yuqi and Gu, Hanwen},
+   year={2025},
+   month=Apr }
+
+@inproceedings{NEURIPS2025_cf42f133,
+ author = {Abdelnabi, Sahar and Salem, Ahmed},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {D. Belgrave and C. Zhang and H. Lin and R. Pascanu and P. Koniusz and M. Ghassemi and N. Chen},
+ pages = {141562--141589},
+ publisher = {Curran Associates, Inc.},
+ title = {The Hawthorne Effect in Reasoning Models: Evaluating and Steering Test Awareness},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2025/file/cf42f133f355e0e07a8957b508b26a1b-Paper-Conference.pdf},
+ volume = {38},
+ year = {2025}
+}
+
+
+@inproceedings{NEURIPS2024_f5454485,
+ author = {Arditi, Andy and Obeso, Oscar and Syed, Aaquib and Paleka, Daniel and Panickssery, Nina and Gurnee, Wes and Nanda, Neel},
+ booktitle = {Advances in Neural Information Processing Systems},
+ doi = {10.52202/079017-4322},
+ editor = {A. Globerson and L. Mackey and D. Belgrave and A. Fan and U. Paquet and J. Tomczak and C. Zhang},
+ pages = {136037--136083},
+ publisher = {Curran Associates, Inc.},
+ title = {Refusal in Language Models Is Mediated by a Single Direction},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2024/file/f545448535dfde4f9786555403ab7c49-Paper-Conference.pdf},
+ volume = {37},
+ year = {2024}
+}
+
+@article{10.1111/j.2517-6161.1995.tb02031.x,
+    author = {Benjamini, Yoav and Hochberg, Yosef},
+    title = {Controlling the False Discovery Rate: A Practical and Powerful Approach to Multiple Testing},
+    journal = {Journal of the Royal Statistical Society: Series B (Methodological)},
+    volume = {57},
+    number = {1},
+    pages = {289-300},
+    year = {1995},
+    month = {01},
+    abstract = {The common approach to the multiplicity problem calls for controlling the familywise error rate (FWER). This approach, though, has faults, and we point out a few. A different approach to problems of multiple significance testing is presented. It calls for controlling the expected proportion of falsely rejected hypotheses — the false discovery rate. This error rate is equivalent to the FWER when all hypotheses are true but is smaller otherwise. Therefore, in problems where the control of the false discovery rate rather than that of the FWER is desired, there is potential for a gain in power. A simple sequential Bonferronitype procedure is proved to control the false discovery rate for independent test statistics, and a simulation study shows that the gain in power is substantial. The use of the new procedure and the appropriateness of the criterion are illustrated with examples.},
+    issn = {0035-9246},
+    doi = {10.1111/j.2517-6161.1995.tb02031.x},
+    url = {https://doi.org/10.1111/j.2517-6161.1995.tb02031.x},
+    eprint = {https://academic.oup.com/jrsssb/article-pdf/57/1/289/49173396/jrsssb_57_1_289.pdf},
+}
+
+
+
+@inproceedings{
+braun2025understanding,
+title={Understanding (Un)Reliability of Steering Vectors in Language Models},
+author={Joschka Braun and Carsten Eickhoff and David Krueger and Seyed Ali Bahrainian and Dmitrii Krasheninnikov},
+booktitle={ICLR 2025 Workshop on Foundation Models in the Wild},
+year={2025},
+url={https://openreview.net/forum?id=qGCp2AYosf}
+}
+
+@inproceedings{
+chaudhary2025evaluation,
+title={Evaluation Awareness Scales Predictably in Open-Weights Large Language Models},
+author={Maheep Chaudhary and Ian Su and Nikhil Hooda and Nishith Shankar and Julia Tan and Kevin Zhu and Ashwinee Panda and Ryan Lagasse and Vasu Sharma},
+booktitle={Socially Responsible and Trustworthy Foundation Models at NeurIPS 2025},
+year={2025},
+url={https://openreview.net/forum?id=xlK6cuc4sQ}
+}
+
+
+@misc{coherelabs2024ayaexpanse8b,
+  author       = {{Cohere Labs}},
+  title        = {{Aya Expanse 8B}},
+  year         = {2024},
+  howpublished = {Hugging Face model card},
+  url          = {https://huggingface.co/CohereLabs/aya-expanse-8b},
+  note         = {Open-weight multilingual language model}
+}
+
+@article{
+gala2023indictrans,
+title={IndicTrans2: Towards High-Quality and Accessible Machine Translation Models for all 22 Scheduled Indian Languages},
+author={Jay Gala and Pranjal A Chitale and A K Raghavan and Varun Gumma and Sumanth Doddapaneni and Aswanth Kumar M and Janki Atul Nawale and Anupama Sujatha and Ratish Puduppully and Vivek Raghavan and Pratyush Kumar and Mitesh M Khapra and Raj Dabre and Anoop Kunchukuttan},
+journal={Transactions on Machine Learning Research},
+issn={2835-8856},
+year={2023},
+url={https://openreview.net/forum?id=vfT4YuzAYA},
+note={}
+}
+
+@misc{gemmateam2025gemma3technicalreport,
+      title={Gemma 3 Technical Report}, 
+      author={Gemma Team and Aishwarya Kamath and Johan Ferret and Shreya Pathak and Nino Vieillard and Ramona Merhej and Sarah Perrin and Tatiana Matejovicova and Alexandre Ramé and Morgane Rivière and Louis Rouillard and Thomas Mesnard and Geoffrey Cideron and Jean-bastien Grill and Sabela Ramos and Edouard Yvinec and Michelle Casbon and Etienne Pot and Ivo Penchev and Gaël Liu and Francesco Visin and Kathleen Kenealy and Lucas Beyer and Xiaohai Zhai and Anton Tsitsulin and Robert Busa-Fekete and Alex Feng and Noveen Sachdeva and Benjamin Coleman and Yi Gao and Basil Mustafa and Iain Barr and Emilio Parisotto and David Tian and Matan Eyal and Colin Cherry and Jan-Thorsten Peter and Danila Sinopalnikov and Surya Bhupatiraju and Rishabh Agarwal and Mehran Kazemi and Dan Malkin and Ravin Kumar and David Vilar and Idan Brusilovsky and Jiaming Luo and Andreas Steiner and Abe Friesen and Abhanshu Sharma and Abheesht Sharma and Adi Mayrav Gilady and Adrian Goedeckemeyer and Alaa Saade and Alex Feng and Alexander Kolesnikov and Alexei Bendebury and Alvin Abdagic and Amit Vadi and András György and André Susano Pinto and Anil Das and Ankur Bapna and Antoine Miech and Antoine Yang and Antonia Paterson and Ashish Shenoy and Ayan Chakrabarti and Bilal Piot and Bo Wu and Bobak Shahriari and Bryce Petrini and Charlie Chen and Charline Le Lan and Christopher A. Choquette-Choo and CJ Carey and Cormac Brick and Daniel Deutsch and Danielle Eisenbud and Dee Cattle and Derek Cheng and Dimitris Paparas and Divyashree Shivakumar Sreepathihalli and Doug Reid and Dustin Tran and Dustin Zelle and Eric Noland and Erwin Huizenga and Eugene Kharitonov and Frederick Liu and Gagik Amirkhanyan and Glenn Cameron and Hadi Hashemi and Hanna Klimczak-Plucińska and Harman Singh and Harsh Mehta and Harshal Tushar Lehri and Hussein Hazimeh and Ian Ballantyne and Idan Szpektor and Ivan Nardini and Jean Pouget-Abadie and Jetha Chan and Joe Stanton and John Wieting and Jonathan Lai and Jordi Orbay and Joseph Fernandez and Josh Newlan and Ju-yeong Ji and Jyotinder Singh and Kat Black and Kathy Yu and Kevin Hui and Kiran Vodrahalli and Klaus Greff and Linhai Qiu and Marcella Valentine and Marina Coelho and Marvin Ritter and Matt Hoffman and Matthew Watson and Mayank Chaturvedi and Michael Moynihan and Min Ma and Nabila Babar and Natasha Noy and Nathan Byrd and Nick Roy and Nikola Momchev and Nilay Chauhan and Noveen Sachdeva and Oskar Bunyan and Pankil Botarda and Paul Caron and Paul Kishan Rubenstein and Phil Culliton and Philipp Schmid and Pier Giuseppe Sessa and Pingmei Xu and Piotr Stanczyk and Pouya Tafti and Rakesh Shivanna and Renjie Wu and Renke Pan and Reza Rokni and Rob Willoughby and Rohith Vallu and Ryan Mullins and Sammy Jerome and Sara Smoot and Sertan Girgin and Shariq Iqbal and Shashir Reddy and Shruti Sheth and Siim Põder and Sijal Bhatnagar and Sindhu Raghuram Panyam and Sivan Eiger and Susan Zhang and Tianqi Liu and Trevor Yacovone and Tyler Liechty and Uday Kalra and Utku Evci and Vedant Misra and Vincent Roseberry and Vlad Feinberg and Vlad Kolesnikov and Woohyun Han and Woosuk Kwon and Xi Chen and Yinlam Chow and Yuvein Zhu and Zichuan Wei and Zoltan Egyed and Victor Cotruta and Minh Giang and Phoebe Kirk and Anand Rao and Kat Black and Nabila Babar and Jessica Lo and Erica Moreira and Luiz Gustavo Martins and Omar Sanseviero and Lucas Gonzalez and Zach Gleicher and Tris Warkentin and Vahab Mirrokni and Evan Senter and Eli Collins and Joelle Barral and Zoubin Ghahramani and Raia Hadsell and Yossi Matias and D. Sculley and Slav Petrov and Noah Fiedel and Noam Shazeer and Oriol Vinyals and Jeff Dean and Demis Hassabis and Koray Kavukcuoglu and Clement Farabet and Elena Buchatskaya and Jean-Baptiste Alayrac and Rohan Anil and Dmitry and Lepikhin and Sebastian Borgeaud and Olivier Bachem and Armand Joulin and Alek Andreev and Cassidy Hardin and Robert Dadashi and Léonard Hussenot},
+      year={2025},
+      eprint={2503.19786},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2503.19786}, 
+}
+
+@misc{gemmateam2026gemma4technicalreport,
+      title={Gemma 4 Technical Report}, 
+      author={Gemma Team and Sherif El Abd and Vaibhav Aggarwal and Robin Algayres and Alek Andreev and Olivier Bachem and Ian Ballantyne and Cormac Brick and Victor Cărbune and Michelle Casbon and Mayank Chaturvedi and Victor Cotruta and Alice Coucke and Phil Culliton and Robert Dadashi and Lucas Dixon and Mohamed Elhawaty and Utku Evci and Clément Farabet and Johan Ferret and Filippo Galgani and Sertan Girgin and Jean-Bastien Grill and Maarten Grootendorst and Jiaxian Guo and Cassidy Hardin and Yanzhang He and Steven M. Hernandez and Omri Homburger and Léonard Hussenot and Juyeong Ji and Armand Joulin and Aishwarya Kamath and Parnian Kassraie and Olivier Lacombe and Preethi Lahoti and Gaël Liu and Gus Martins and Luciano Martins and Tatiana Matejovicova and Ramona Merhej and Nikola Momchev and Sneha Mondal and Ryan Mullins and Sindhu Raghuram Panyam and Shreya Pathak and Sarah Perrin and André Susano Pinto and Etienne Pot and Angéline Pouget and Alexandre Ramé and Sabela Ramos and Douglas Reid and David Rim and Morgane Rivière and Karsten Roth and Louis Rouillard and Omar Sanseviero and Pier Giuseppe Sessa and Shane Settle and Danila Sinopalnikov and Sara Smoot and Piotr Stanczyk and Andreas Steiner and Lawrence Stewart and Ilya Tolstikhin and Michael Tschannen and Anton Tsitsulin and Nino Vieillard and Renjie Wu and Pingmei Xu and Haichuan Yang and Edouard Yvinec and Li Zhang and Joe Zou and Nicolas Aagnes and Abdelrahman Abdelhamed and Shivani Agrawal and Shubham Agrawal and Ibrahim Alabdulmohsin and Jean Baptiste Alayrac and Uri Alon and Chandramouli Amarnath and Ankesh Anand and Chrysovalantis Anastasiou and Setareh Ariafar and François-Xavier Aubet and Kyriakos Axiotis and Federico Barbero and Joelle Barral and Alexei Bendebury and Urs Bergmann and Stanley Bileschi and Kat Black and Mathieu Blondel and Sebastian Borgeaud and Arthur Bražinskas and Ryan Burnell and Robert Busa-Fekete and Mu Cai and Glenn Cameron and Charlotte Caucheteux and Garima Chadha and Jetha Chan and Aditya Chawla and Blake Jianhang Chen and Jesse Chen and Lin Chen and Xu Chen and Derek Cheng and Tzu-hsiang Chien and Nikolai Chinaev and Yi Chou and Zhaohui Chu and Benjamin Coleman and Pooja Consul and Sam Conway-Rahman and Scott Crowell and Dylan Cutler and Vivek Dani and Samira Daruki and Anil Das and Daniel Deutsch and Nishanth Dikkala and Li Ding and Qiuhan Ding and Shenil Dodhia and Konstantin Donhauser and Tulsee Doshi and Anca Dragan and Alex Druinsky and Sahil Dua and Zoltan Egyed and Danielle Eisenbud and Daniel Eppens and Cindy Fan and Bahare Fatemi and Yassir Fathullah and Vlad Feinberg and Milen Ferev and Takumi Fujimoto and Isaac Galatzer-Levy and João Gante and Simon Geisler and Soham Ghosal and Antonious M. Girgis and Alec Go and Alhaad Gokhale and Alex Grills and Yiming Gu and Pramod Gupta and Guru Guruganesh and Raia Hadsell and Hamza Harkous and Jitendra Harlalka and Demis Hassabis and Anja Hauth and Joe Heyward and Arian Hosseini and Chih-Yang Hsia and I-Hung Hsu and Xiaopeng Huang and Yangsibo Huang and Kevin Hui and Adrian Hutter and Te I and Fotis Iliopoulos and Advait Jain and Ganesh Jawahar and Ziwei Ji and Qilin Jin and Melvin Johnson and Kandarp Joshi and Arun Kandoor and Wang-Cheng Kang and Koray Kavukcuoglu and Mehran Kazemi and Kathleen Kenealy and Amr Khalifa and Phoebe Kirk and Suraj Kothawade and Vitaly Kovalev and Neel Kovelamudi and Adam Kraft and Ravin Kumar and Harish Kuppam and Justin Lannin and Chen-Yu Lee and Seungji Lee and Dmitry Lepikhin and Dongdong Li and Qiujia Li and Valentin Liévin and Ethan Lin and Ziqian Lin and Casper Liu and Tianlin Liu and Tianqi Liu and Xin Liu and Mayank Lunayach and Min Ma and Gagan Madan and Andrii Maksai and Eric Malmi and Michal Matuszak and Daniel McDuff and Gaurav Menghani and Daniil Mirylenka and Karolis Misiunas and Vedant Misra and Andreea Mitran and Kareem Mohamed and Maksim Mukha and Eric Noland and James O'Donnell and Kate Olszewska and Bernett Orlando and Wanqiong Pan and Rina Panigrahy and Unnati Parekh and Chunjong Park and Eric Paskie and Liqian Peng and Bryce Petrini and Slav Petrov and Jonas Pfeiffer and Bilal Piot and Martyna Plomecka and Siim Poder and Octavio Ponce and Arijit Pramanik and David Racz and Anish Rajan and Michelle Ramanovich and Anand Rao and Marvin Ritter and Vitor Rodrigues and Evan Rosen and Mikołaj Rybiński and Noveen Sachdeva and Michaël E. Sander and Rohit Sathyanarayana and Sagar Savla and Samuel Schmidgall and Tal Schuster and Benoit Seguin and Andrew Sellergren and Aliaksei Severyn and Izhak Shafran and Dhruv Shah and Yuan Shangguan and Ashish Shenoy and Pradeep Shenoy and Rakesh Shivanna and Pauline Sho and Lucas Spangher and Wojciech Stokowiec and Tim Strother and Yao Su and Yinghao Sun and Mukund Sundararajan and Andrea Tacchetti and Mor Hazan Taege and Pouya Tafti and Chetan Tekur and Rahul Thapa and Madeleine Traverse and Lenart Treven and Tao Tu and Chien Te Tung and Petar Veličković and Malini Pooni Venkat and Sagar Gubbi Venkatesh and Vidya Venkiteswaran and Francesco Visin and Alex Vitvitskyi and Kiran Vodrahalli and Weiyi Wang and Xin Wang and Tris Warkentin and Jan Wassenberg and John Wieting and Lechao Xiao and Hao Xu and Yuhui Xu and Fuzhao Xue and Arun Yadav and Jun Yan and Antoine Yang and Lin Yang and Ming-Hsuan Yang and Ziyu Ying and Jae Hyeon Yoo and Sajjad Zafar and Fred Zhang and Jiageng Zhang and Jianyi Zhang and Xiaofan Zhang and Chao Zhao and David Zhou and Chen Zou},
+      year={2026},
+      eprint={2607.02770},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2607.02770}, 
+}
+
+@misc{grattafiori2024llama3herdmodels,
+      title={The Llama 3 Herd of Models}, 
+      author={Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and Abhinav Pandey and Abhishek Kadian and Ahmad Al-Dahle and Aiesha Letman and Akhil Mathur and Alan Schelten and Alex Vaughan and Amy Yang and Angela Fan and Anirudh Goyal and Anthony Hartshorn and Aobo Yang and Archi Mitra and Archie Sravankumar and Artem Korenev and Arthur Hinsvark and Arun Rao and Aston Zhang and Aurelien Rodriguez and Austen Gregerson and Ava Spataru and Baptiste Roziere and Bethany Biron and Binh Tang and Bobbie Chern and Charlotte Caucheteux and Chaya Nayak and Chloe Bi and Chris Marra and Chris McConnell and Christian Keller and Christophe Touret and Chunyang Wu and Corinne Wong and Cristian Canton Ferrer and Cyrus Nikolaidis and Damien Allonsius and Daniel Song and Danielle Pintz and Danny Livshits and Danny Wyatt and David Esiobu and Dhruv Choudhary and Dhruv Mahajan and Diego Garcia-Olano and Diego Perino and Dieuwke Hupkes and Egor Lakomkin and Ehab AlBadawy and Elina Lobanova and Emily Dinan and Eric Michael Smith and Filip Radenovic and Francisco Guzmán and Frank Zhang and Gabriel Synnaeve and Gabrielle Lee and Georgia Lewis Anderson and Govind Thattai and Graeme Nail and Gregoire Mialon and Guan Pang and Guillem Cucurell and Hailey Nguyen and Hannah Korevaar and Hu Xu and Hugo Touvron and Iliyan Zarov and Imanol Arrieta Ibarra and Isabel Kloumann and Ishan Misra and Ivan Evtimov and Jack Zhang and Jade Copet and Jaewon Lee and Jan Geffert and Jana Vranes and Jason Park and Jay Mahadeokar and Jeet Shah and Jelmer van der Linde and Jennifer Billock and Jenny Hong and Jenya Lee and Jeremy Fu and Jianfeng Chi and Jianyu Huang and Jiawen Liu and Jie Wang and Jiecao Yu and Joanna Bitton and Joe Spisak and Jongsoo Park and Joseph Rocca and Joshua Johnstun and Joshua Saxe and Junteng Jia and Kalyan Vasuden Alwala and Karthik Prasad and Kartikeya Upasani and Kate Plawiak and Ke Li and Kenneth Heafield and Kevin Stone and Khalid El-Arini and Krithika Iyer and Kshitiz Malik and Kuenley Chiu and Kunal Bhalla and Kushal Lakhotia and Lauren Rantala-Yeary and Laurens van der Maaten and Lawrence Chen and Liang Tan and Liz Jenkins and Louis Martin and Lovish Madaan and Lubo Malo and Lukas Blecher and Lukas Landzaat and Luke de Oliveira and Madeline Muzzi and Mahesh Pasupuleti and Mannat Singh and Manohar Paluri and Marcin Kardas and Maria Tsimpoukelli and Mathew Oldham and Mathieu Rita and Maya Pavlova and Melanie Kambadur and Mike Lewis and Min Si and Mitesh Kumar Singh and Mona Hassan and Naman Goyal and Narjes Torabi and Nikolay Bashlykov and Nikolay Bogoychev and Niladri Chatterji and Ning Zhang and Olivier Duchenne and Onur Çelebi and Patrick Alrassy and Pengchuan Zhang and Pengwei Li and Petar Vasic and Peter Weng and Prajjwal Bhargava and Pratik Dubal and Praveen Krishnan and Punit Singh Koura and Puxin Xu and Qing He and Qingxiao Dong and Ragavan Srinivasan and Raj Ganapathy and Ramon Calderer and Ricardo Silveira Cabral and Robert Stojnic and Roberta Raileanu and Rohan Maheswari and Rohit Girdhar and Rohit Patel and Romain Sauvestre and Ronnie Polidoro and Roshan Sumbaly and Ross Taylor and Ruan Silva and Rui Hou and Rui Wang and Saghar Hosseini and Sahana Chennabasappa and Sanjay Singh and Sean Bell and Seohyun Sonia Kim and Sergey Edunov and Shaoliang Nie and Sharan Narang and Sharath Raparthy and Sheng Shen and Shengye Wan and Shruti Bhosale and Shun Zhang and Simon Vandenhende and Soumya Batra and Spencer Whitman and Sten Sootla and Stephane Collot and Suchin Gururangan and Sydney Borodinsky and Tamar Herman and Tara Fowler and Tarek Sheasha and Thomas Georgiou and Thomas Scialom and Tobias Speckbacher and Todor Mihaylov and Tong Xiao and Ujjwal Karn and Vedanuj Goswami and Vibhor Gupta and Vignesh Ramanathan and Viktor Kerkez and Vincent Gonguet and Virginie Do and Vish Vogeti and Vítor Albiero and Vladan Petrovic and Weiwei Chu and Wenhan Xiong and Wenyin Fu and Whitney Meers and Xavier Martinet and Xiaodong Wang and Xiaofang Wang and Xiaoqing Ellen Tan and Xide Xia and Xinfeng Xie and Xuchao Jia and Xuewei Wang and Yaelle Goldschlag and Yashesh Gaur and Yasmine Babaei and Yi Wen and Yiwen Song and Yuchen Zhang and Yue Li and Yuning Mao and Zacharie Delpierre Coudert and Zheng Yan and Zhengxing Chen and Zoe Papakipos and Aaditya Singh and Aayushi Srivastava and Abha Jain and Adam Kelsey and Adam Shajnfeld and Adithya Gangidi and Adolfo Victoria and Ahuva Goldstand and Ajay Menon and Ajay Sharma and Alex Boesenberg and Alexei Baevski and Allie Feinstein and Amanda Kallet and Amit Sangani and Amos Teo and Anam Yunus and Andrei Lupu and Andres Alvarado and Andrew Caples and Andrew Gu and Andrew Ho and Andrew Poulton and Andrew Ryan and Ankit Ramchandani and Annie Dong and Annie Franco and Anuj Goyal and Aparajita Saraf and Arkabandhu Chowdhury and Ashley Gabriel and Ashwin Bharambe and Assaf Eisenman and Azadeh Yazdan and Beau James and Ben Maurer and Benjamin Leonhardi and Bernie Huang and Beth Loyd and Beto De Paola and Bhargavi Paranjape and Bing Liu and Bo Wu and Boyu Ni and Braden Hancock and Bram Wasti and Brandon Spence and Brani Stojkovic and Brian Gamido and Britt Montalvo and Carl Parker and Carly Burton and Catalina Mejia and Ce Liu and Changhan Wang and Changkyu Kim and Chao Zhou and Chester Hu and Ching-Hsiang Chu and Chris Cai and Chris Tindal and Christoph Feichtenhofer and Cynthia Gao and Damon Civin and Dana Beaty and Daniel Kreymer and Daniel Li and David Adkins and David Xu and Davide Testuggine and Delia David and Devi Parikh and Diana Liskovich and Didem Foss and Dingkang Wang and Duc Le and Dustin Holland and Edward Dowling and Eissa Jamil and Elaine Montgomery and Eleonora Presani and Emily Hahn and Emily Wood and Eric-Tuan Le and Erik Brinkman and Esteban Arcaute and Evan Dunbar and Evan Smothers and Fei Sun and Felix Kreuk and Feng Tian and Filippos Kokkinos and Firat Ozgenel and Francesco Caggioni and Frank Kanayet and Frank Seide and Gabriela Medina Florez and Gabriella Schwarz and Gada Badeer and Georgia Swee and Gil Halpern and Grant Herman and Grigory Sizov and Guangyi and Zhang and Guna Lakshminarayanan and Hakan Inan and Hamid Shojanazeri and Han Zou and Hannah Wang and Hanwen Zha and Haroun Habeeb and Harrison Rudolph and Helen Suk and Henry Aspegren and Hunter Goldman and Hongyuan Zhan and Ibrahim Damlaj and Igor Molybog and Igor Tufanov and Ilias Leontiadis and Irina-Elena Veliche and Itai Gat and Jake Weissman and James Geboski and James Kohli and Janice Lam and Japhet Asher and Jean-Baptiste Gaya and Jeff Marcus and Jeff Tang and Jennifer Chan and Jenny Zhen and Jeremy Reizenstein and Jeremy Teboul and Jessica Zhong and Jian Jin and Jingyi Yang and Joe Cummings and Jon Carvill and Jon Shepard and Jonathan McPhie and Jonathan Torres and Josh Ginsburg and Junjie Wang and Kai Wu and Kam Hou U and Karan Saxena and Kartikay Khandelwal and Katayoun Zand and Kathy Matosich and Kaushik Veeraraghavan and Kelly Michelena and Keqian Li and Kiran Jagadeesh and Kun Huang and Kunal Chawla and Kyle Huang and Lailin Chen and Lakshya Garg and Lavender A and Leandro Silva and Lee Bell and Lei Zhang and Liangpeng Guo and Licheng Yu and Liron Moshkovich and Luca Wehrstedt and Madian Khabsa and Manav Avalani and Manish Bhatt and Martynas Mankus and Matan Hasson and Matthew Lennie and Matthias Reso and Maxim Groshev and Maxim Naumov and Maya Lathi and Meghan Keneally and Miao Liu and Michael L. Seltzer and Michal Valko and Michelle Restrepo and Mihir Patel and Mik Vyatskov and Mikayel Samvelyan and Mike Clark and Mike Macey and Mike Wang and Miquel Jubert Hermoso and Mo Metanat and Mohammad Rastegari and Munish Bansal and Nandhini Santhanam and Natascha Parks and Natasha White and Navyata Bawa and Nayan Singhal and Nick Egebo and Nicolas Usunier and Nikhil Mehta and Nikolay Pavlovich Laptev and Ning Dong and Norman Cheng and Oleg Chernoguz and Olivia Hart and Omkar Salpekar and Ozlem Kalinli and Parkin Kent and Parth Parekh and Paul Saab and Pavan Balaji and Pedro Rittner and Philip Bontrager and Pierre Roux and Piotr Dollar and Polina Zvyagina and Prashant Ratanchandani and Pritish Yuvraj and Qian Liang and Rachad Alao and Rachel Rodriguez and Rafi Ayub and Raghotham Murthy and Raghu Nayani and Rahul Mitra and Rangaprabhu Parthasarathy and Raymond Li and Rebekkah Hogan and Robin Battey and Rocky Wang and Russ Howes and Ruty Rinott and Sachin Mehta and Sachin Siby and Sai Jayesh Bondu and Samyak Datta and Sara Chugh and Sara Hunt and Sargun Dhillon and Sasha Sidorov and Satadru Pan and Saurabh Mahajan and Saurabh Verma and Seiji Yamamoto and Sharadh Ramaswamy and Shaun Lindsay and Shaun Lindsay and Sheng Feng and Shenghao Lin and Shengxin Cindy Zha and Shishir Patil and Shiva Shankar and Shuqiang Zhang and Shuqiang Zhang and Sinong Wang and Sneha Agarwal and Soji Sajuyigbe and Soumith Chintala and Stephanie Max and Stephen Chen and Steve Kehoe and Steve Satterfield and Sudarshan Govindaprasad and Sumit Gupta and Summer Deng and Sungmin Cho and Sunny Virk and Suraj Subramanian and Sy Choudhury and Sydney Goldman and Tal Remez and Tamar Glaser and Tamara Best and Thilo Koehler and Thomas Robinson and Tianhe Li and Tianjun Zhang and Tim Matthews and Timothy Chou and Tzook Shaked and Varun Vontimitta and Victoria Ajayi and Victoria Montanez and Vijai Mohan and Vinay Satish Kumar and Vishal Mangla and Vlad Ionescu and Vlad Poenaru and Vlad Tiberiu Mihailescu and Vladimir Ivanov and Wei Li and Wenchen Wang and Wenwen Jiang and Wes Bouaziz and Will Constable and Xiaocheng Tang and Xiaojian Wu and Xiaolan Wang and Xilun Wu and Xinbo Gao and Yaniv Kleinman and Yanjun Chen and Ye Hu and Ye Jia and Ye Qi and Yenda Li and Yilin Zhang and Ying Zhang and Yossi Adi and Youngjin Nam and Yu and Wang and Yu Zhao and Yuchen Hao and Yundi Qian and Yunlu Li and Yuzi He and Zach Rait and Zachary DeVito and Zef Rosnbrick and Zhaoduo Wen and Zhenyu Yang and Zhiwei Zhao and Zhiyu Ma},
+      year={2024},
+      eprint={2407.21783},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2407.21783}, 
+}
+
+
+@misc{greenblatt2024alignmentfakinglargelanguage,
+      title={Alignment faking in large language models}, 
+      author={Ryan Greenblatt and Carson Denison and Benjamin Wright and Fabien Roger and Monte MacDiarmid and Sam Marks and Johannes Treutlein and Tim Belonax and Jack Chen and David Duvenaud and Akbir Khan and Julian Michael and Sören Mindermann and Ethan Perez and Linda Petrini and Jonathan Uesato and Jared Kaplan and Buck Shlegeris and Samuel R. Bowman and Evan Hubinger},
+      year={2024},
+      eprint={2412.14093},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2412.14093}, 
+}
+
+@inproceedings{
+hua2026steering,
+title={Steering Evaluation-Aware Language Models To Act Like They Are Deployed},
+author={Tim Tian Hua and Andrew Qin and Samuel Marks and Neel Nanda},
+booktitle={The Fourteenth International Conference on Learning Representations},
+year={2026},
+url={https://openreview.net/forum?id=1TdRdf0fkw}
+}
+
+@inproceedings{khan-etal-2024-indicllmsuite,
+    title = "{I}ndic{LLMS}uite: A Blueprint for Creating Pre-training and Fine-Tuning Datasets for {I}ndian Languages",
+    author = "Khan, Mohammed Safi Ur Rahman  and
+      Mehta, Priyam  and
+      Sankar, Ananth  and
+      Kumaravelan, Umashankar  and
+      Doddapaneni, Sumanth  and
+      B, Suriyaprasaad  and
+      G, Varun  and
+      Jain, Sparsh  and
+      Kunchukuttan, Anoop  and
+      Kumar, Pratyush  and
+      Dabre, Raj  and
+      Khapra, Mitesh M.",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.843/",
+    doi = "10.18653/v1/2024.acl-long.843",
+    pages = "15831--15879",
+    abstract = "Despite the considerable advancements in English LLMs, the progress in building comparable models for other languages has been hindered due to the scarcity of tailored resources. Our work aims to bridge this divide by introducing an expansive suite of resources specifically designed for the development of Indic LLMs, covering 22 languages, containing a total of 251B tokens and 74.8M instruction-response pairs. Recognizing the importance of both data quality and quantity, our approach combines highly curated manually verified data, unverified yet valuable data, and synthetic data. We build a clean, open-source pipeline for curating pre-training data from diverse sources, including websites, PDFs, and videos, incorporating best practices for crawling, cleaning, flagging, and deduplication. For instruction-fine tuning, we amalgamate existing Indic datasets, translate/transliterate English datasets into Indian languages, and utilize LLaMa2 and Mixtral models to create conversations grounded in articles from Indian Wikipedia and Wikihow. Additionally, we address toxicity alignment by generating toxic prompts for multiple scenarios and then generate non-toxic responses by feeding these toxic prompts to an aligned LLaMa2 model. We hope that the datasets, tools, and resources released as a part of this work will not only propel the research and development of Indic LLMs but also establish an open-source blueprint for extending such efforts to other languages."
+}
+
+@misc{knecht2026evaluationawarenesslanguagemodels,
+      title={Evaluation Awareness in Language Models Has Limited Effect on Behaviour}, 
+      author={Amelie Knecht and Lucas Florin and Thilo Hagendorff},
+      year={2026},
+      eprint={2605.05835},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2605.05835}, 
+}
+
+@misc{li2026decomposingmeasuringevaluationawareness,
+      title={Decomposing and Measuring Evaluation Awareness}, 
+      author={Changling Li and Terry Jingchen Zhang and Jie Zhang and Zhijing Jin and Sahar Abdelnabi and Maksym Andriushchenko},
+      year={2026},
+      eprint={2605.23055},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2605.23055}, 
+}
+
+@article{10.1093/biomet/73.1.13,
+    author = {LIANG, KUNG-YEE and ZEGER, SCOTT L.},
+    title = {Longitudinal data analysis using generalized linear models},
+    journal = {Biometrika},
+    volume = {73},
+    number = {1},
+    pages = {13-22},
+    year = {1986},
+    month = {04},
+    abstract = {This paper proposes an extension of generalized linear models to the analysis of longitudinal data. We introduce a class of estimating equations that give consistent estimates of the regression parameters and of their variance under mild assumptions about the time dependence. The estimating equations are derived without specifying the joint distribution of a subject's observations yet they reduce to the score equations for niultivariate Gaussian outcomes. Asymptotic theory is presented for the general class of estimators. Specific cases in which we assume independence, m-dependence and exchangeable correlation structures from each subject are discussed. Efficiency of the pioposecl estimators in two simple situations is considered. The approach is closely related to quasi-likelihood.},
+    issn = {0006-3444},
+    doi = {10.1093/biomet/73.1.13},
+    url = {https://doi.org/10.1093/biomet/73.1.13},
+    eprint = {https://academic.oup.com/biomet/article-pdf/73/1/13/679793/73-1-13.pdf},
+}
+
+@inproceedings{ICLR2024_f83cb637,
+ author = {Liu, Xiaogeng and Xu, Nan and Chen, Muhao and Xiao, Chaowei},
+ booktitle = {International Conference on Learning Representations},
+ editor = {B. Kim and Y. Yue and S. Chaudhuri and K. Fragkiadaki and M. Khan and Y. Sun},
+ pages = {56174--56194},
+ title = {AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models},
+ url = {https://proceedings.iclr.cc/paper_files/paper/2024/file/f83cb637e159e789f5576ff6848874de-Paper-Conference.pdf},
+ volume = {2024},
+ year = {2024}
+}
+
+
+@article{McNemar_1947, title={Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages}, volume={12}, DOI={10.1007/BF02295996}, number={2}, journal={Psychometrika}, author={McNemar, Quinn}, year={1947}, pages={153–157}} <div></div>
+
+@misc{needham2025largelanguagemodelsknow,
+      title={Large Language Models Often Know When They Are Being Evaluated}, 
+      author={Joe Needham and Giles Edkins and Govind Pimpale and Henning Bartsch and Marius Hobbhahn},
+      year={2025},
+      eprint={2505.23836},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2505.23836}, 
+}
+
+@misc{onyame2026fragilitychainofthoughtmonitoringtypologically,
+      title={The Fragility of Chain-of-Thought Monitoring Across Typologically Diverse Languages}, 
+      author={Eric Onyame and Runtao Zhou and Kowshik Thopalli and Bhavya Kailkhura and Chirag Agarwal},
+      year={2026},
+      eprint={2605.27901},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2605.27901}, 
+}
+
+@inproceedings{rimsky-etal-2024-steering,
+    title = "Steering Llama 2 via Contrastive Activation Addition",
+    author = "Rimsky, Nina  and
+      Gabrieli, Nick  and
+      Schulz, Julian  and
+      Tong, Meg  and
+      Hubinger, Evan  and
+      Turner, Alexander",
+    editor = "Ku, Lun-Wei  and
+      Martins, Andre  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = aug,
+    year = "2024",
+    address = "Bangkok, Thailand",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.acl-long.828/",
+    doi = "10.18653/v1/2024.acl-long.828",
+    pages = "15504--15522",
+    abstract = "We introduce Contrastive Activation Addition (CAA), a method for steering language models by modifying their activations during forward passes. CAA computes ``steering vectors'' by averaging the difference in residual stream activations between pairs of positive and negative examples of a particular behavior, such as factual versus hallucinatory responses. During inference, these steering vectors are added at all token positions after the user{'}s prompt with either a positive or negative coefficient, allowing precise control over the degree of the targeted behavior. We evaluate CAA{'}s effectiveness on Llama 2 Chat using multiple-choice behavioral question datasets and open-ended generation tasks. We demonstrate that CAA significantly alters model behavior, is effective over and on top of traditional methods like finetuning and system prompt design, and minimally reduces capabilities. Moreover, we gain deeper insights into CAA{'}s mechanisms by employing various activation space interpretation methods. CAA accurately steers model outputs and sheds light on how high-level concepts are represented in Large Language Models (LLMs)."
+}
+
+@misc{sarvam,
+  title        = {Introducing Sarvam's Sovereign Models},
+  author       = {{Sarvam Foundation Models Team}},
+  year         = {2026},
+  howpublished = {\url{https://www.sarvam.ai/blogs/sarvam-30b-105b}},
+  note         = {Accessed: 2026-03-03}
+}
+
+
+
+@inproceedings{pattnayak-chowdhuri-2026-indicjr,
+    title = "{I}ndic{JR}: A Judge-Free Benchmark of Jailbreak Robustness in {S}outh {A}sian Languages",
+    author = "Pattnayak, Priyaranjan  and
+      Chowdhuri, Sanchari",
+    editor = {Matusevych, Yevgen  and
+      Eryi{\u{g}}it, G{\"u}l{\c{s}}en  and
+      Aletras, Nikolaos},
+    booktitle = "Proceedings of the 19th Conference of the {E}uropean Chapter of the {A}ssociation for {C}omputational {L}inguistics (Volume 5: Industry Track)",
+    month = mar,
+    year = "2026",
+    address = "Rabat, Morocco",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2026.eacl-industry.50/",
+    doi = "10.18653/v1/2026.eacl-industry.50",
+    pages = "649--668",
+    ISBN = "979-8-89176-384-5",
+    abstract = "Safety alignment of large language models (LLMs) is mostly evaluated in English and contract-bound, leaving multilingual vulnerabilities understudied. We introduce Indic Jailbreak Robustness (IJR) a judge-free benchmark for adversarial safety across 12 Indic and South Asian languages ({\textasciitilde}2.09B speakers), covering 45,216 prompts in JSON (contract-bound) and Free (naturalistic) tracks.IJR reveals three patterns. (1) Contracts inflate refusals but do not stop jailbreaks: in JSON, LLaMA and Sarvam exceed 0.92 JSR, and in Free all models reach {\textasciitilde}1.0 with refusals collapsing. (2) English{\textrightarrow}Indic attacks transfer strongly, with format wrappers often outperforming instruction wrappers. (3) Orthography matters: romanized/mixed inputs reduce JSR under JSON, with correlations to romanization share and tokenization {\ensuremath{\rho}} {\ensuremath{\approx}} 0.28{--}0.32 indicating systematic effects. Human audits confirm detector reliability, and lite-to-full comparisons preserve conclusions. IJR offers a reproducible multilingual stress test revealing risks hidden by English-only, contract-focused evaluations, especially for South Asian users who frequently code-switch and romanize."
+}
+
+@misc{pattnayak2026indicsafebenchmarkevaluatingmultilingual,
+      title={IndicSafe: A Benchmark for Evaluating Multilingual LLM Safety in South Asia}, 
+      author={Priyaranjan Pattnayak and Sanchari Chowdhuri},
+      year={2026},
+      eprint={2603.17915},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2603.17915}, 
+}
+
+@misc{qwen2025qwen25technicalreport,
+      title={Qwen2.5 Technical Report}, 
+      author={Qwen and : and An Yang and Baosong Yang and Beichen Zhang and Binyuan Hui and Bo Zheng and Bowen Yu and Chengyuan Li and Dayiheng Liu and Fei Huang and Haoran Wei and Huan Lin and Jian Yang and Jianhong Tu and Jianwei Zhang and Jianxin Yang and Jiaxi Yang and Jingren Zhou and Junyang Lin and Kai Dang and Keming Lu and Keqin Bao and Kexin Yang and Le Yu and Mei Li and Mingfeng Xue and Pei Zhang and Qin Zhu and Rui Men and Runji Lin and Tianhao Li and Tianyi Tang and Tingyu Xia and Xingzhang Ren and Xuancheng Ren and Yang Fan and Yang Su and Yichang Zhang and Yu Wan and Yuqiong Liu and Zeyu Cui and Zhenru Zhang and Zihan Qiu},
+      year={2025},
+      eprint={2412.15115},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2412.15115}, 
+}
+
+@misc{sheshadri2025languagemodelsfakealignment,
+      title={Why Do Some Language Models Fake Alignment While Others Don't?}, 
+      author={Abhay Sheshadri and John Hughes and Julian Michael and Alex Mallen and Arun Jose and Janus and Fabien Roger},
+      year={2025},
+      eprint={2506.18032},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2506.18032}, 
+}
+
+@inproceedings{NEURIPS2024_fb3ad59a,
+ author = {Tan, Daniel and Chanin, David and Lynch, Aengus and Paige, Brooks and Kanoulas, Dimitrios and Garriga-Alonso, Adri\`{a} and Kirk, Robert},
+ booktitle = {Advances in Neural Information Processing Systems},
+ doi = {10.52202/079017-4417},
+ editor = {A. Globerson and L. Mackey and D. Belgrave and A. Fan and U. Paquet and J. Tomczak and C. Zhang},
+ pages = {139179--139212},
+ publisher = {Curran Associates, Inc.},
+ title = {Analysing the Generalisation and Reliability of Steering Vectors},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2024/file/fb3ad59a84799bfb8d700e56d19c231b-Paper-Conference.pdf},
+ volume = {37},
+ year = {2024}
+}
+
+
+@misc{teknium2024hermes3technicalreport,
+      title={Hermes 3 Technical Report}, 
+      author={Ryan Teknium and Jeffrey Quesnelle and Chen Guang},
+      year={2024},
+      eprint={2408.11857},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2408.11857}, 
+}
+
+@misc{turner2024steeringlanguagemodelsactivation,
+      title={Steering Language Models With Activation Engineering}, 
+      author={Alexander Matt Turner and Lisa Thiergart and Gavin Leech and David Udell and Juan J. Vazquez and Ulisse Mini and Monte MacDiarmid},
+      year={2024},
+      eprint={2308.10248},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2308.10248}, 
+}
+
+@InProceedings{pmlr-v267-wollschlager25a,
+  title = 	 {The Geometry of Refusal in Large Language Models: Concept Cones and Representational Independence},
+  author =       {Wollschl\"{a}ger, Tom and Elstner, Jannes and Geisler, Simon and Cohen-Addad, Vincent and G\"{u}nnemann, Stephan and Gasteiger, Johannes},
+  booktitle = 	 {Proceedings of the 42nd International Conference on Machine Learning},
+  pages = 	 {66945--66970},
+  year = 	 {2025},
+  editor = 	 {Singh, Aarti and Fazel, Maryam and Hsu, Daniel and Lacoste-Julien, Simon and Berkenkamp, Felix and Maharaj, Tegan and Wagstaff, Kiri and Zhu, Jerry},
+  volume = 	 {267},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {13--19 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {https://raw.githubusercontent.com/mlresearch/v267/main/assets/wollschlager25a/wollschlager25a.pdf},
+  url = 	 {https://proceedings.mlr.press/v267/wollschlager25a.html},
+  abstract = 	 {The safety alignment of large language models (LLMs) can be circumvented through adversarially crafted inputs, yet the mechanisms by which these attacks bypass safety barriers remain poorly understood. Prior work suggests that a <em>single</em> refusal direction in the model’s activation space determines whether an LLM refuses a request. In this study, we propose a novel gradient-based approach to representation engineering and use it to identify refusal directions. Contrary to prior work, we uncover multiple independent directions and even multi-dimensional <em>concept cones</em> that mediate refusal. Moreover, we show that orthogonality alone does not imply independence under intervention, motivating the notion of <em>representational independence</em> that accounts for both linear and non-linear effects. Using this framework, we identify mechanistically independent refusal directions. We show that refusal mechanisms in LLMs are governed by complex spatial structures and identify functionally independent directions, confirming that multiple distinct mechanisms drive refusal behavior. Our gradient-based approach uncovers these mechanisms and can further serve as a foundation for future work on understanding LLMs.}
+}
+
+@misc{yamaguchi2026reasoningmodelsrefuse,
+      title={Where Do Reasoning Models Refuse?}, 
+      author={Kureha Yamaguchi and Benjamin Etheridge and Andy Arditi},
+      year={2026},
+      eprint={2507.03167},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2507.03167}, 
+}
+
+@misc{yang2025qwen3technicalreport,
+      title={Qwen3 Technical Report}, 
+      author={An Yang and Anfeng Li and Baosong Yang and Beichen Zhang and Binyuan Hui and Bo Zheng and Bowen Yu and Chang Gao and Chengen Huang and Chenxu Lv and Chujie Zheng and Dayiheng Liu and Fan Zhou and Fei Huang and Feng Hu and Hao Ge and Haoran Wei and Huan Lin and Jialong Tang and Jian Yang and Jianhong Tu and Jianwei Zhang and Jianxin Yang and Jiaxi Yang and Jing Zhou and Jingren Zhou and Junyang Lin and Kai Dang and Keqin Bao and Kexin Yang and Le Yu and Lianghao Deng and Mei Li and Mingfeng Xue and Mingze Li and Pei Zhang and Peng Wang and Qin Zhu and Rui Men and Ruize Gao and Shixuan Liu and Shuang Luo and Tianhao Li and Tianyi Tang and Wenbiao Yin and Xingzhang Ren and Xinyu Wang and Xinyu Zhang and Xuancheng Ren and Yang Fan and Yang Su and Yichang Zhang and Yinger Zhang and Yu Wan and Yuqiong Liu and Zekun Wang and Zeyu Cui and Zhenru Zhang and Zhipeng Zhou and Zihan Qiu},
+      year={2025},
+      eprint={2505.09388},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2505.09388}, 
+}
+
+@misc{yang2026singledirectionchainofthoughtdisrupts,
+      title={Beyond a Single Direction: Chain-of-Thought Disrupts Simple Steering of Refusal}, 
+      author={Kia-Jüng Yang and Dominik Meier and Jiachen Zhao and Terry Ruas and Bela Gipp},
+      year={2026},
+      eprint={2605.26772},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2605.26772}, 
+}
+
+@inproceedings{yong-etal-2025-state,
+    title = "The State of Multilingual {LLM} Safety Research: From Measuring The Language Gap To Mitigating It",
+    author = "Yong, Zheng Xin  and
+      Ermis, Beyza  and
+      Fadaee, Marzieh  and
+      Bach, Stephen  and
+      Kreutzer, Julia",
+    editor = "Christodoulopoulos, Christos  and
+      Chakraborty, Tanmoy  and
+      Rose, Carolyn  and
+      Peng, Violet",
+    booktitle = "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2025",
+    address = "Suzhou, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.emnlp-main.800/",
+    doi = "10.18653/v1/2025.emnlp-main.800",
+    pages = "15845--15860",
+    ISBN = "979-8-89176-332-6",
+    abstract = "This paper presents a comprehensive analysis of the linguistic diversity of LLM safety research, highlighting the English-centric nature of the field. Through a systematic review of nearly 300 publications from 2020{--}2024 across major NLP conferences and workshops at ACL, we identify a significant and growing language gap in LLM safety research, with even high-resource non-English languages receiving minimal attention. We further observe that non-English languages are rarely studied as a standalone language and that English safety research exhibits poor language documentation practice. To motivate future research into multilingual safety, we make several recommendations based on our survey, and we then pose three concrete future directions on safety evaluation, training data generation, and crosslingual safety generalization. Based on our survey and proposed directions, the field can develop more robust, inclusive AI safety practices for diverse global populations."
+}
+
+@inproceedings{yoo-etal-2025-code,
+    title = "Code-Switching Red-Teaming: {LLM} Evaluation for Safety and Multilingual Understanding",
+    author = "Yoo, Haneul  and
+      Yang, Yongjin  and
+      Lee, Hwaran",
+    editor = "Che, Wanxiang  and
+      Nabende, Joyce  and
+      Shutova, Ekaterina  and
+      Pilehvar, Mohammad Taher",
+    booktitle = "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2025",
+    address = "Vienna, Austria",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.acl-long.657/",
+    doi = "10.18653/v1/2025.acl-long.657",
+    pages = "13392--13413",
+    ISBN = "979-8-89176-251-0",
+    abstract = "As large language models (LLMs) have advanced rapidly, concerns regarding their safety have become prominent. In this paper, we discover that code-switching in red-teaming queries can effectively elicit undesirable behaviors of LLMs, which are common practices in natural language. We introduce a simple yet effective framework, CSRT, to synthesize code-switching red-teaming queries and investigate the safety and multilingual understanding of LLMs comprehensively. Through extensive experiments with ten state-of-the-art LLMs and code-switching queries combining up to 10 languages, we demonstrate that the CSRT significantly outperforms existing multilingual red-teaming techniques, achieving 46.7{\%} more attacks than standard attacks in English and being effective in conventional safety domains. We also examine the multilingual ability of those LLMs to generate and understand code-switching texts. Additionally, we validate the extensibility of the CSRT by generating code-switching attack prompts with monolingual data. We finally conduct detailed ablation studies exploring code-switching and propound unintended correlation between resource availability of languages and safety alignment in existing multilingual LLMs."
+}
+
+@inproceedings{ICLR2024_06a52a54,
+ author = {Zhang, Fred and Nanda, Neel},
+ booktitle = {International Conference on Learning Representations},
+ editor = {B. Kim and Y. Yue and S. Chaudhuri and K. Fragkiadaki and M. Khan and Y. Sun},
+ pages = {1651--1678},
+ title = {Towards Best Practices of Activation Patching in Language Models: Metrics and Methods},
+ url = {https://proceedings.iclr.cc/paper_files/paper/2024/file/06a52a54c8ee03cd86771136bc91eb1f-Paper-Conference.pdf},
+ volume = {2024},
+ year = {2024}
+}
+
+
+@inproceedings{NEURIPS2023_91f18a12,
+ author = {Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric and Zhang, Hao and Gonzalez, Joseph and Stoica, Ion},
+ booktitle = {Advances in Neural Information Processing Systems},
+ editor = {A. Oh and T. Naumann and A. Globerson and K. Saenko and M. Hardt and S. Levine},
+ pages = {46595--46623},
+ publisher = {Curran Associates, Inc.},
+ title = {Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena},
+ url = {https://proceedings.neurips.cc/paper_files/paper/2023/file/91f18a1287b398d378ef22505bf41832-Paper-Datasets_and_Benchmarks.pdf},
+ volume = {36},
+ year = {2023}
+}
+
+
+@misc{zou2025representationengineeringtopdownapproach,
+      title={Representation Engineering: A Top-Down Approach to AI Transparency}, 
+      author={Andy Zou and Long Phan and Sarah Chen and James Campbell and Phillip Guo and Richard Ren and Alexander Pan and Xuwang Yin and Mantas Mazeika and Ann-Kathrin Dombrowski and Shashwat Goel and Nathaniel Li and Michael J. Byun and Zifan Wang and Alex Mallen and Steven Basart and Sanmi Koyejo and Dawn Song and Matt Fredrikson and J. Zico Kolter and Dan Hendrycks},
+      year={2025},
+      eprint={2310.01405},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2310.01405}, 
+}
+
+@misc{zou2023universaltransferableadversarialattacks,
+      title={Universal and Transferable Adversarial Attacks on Aligned Language Models}, 
+      author={Andy Zou and Zifan Wang and Nicholas Carlini and Milad Nasr and J. Zico Kolter and Matt Fredrikson},
+      year={2023},
+      eprint={2307.15043},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2307.15043}, 
+}
+@inproceedings{
+nguyen2025probing,
+title={Probing Evaluation Awareness of Language Models},
+author={Jord Nguyen and Hoang Huu Khiem and Carlo Leonardo Attubato and Felix Hofst{\"a}tter},
+booktitle={ICML Workshop on Technical AI Governance (TAIG)},
+year={2025},
+url={https://openreview.net/forum?id=lerUefpec2}
+}
+
+@inproceedings{rei-etal-2022-cometkiwi,
+    title = "{C}omet{K}iwi: {IST}-Unbabel 2022 Submission for the Quality Estimation Shared Task",
+    author = "Rei, Ricardo  and
+      Treviso, Marcos  and
+      Guerreiro, Nuno M.  and
+      Zerva, Chrysoula  and
+      Farinha, Ana C  and
+      Maroti, Christine  and
+      C. de Souza, Jos{\'e} G.  and
+      Glushkova, Taisiya  and
+      Alves, Duarte  and
+      Coheur, Luisa  and
+      Lavie, Alon  and
+      Martins, Andr{\'e} F. T.",
+    editor = {Koehn, Philipp  and
+      Barrault, Lo{\"i}c  and
+      Bojar, Ond{\v{r}}ej  and
+      Bougares, Fethi  and
+      Chatterjee, Rajen  and
+      Costa-juss{\`a}, Marta R.  and
+      Federmann, Christian  and
+      Fishel, Mark  and
+      Fraser, Alexander  and
+      Freitag, Markus  and
+      Graham, Yvette  and
+      Grundkiewicz, Roman  and
+      Guzman, Paco  and
+      Haddow, Barry  and
+      Huck, Matthias  and
+      Jimeno Yepes, Antonio  and
+      Kocmi, Tom  and
+      Martins, Andr{\'e}  and
+      Morishita, Makoto  and
+      Monz, Christof  and
+      Nagata, Masaaki  and
+      Nakazawa, Toshiaki  and
+      Negri, Matteo  and
+      N{\'e}v{\'e}ol, Aur{\'e}lie  and
+      Neves, Mariana  and
+      Popel, Martin  and
+      Turchi, Marco  and
+      Zampieri, Marcos},
+    booktitle = "Proceedings of the Seventh Conference on Machine Translation (WMT)",
+    month = dec,
+    year = "2022",
+    address = "Abu Dhabi, United Arab Emirates (Hybrid)",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.wmt-1.60/",
+    doi = "10.18653/v1/2022.wmt-1.60",
+    pages = "634--645",
+    abstract = "We present the joint contribution of IST and Unbabel to the WMT 2022 Shared Task on Quality Estimation (QE). Our team participated in all three subtasks: (i) Sentence and Word-level Quality Prediction; (ii) Explainable QE; and (iii) Critical Error Detection. For all tasks we build on top of the COMET framework, connecting it with the predictor-estimator architecture of OpenKiwi, and equipping it with a word-level sequence tagger and an explanation extractor. Our results suggest that incorporating references during pretraining improves performance across several language pairs on downstream tasks, and that jointly training with sentence and word-level objectives yields a further boost. Furthermore, combining attention and gradient information proved to be the top strategy for extracting good explanations of sentence-level QE models. Overall, our submissions achieved the best results for all three tasks for almost all language pairs by a considerable margin."
+}
+
